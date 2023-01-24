@@ -16,7 +16,7 @@ const Navbar = () => {
             <hr class="h-px mt-1 w-40 mx-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
 
         <div className='max-w-72 inset-y-0 my-4 ml-0 mr-10  flex-wrap items-center justify-between overflow-y-auto rounded-2xl bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
-            <div className=''>
+            <div className='pb-10'>
                 <ul className="flex flex-col pl-0 mb-0">
                         <NavLink to="/" className=
                             {` ${selectedTab === 'home' ?
@@ -128,6 +128,7 @@ const Navbar = () => {
                             <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Orders</p>
                         </NavLink>
                     </div>
+                    
                 </ul>
             </div>
         </div>
