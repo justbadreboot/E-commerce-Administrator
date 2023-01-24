@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { BsGraphUp } from "react-icons/bs";
 import { AiFillMedicineBox } from "react-icons/ai";
 import { FaMoneyBillAlt } from "react-icons/fa";
+import { RiTeamFill} from "react-icons/ri";
 import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServices, MdLocalOffer } from "react-icons/md";
 
 const Navbar = () => {
@@ -11,7 +12,7 @@ const Navbar = () => {
     return (
         <div className='max-w-62.5 inset-y-0 my-4 ml-4 block   flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
             <div>
-                <img src="./logo192.png" className='inline w-24 transition-all duration-200 h-full mx-10'/>
+                <img src="./images/logo-med.png" className='inline w-40 transition-all duration-200 h-full mx-5'/>
             </div>
             <hr class="h-px mt-1 w-40 mx-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
 
@@ -140,7 +141,7 @@ const Navbar = () => {
                                 'bg-gradient-to-tl from-green-100 to-green-20 shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                                 'shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
 
-                                <FaMoneyBillAlt className='w-9 h-9' />
+                                <RiTeamFill className='w-9 h-9' />
                             </div>
                             <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>About Us</p>
                         </NavLink>
