@@ -12,7 +12,7 @@ import Navbar from './components/shared/Navbar/Navbar';
 
 function App() {
   return (
-    <div className="flex m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500">
+    <div className="flex m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500 h-screen">
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>

@@ -9,12 +9,14 @@ import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServi
 const Navbar = () => {
     const [selectedTab, setSelectedTab] = useState('home');
     return (
-        <div className='items-center block w-auto max-h-screen overflow-auto h-sidenav'>
+        <div className='max-w-72 inset-y-0 my-4 ml-4 mr-10 -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
+        <div className='items-center block w-auto max-h-screen overflow-auto '>
             <ul className="flex flex-col pl-0 mb-0">
                 <div>
-                    <NavLink to="/" className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors" onClick={() => setSelectedTab('home')}>
+                    <NavLink to="/" className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors" 
+                    onClick={() => setSelectedTab('home')}>
                         <div className={` ${selectedTab === 'home' ?
-                            'bg-gradient-to-tl from-green100 to-green-40 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                            'bg-gradient-to-tl from-green-100 to-green-20 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                             'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
                             <BsGraphUp />
                         </div>
@@ -27,7 +29,7 @@ const Navbar = () => {
                         onClick={() => setSelectedTab('store')}
                     >
                         <div className={` ${selectedTab === 'store' ?
-                            'bg-gradient-to-tl from-green100 to-green-40 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                            'bg-gradient-to-tl from-green-100 to-green-20 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                             'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
                             <MdStoreMallDirectory />
                         </div>
@@ -40,7 +42,7 @@ const Navbar = () => {
                         onClick={() => setSelectedTab('products')}
                     >
                         <div className={` ${selectedTab === 'products' ?
-                            'bg-gradient-to-tl from-green100 to-green-40 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                            'bg-gradient-to-tl from-green-100 to-green-20 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                             'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
                             <MdProductionQuantityLimits />
                         </div>
@@ -53,7 +55,7 @@ const Navbar = () => {
                         onClick={() => setSelectedTab('services')}
                     >
                         <div className={` ${selectedTab === 'services' ?
-                            'bg-gradient-to-tl from-green100 to-green-40 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                            'bg-gradient-to-tl from-green-100 to-green-20 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                             'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
 
                             <MdOutlineMedicalServices />
@@ -66,7 +68,7 @@ const Navbar = () => {
                         className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
                         onClick={() => setSelectedTab('doctors')}>
                         <div className={` ${selectedTab === 'doctors' ?
-                            'bg-gradient-to-tl from-green100 to-green-40 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                            'bg-gradient-to-tl from-green-100 to-green-20 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                             'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
 
                             <AiFillMedicineBox />
@@ -79,7 +81,7 @@ const Navbar = () => {
                         className="py-2.7 shadow-soft-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors"
                         onClick={() => setSelectedTab('promotions')}>
                         <div className={` ${selectedTab === 'promotions' ?
-                            'bg-gradient-to-tl from-green100 to-green-40 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                            'bg-gradient-to-tl from-green-100 to-green-20 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                             'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
 
                             <MdLocalOffer />
@@ -93,7 +95,7 @@ const Navbar = () => {
                         onClick={() => setSelectedTab('orders')}
                     >
                         <div className={` ${selectedTab === 'orders' ?
-                            'bg-gradient-to-tl from-green100 to-green-40 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                            'bg-gradient-to-tl from-green-100 to-green-20 shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                             'shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
 
                             <FaMoneyBillAlt />
@@ -102,6 +104,7 @@ const Navbar = () => {
                     </NavLink>
                 </div>
             </ul>
+        </div>
         </div>
     )
 }
