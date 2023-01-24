@@ -16,7 +16,7 @@ const Navbar = () => {
             <hr class="h-px mt-1 w-40 mx-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
 
         <div className='max-w-72 inset-y-0 my-4 ml-0 mr-10  flex-wrap items-center justify-between overflow-y-auto rounded-2xl bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
-            <div className='pb-10'>
+            <div className='pb-5'>
                 <ul className="flex flex-col pl-0 mb-0">
                         <NavLink to="/" className=
                             {` ${selectedTab === 'home' ?
@@ -126,6 +126,23 @@ const Navbar = () => {
                                 <FaMoneyBillAlt className='w-9 h-9' />
                             </div>
                             <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Orders</p>
+                        </NavLink>
+                    </div>
+                    <div>
+                        <NavLink to="/about"
+                            className=
+                            {` ${selectedTab === 'about' ?
+                                'py-3 shadow-xl text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors' :
+                                'py-3 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors'}`}
+                            onClick={() => setSelectedTab('about')}
+                        >
+                            <div className={` ${selectedTab === 'about' ?
+                                'bg-gradient-to-tl from-green-100 to-green-20 shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                                'shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
+
+                                <FaMoneyBillAlt className='w-9 h-9' />
+                            </div>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>About Us</p>
                         </NavLink>
                     </div>
                     
