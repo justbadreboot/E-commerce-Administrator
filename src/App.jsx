@@ -12,7 +12,7 @@ import Navbar from './components/shared/Navbar/Navbar';
 
 function App() {
   return (
-    <div className="">
+    <div className="flex">
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
