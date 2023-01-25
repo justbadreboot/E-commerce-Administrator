@@ -10,13 +10,13 @@ import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServi
 const Navbar = () => {
     const [selectedTab, setSelectedTab] = useState('home');
     return (
-        <div className='max-w-62.5 inset-y-0 my-4 ml-4 block   flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
+        <div className='max-w-62.5 inset-y-0 my-4 ml-0 block   items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
             <div>
                 <img src="./images/logo-med.png" className='inline w-40 transition-all duration-200 h-full mx-5'/>
             </div>
             <hr class="h-px mt-1 w-40 mx-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
 
-        <div className='max-w-72 inset-y-0 my-4 ml-0 mr-10  flex-wrap items-center justify-between overflow-y-auto rounded-2xl bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
+        <div className='max-w-72 inset-y-0 my-4 ml-1 mr-8  flex-wrap items-center justify-between overflow-y-auto rounded-2xl bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
             <div className='pb-5'>
                 <ul className="flex flex-col pl-0 mb-0">
                         <NavLink to="/" className=
