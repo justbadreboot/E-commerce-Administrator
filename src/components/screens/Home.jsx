@@ -1,7 +1,6 @@
 import React from 'react';
 import CardDataU from '../CardDataU';
 import BarCard from '../statisctics/BarCard';
-import BarChart from '../statisctics/BarChart';
 import LineChart from '../statisctics/LineChart';
 
 const Home = () => {
