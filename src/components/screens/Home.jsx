@@ -7,7 +7,7 @@ import LineChart from '../statisctics/LineChart';
 const Home = () => {
 
   return (
-    <div className="w-full px-6 py-6 mx-auto">
+    <div className=" w-5/6 px-6 py-6 mx-auto">
       <div className="flex flex-wrap -mx-3">
         <CardDataU
           titulo="Today's Money"
@@ -36,13 +36,11 @@ const Home = () => {
       </div>
       <div class="flex flex-wrap mt-6 -mx-3">
         <BarCard />
-        <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
+        <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none drop-shadow-lg">
             <div class="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
               <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
                 <h6>Sales overview</h6>
                 <p class="leading-normal text-sm">
-                  <i class="fa fa-arrow-up text-lime-500"></i>
-                  <span class="font-semibold">4% more</span> in 2021
                 </p>
               </div>
               <div class="flex-auto p-4">
