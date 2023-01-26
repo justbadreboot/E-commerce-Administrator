@@ -3,8 +3,15 @@ import Empleados from '../Empleados';
 
 const Store = () => {
   const [editing, setEditing] = useState(false);
+  const [editstore, setEditstore] = useState(false);
   const [mission, setMission] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nobis maiores recusandae natus asperiores ducimus ab nisi quos error ipsam, suscipit eum. Quo, commodi dolorem! Alias, harum architecto? Doloribus, possimus.");
   const [vision, setVision] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit reiciendis cupiditate commodi eveniet laboriosam voluptates quos magni culpa, nobis incidunt ullam necessitatibus non impedit id dolorem. Deleniti ducimus quae voluptates?");
+  const [descripcion, setDescripcion]=useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit reiciendis cupiditate commodi eveniet laboriosam voluptates quos magni culpa, nobis incidunt ullam necessitatibus non impedit id dolorem. Deleniti ducimus quae voluptates?")
+  const [nombre, setNombre]=useState("Kruger Med")
+  const [telefono, setTelefono]=useState("(+513) 02322598")
+  const [correo, setCorreo]=useState("KrugerMed@mail.com")
+  const [direccion, setDireccion]=useState("Quito-Ecuador-...")
+  
   return (
     <div className="w-12/12 h-screen  mx-auto  transition-all duration-200 bg-gray-50 ">
       <div className=''>
@@ -72,7 +79,7 @@ const Store = () => {
                       <h6 className="mb-0 text-slate-700"><strong>Información de tienda</strong></h6>
                     </div>
                     <div className="w-full max-w-full px-3 text-right shrink-0 md:w-4/12 md:flex-none">
-                      <a href="javascript:;" data-target="tooltip_trigger" data-placement="top">
+                      <a href="javascript:;" data-target="tooltip_trigger" data-placement="top" onClick={() => setEditstore(!editstore)}>
                         <i className="leading-normal fas fa-pen-to-square text-xl text-slate-400"></i>
                       </a>
                       <div data-target="tooltip" className="hidden px-2 py-1 text-center text-white bg-black rounded-lg text-sm" role="tooltip">
@@ -86,13 +93,64 @@ const Store = () => {
                 <div className="flex-auto p-4 pt-4">
                   <h6 className="font-bold leading-tight uppercase text-xs text-slate-500">Descripción</h6>
 
-                  <p className="leading-normal text-l pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim placeat consequuntur amet tenetur! Autem cumque, adipisci recusandae aspernatur expedita fugiat tempore veritatis explicabo molestias accusantium ea mollitia debitis eos a!</p>
+                  <p className="leading-normal text-l pt-2">
+                  {editstore ? (
+                      <textarea
+                        className="border w-full p-2 rounded-lg resize-none"
+                        rows="5"
+                        value={descripcion}
+                        onChange={e => setDescripcion(e.target.value)}
+                      />
+                    ) : (
+                      <div>{descripcion}</div>
+                    )}
+                  </p>
                   <hr className="h-px my-6 bg-transparent bg-gradient-to-r from-transparent via-white to-transparent" />
                   <ul className="flex flex-col pl-0 mb-0 rounded-lg">
-                    <li className="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong className="text-slate-700">Nombre:</strong> &nbsp; Kruger Med</li>
-                    <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Telefono:</strong> &nbsp; (44) 123 1234 123</li>
-                    <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Correo:</strong> &nbsp; KrugerMed@mail.com</li>
-                    <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Dirección:</strong> &nbsp; USA</li>
+                    <li className="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong className="text-slate-700">Nombre:</strong> &nbsp; 
+                    {editstore ? (
+                      <input
+                        className="border p-2 rounded-lg resize-none"
+                        value={nombre}
+                        onChange={e => setNombre(e.target.value)}
+                      />
+                    ) : (
+                      <label>{nombre}</label>
+                    )}
+                    </li>
+                    <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Telefono:</strong> &nbsp;
+                    {editstore ? (
+                      <input
+                        className="border  p-2 rounded-lg resize-none"
+                        value={telefono}
+                        onChange={e => setTelefono(e.target.value)}
+                      />
+                    ) : (
+                      <label>{telefono}</label>
+                    )}
+                     </li>
+                    <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Correo:</strong> &nbsp;
+                    {editstore ? (
+                      <input
+                        className="border  p-2 rounded-lg resize-none"
+                        value={correo}
+                        onChange={e => setCorreo(e.target.value)}
+                      />
+                    ) : (
+                      <label>{correo}</label>
+                    )}
+                     </li>
+                    <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Dirección:</strong> &nbsp;
+                    {editstore ? (
+                      <input
+                        className="border  p-2 rounded-lg resize-none"
+                        value={direccion}
+                        onChange={e => setDireccion(e.target.value)}
+                      />
+                    ) : (
+                      <label>{direccion}</label>
+                    )}
+                     </li>
                     <li className="relative block px-4 py-2 pb-0 pl-0 bg-white border-0 border-t-0 rounded-b-lg text-inherit">
                     </li>
                   </ul>
