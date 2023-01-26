@@ -59,7 +59,15 @@ const Products = () => {
   }
 
   const handleSearch = (e) => {
-
+      setSearchValue(e.target.value)
+      console.log(searchValue.length)
+      console.log(searchValue)
+      if (searchValue.length === 1|| searchValue.length===0) {
+        setFilteredProducts(products)
+      } else {
+        setFilteredProducts(products.filter(product => product.nombre.includes(searchValue)))
+  
+      }
   }
   return (
     <div className='w-screen h-screen px-6 py-6 mx-auto bg-gray-50'>
@@ -70,7 +78,7 @@ const Products = () => {
             <div className="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
               <div className='flex'>
                 <h6 className='pr-8'><strong>Productos</strong></h6>
-                <div className="relative flex items-center w-6/12">
+                <div className="relative flex items-center w-8/12">
                   <span className="absolute z-50 text-sm leading-5.6 flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
                     <i className="fas fa-search" aria-hidden="true"></i>
                   </span>
@@ -102,7 +110,7 @@ const Products = () => {
                         </strong>
                       </button>
                     </div>
-                    <div>
+                    <div className='pr-3'>
                       <select value={selectedOptionstatus} onChange={handleChangestatus} className={`pr-3 pl-3 rounded-lg  bg-gray-50 shadow-inner`}>
                         {optionsstatus.map((option) => (
                           <option key={option} value={option}>
