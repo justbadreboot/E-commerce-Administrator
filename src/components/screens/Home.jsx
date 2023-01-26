@@ -6,7 +6,7 @@ import LineChart from '../statisctics/LineChart';
 const Home = () => {
 
   return (
-    <div className=" w-10/12 px-6 py-6 mx-auto">
+    <div className=" w-10/12 h-screen px-6 py-6 mx-auto">
       <div className="flex flex-wrap -mx-3">
         <CardDataU
           titulo="Today's Money"

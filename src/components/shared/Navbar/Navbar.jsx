@@ -9,7 +9,7 @@ import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServi
 const Navbar = () => {
     const [selectedTab, setSelectedTab] = useState('home');
     return (
-        <div className='max-w-20 inset-y-0 my-4 ml-0 block   items-center justify-between overflow-y rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
+        <div className='max-w-20 inset-y-0 my-4 ml-0 block   overflow-y rounded-2xl border-0 bg-white p-0  shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
             <div>
                 <img src="./images/logo-template.png" className='inline w-40 transition-all duration-200 h-full mx-5 '/>
             </div>

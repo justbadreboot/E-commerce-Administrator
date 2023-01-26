@@ -8,13 +8,15 @@ import Orders from './components/screens/Orders';
 import Products from './components/screens/Products';
 import Promotions from './components/screens/Promotions';
 import Services from './components/screens/Services';
+import SideBar from './components/screens/Side';
 import Store from './components/screens/Store';
 import Navbar from './components/shared/Navbar/Navbar';
 
 function App() {
   return (
-    <div className="flex m-0 font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500 h-full">
-      <Navbar/>
+    <div className='App'>
+    <div className="m-0 flex font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500 ">
+    <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/store" element={<Store/>}/>
@@ -25,6 +27,8 @@ function App() {
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/about' element={<AboutUs/>}/>
       </Routes>
+
+    </div>
     </div>
   );
 }
