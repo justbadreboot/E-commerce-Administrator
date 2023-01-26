@@ -14,8 +14,8 @@ import Navbar from './components/shared/Navbar/Navbar';
 
 function App() {
   return (
-    <div className='App'>
-    <div className="m-0 flex font-sans antialiased font-normal text-base leading-default bg-gray-50 text-slate-500 ">
+    <div className='App bg-gray-50'>
+    <div className="m-0 flex font-sans antialiased font-normal text-base leading-default  text-slate-500 ">
     <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>
@@ -27,7 +27,6 @@ function App() {
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/about' element={<AboutUs/>}/>
       </Routes>
-
     </div>
     </div>
   );
