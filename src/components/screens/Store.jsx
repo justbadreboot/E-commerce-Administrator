@@ -27,7 +27,8 @@ const Store = () => {
                     <h6 className="mb-0 text-slate-700"><strong>Objetivos de tienda</strong></h6>
                   </div>
                   <div className="w-full max-w-full px-3 text-right shrink-0 md:w-4/12 md:flex-none">
-                    <a href="javascript:;" onClick={() => setEditing(!editing)}>
+                    <a href="javascript:;" onClick={() => editstore?(alert("Termine de editar la información de la tienda")):
+                     setEditing(!editing)}>
                       <i className="leading-normal fas fa-pen-to-square text-xl text-slate-400" ></i>
                     </a>
                   </div>
@@ -79,7 +80,9 @@ const Store = () => {
                       <h6 className="mb-0 text-slate-700"><strong>Información de tienda</strong></h6>
                     </div>
                     <div className="w-full max-w-full px-3 text-right shrink-0 md:w-4/12 md:flex-none">
-                      <a href="javascript:;" data-target="tooltip_trigger" data-placement="top" onClick={() => setEditstore(!editstore)}>
+                      <a href="javascript:;" data-target="tooltip_trigger" data-placement="top" onClick={
+                        ()=> editing?(alert("Termine de editar los objetivos de la tienda")):
+                        setEditstore(!editstore)}>
                         <i className="leading-normal fas fa-pen-to-square text-xl text-slate-400"></i>
                       </a>
                       <div data-target="tooltip" className="hidden px-2 py-1 text-center text-white bg-black rounded-lg text-sm" role="tooltip">
@@ -94,10 +97,11 @@ const Store = () => {
                   <h6 className="font-bold leading-tight uppercase text-xs text-slate-500">Descripción</h6>
 
                   <p className="leading-normal text-l pt-2">
+                    
                   {editstore ? (
                       <textarea
                         className="border w-full p-2 rounded-lg resize-none"
-                        rows="5"
+                        rows="4"
                         value={descripcion}
                         onChange={e => setDescripcion(e.target.value)}
                       />
@@ -151,10 +155,20 @@ const Store = () => {
                       <label>{direccion}</label>
                     )}
                      </li>
+                     
                     <li className="relative block px-4 py-2 pb-0 pl-0 bg-white border-0 border-t-0 rounded-b-lg text-inherit">
                     </li>
                   </ul>
+                  {editstore && (
+                    <button
+                      className="bg-blue-500 text-white p-2 rounded-lg mt-4"
+                      onClick={() => setEditstore(false)}
+                    >
+                      Guardar
+                    </button>
+                  )}
                 </div>
+
               </div>
             </div>
             <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12 p-2 drop-shadow-lg ">
