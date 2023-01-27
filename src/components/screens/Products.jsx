@@ -4,52 +4,103 @@ import ElementsProducts from '../Tables/ElementsProducts'
 const Products = () => {
   const products = [
     { foto: "./logo192.png", nombre: "Paracetamol", categoria: "Analgésico", stock: "130", marca: "bayern", caducidad: "Ingerible", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "bayern", caducidad: "Por Expirar", peso: "600" },
+    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
     { foto: "./logo192.png", nombre: "Arten", categoria: "Corticoides", stock: "130", marca: "bayern", caducidad: "Expirado", peso: "600" }]
 
   const [searchValue, setSearchValue] = useState('')
   const [filteredProducts, setFilteredProducts] = useState(products)
-  const [selectedButton, setSelectedButton] = useState("Todos");
+  const [selectedButton, setSelectedButton] = useState("Nombre");
   const options = ["Todos","Analgésico", "AINE", "Corticoides"];
   const [selectedOption, setSelectedOption] = useState("Todos");
   const optionsstatus = ["Todos","Ingerible","Por Expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
 
   const handleChangestatus = (event) => {
-    setSelectedOptionstatus(event.target.value);
     let productCopia=null
-    if(selectedOption==="Todos"){
-      productCopia=products
+    if(searchValue.length>=2){
+      if(selectedButton=="Nombre"){
+        productCopia=products.filter(product => product.nombre.includes(searchValue))
+      }
+      else{
+        productCopia=products.filter(product => product.marca.includes(searchValue))
+      }
+
+      setSelectedOptionstatus(event.target.value);
+
+      if(selectedOption!=="Todos"){
+        productCopia=productCopia.filter(product=>product.categoria.includes(selectedOption))
+      }
+      console.log(productCopia)
+      if(event.target.value==="Todos"){
+        setFilteredProducts(productCopia)
+      }
+      else{
+        const estado=event.target.value;
+        setFilteredProducts(productCopia.filter(product=>product.caducidad.includes(estado)))
+      }
     }
     else{
-      productCopia=products.filter(product=>product.categoria.includes(selectedOption))
+      setSelectedOptionstatus(event.target.value);
+
+      if(selectedOption==="Todos"){
+        productCopia=products
+      }
+      else{
+        productCopia=products.filter(product=>product.categoria.includes(selectedOption))
+      }
+      console.log(productCopia)
+      if(event.target.value==="Todos"){
+        setFilteredProducts(productCopia)
+      }
+      else{
+        const estado=event.target.value;
+        setFilteredProducts(products.filter(product=>product.caducidad.includes(estado)))
+      }
     }
-    console.log(productCopia)
-    if(event.target.value==="Todos"){
-      setFilteredProducts(productCopia)
-    }
-    else{
-      const estado=event.target.value;
-      setFilteredProducts(products.filter(product=>product.caducidad.includes(estado)))
-    }
+
 }
 
   const handleChange = (event) => {
-    setSelectedOption(event.target.value);
     let productCopia;
-    if(selectedOptionstatus==="Todos"){
-      productCopia=products
+    if(searchValue.length>=2){
+      if(selectedButton=="Nombre"){
+        productCopia=products.filter(product => product.nombre.includes(searchValue))
+      }
+      else{
+        productCopia=products.filter(product => product.marca.includes(searchValue))
+      }
+
+      setSelectedOption(event.target.value);
+
+      if(selectedOptionstatus!=="Todos"){
+        productCopia=productCopia.filter(product=>product.caducidad.includes(selectedOptionstatus))
+      }
+      if(event.target.value==="Todos"){
+        setFilteredProducts(productCopia)
+      }
+      else{
+        const elementos=event.target.value;
+        setFilteredProducts(productCopia.filter(product=>product.categoria.includes(elementos)))
+      }
     }
-    else{
-      productCopia=products.filter(product=>product.caducidad.includes(selectedOptionstatus))
-    }
-    if(event.target.value==="Todos"){
-      setFilteredProducts(productCopia)
-    }
-    else{
-      const elementos=event.target.value;
-      setFilteredProducts(productCopia.filter(product=>product.categoria.includes(elementos)))
-    }
+      else{
+        setSelectedOption(event.target.value);
+
+        if(selectedOptionstatus==="Todos"){
+          productCopia=products
+        }
+        else{
+          productCopia=products.filter(product=>product.caducidad.includes(selectedOptionstatus))
+        }
+        if(event.target.value==="Todos"){
+          setFilteredProducts(productCopia)
+        }
+        else{
+          const elementos=event.target.value;
+          setFilteredProducts(productCopia.filter(product=>product.categoria.includes(elementos)))
+        }
+      }
+    
 }
 
   const handleButtonClick = (e) => {
@@ -59,15 +110,49 @@ const Products = () => {
   }
 
   const handleSearch = (e) => {
+    let productosCopia;
+    if(selectedOption==="Todos"){
+      productosCopia=products;
+      if(selectedOptionstatus!=="Todos"){
+        const prod=productosCopia
+        productosCopia=prod.filter(product=>product.caducidad.includes(selectedOptionstatus))
+      }
+    }
+    else{
+      if(selectedOptionstatus==="Todos"){
+        productosCopia=products;
+        const prod=productosCopia
+        productosCopia=prod.filter(product=>product.categoria.includes(selectedOption))
+      }
+      else{
+        productosCopia=products.filter(product=>product.caducidad.includes(selectedOptionstatus))
+        const prod=productosCopia
+        productosCopia=prod.filter(product=>product.categoria.includes(selectedOption))
+      }
+    }
+    if(selectedButton==="Nombre"){
       setSearchValue(e.target.value)
       console.log(searchValue.length)
       console.log(searchValue)
       if (searchValue.length === 1|| searchValue.length===0) {
-        setFilteredProducts(products)
+        setFilteredProducts(productosCopia)
       } else {
-        setFilteredProducts(products.filter(product => product.nombre.includes(searchValue)))
+        setFilteredProducts(productosCopia.filter(product => product.nombre.includes(searchValue)))
   
       }
+    }
+    else{
+      setSearchValue(e.target.value)
+      console.log(searchValue.length)
+      console.log(searchValue)
+      if (searchValue.length === 1|| searchValue.length===0) {
+        setFilteredProducts(productosCopia)
+      } else {
+        setFilteredProducts(productosCopia.filter(product => product.marca.includes(searchValue)))
+  
+      }
+    }
+
   }
   return (
     <div className='w-screen h-screen px-6 py-6 mx-auto bg-gray-50'>
@@ -92,11 +177,11 @@ const Products = () => {
 
                     <div className='pl-5 pr-3'>
                       <button
-                        className={`pl-3 pr-3 rounded-lg ${selectedButton === 'Todos' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                        className={`pl-3 pr-3 rounded-lg ${selectedButton === 'Nombre' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                         onClick={handleButtonClick}
                       >
                         <strong>
-                        Todos
+                        Nombre
                         </strong>
                       </button>
                     </div>
