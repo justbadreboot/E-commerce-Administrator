@@ -18,7 +18,7 @@ const Store = () => {
         <div className='flex items-center justify-center pt-7 text-green-100 text-3xl'>
           <strong>Información de la tienda</strong>
         </div>
-        <div className="w-full p-6 mx-auto flex bg-gray-50">
+        <div className="w-full p-6 mx-auto flex bg-gray-50 z-0">
           <div className="flex flex-wrap -mx-3">
             <div className="w-full max-w-full px-3 xl:w-4/12 p-2 drop-shadow-lg">
               <div className="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">

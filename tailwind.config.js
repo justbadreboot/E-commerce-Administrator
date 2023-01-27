@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing:{
+        '3gl': '85vh',
+        '2gl':'70vh',
+      },
       colors:{
         'green':{
           100:'#2B97A4',
