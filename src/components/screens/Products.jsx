@@ -196,9 +196,9 @@ const Products = () => {
                       </button>
                     </div>
                     <div className='pr-3'>
-                      <select value={selectedOptionstatus} onChange={handleChangestatus} className={`pr-3 pl-3 rounded-lg  bg-gray-50 shadow-inner`}>
+                      <select value={selectedOptionstatus} onChange={handleChangestatus} className={`pr-3 pl-3 rounded-lg bg-gray-50 shadow-inner `}>
                         {optionsstatus.map((option) => (
-                          <option key={option} value={option}>
+                          <option className='bg-white border-none' key={option} value={option}>
                             {option}
                           </option>
                         ))}
@@ -207,7 +207,7 @@ const Products = () => {
                   <div>
                       <select value={selectedOption} onChange={handleChange} className={`pr-3 pl-3 rounded-lg  bg-gray-50 shadow-inner`}>
                         {options.map((option) => (
-                          <option key={option} value={option}>
+                          <option className='bg-white border-transparent ' key={option} value={option}>
                             {option}
                           </option>
                         ))}
