@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 
 const ModalAñadirDoctor = () => {
@@ -71,7 +71,7 @@ const ModalAñadirDoctor = () => {
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Nombre
+                            Nombre:
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
@@ -84,11 +84,11 @@ const ModalAñadirDoctor = () => {
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Cantidad
+                            Cedula:
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
+                            type="text"
                             name="quantity"
                             value={formData.quantity}
                             onChange={handleChange}
@@ -99,11 +99,11 @@ const ModalAñadirDoctor = () => {
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Precio 1
+                            Telefono:
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
+                            type="text"
                             name="price1"
                             value={formData.price1}
                             onChange={handleChange}
@@ -112,11 +112,11 @@ const ModalAñadirDoctor = () => {
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Precio 2
+                            correo:
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
+                            type="text"
                             name="price2"
                             value={formData.price2}
                             onChange={handleChange}
@@ -137,7 +137,7 @@ const ModalAñadirDoctor = () => {
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Marca
+                            Dirección:
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
@@ -150,45 +150,22 @@ const ModalAñadirDoctor = () => {
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Peso
+                            Especialidad:
                         </label>
-                        <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
-                            name="weight"
-                            value={formData.weight}
+                        <select
+                            className="w-full border border-gray-400 bg-white p-2 rounded-md"
+                            name="category"
+                            value={formData.category}
                             onChange={handleChange}
-                        />
-                        <div className="text-red-500">{errors.weight}</div>
+                        >
+                            <option value="" disabled>Seleccione una especialidad</option>
+                            <option value="categoria1">Categoría 1</option>
+                            <option value="categoria2">Categoría 2</option>
+                            <option value="categoria3">Categoría 3</option>
+                        </select>
+                        <div className="text-red-500">{errors.category}</div>
                     </div>
                 </div>
-                <label className="block text-gray-700 font-medium mb-2 mt-4">
-                    Categoría
-                </label>
-                <select
-                    className="w-full border border-gray-400 bg-white p-2 rounded-md"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                >
-                    <option value="" disabled>Seleccione una categoría</option>
-                    <option value="categoria1">Categoría 1</option>
-                    <option value="categoria2">Categoría 2</option>
-                    <option value="categoria3">Categoría 3</option>
-                </select>
-                <div className="text-red-500">{errors.category}</div>
-                <label className="block text-gray-700 font-medium mb-2 mt-4">
-                    Descripción
-                </label>
-                <textarea
-                    className="w-full resize-none border border-gray-400 p-2 rounded-md"
-                    name="description"
-                    rows="4"
-                    value={formData.description}
-                    onChange={handleChange}
-                />
-                <div className="text-red-500">{errors.description}</div>
-
                 <button className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4" >
                     Enviar
                 </button>
