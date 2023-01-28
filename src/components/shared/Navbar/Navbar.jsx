@@ -129,20 +129,20 @@ const Navbar = () => {
                         </NavLink>
                     </div>
                     <div>
-                        <NavLink to="/about"
+                        <NavLink to="/contact"
                             className=
-                            {` ${selectedTab === 'about' ?
+                            {` ${selectedTab === 'contact' ?
                                 'py-3 shadow-xl text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors' :
                                 'py-3 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap px-4 transition-colors'}`}
-                            onClick={() => setSelectedTab('about')}
+                            onClick={() => setSelectedTab('contact')}
                         >
-                            <div className={` ${selectedTab === 'about' ?
+                            <div className={` ${selectedTab === 'contact' ?
                                 'bg-gradient-to-tl from-green-100 to-green-20 shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
                                 'shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
 
                                 <RiTeamFill className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>About Us</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Contact Us</p>
                         </NavLink>
                     </div>
                     

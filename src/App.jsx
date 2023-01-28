@@ -5,6 +5,7 @@ import ModalAñadirDoctor from './components/Creations/ModalAñadirDoctor';
 import ModalCrearProducto from './components/Creations/ModalCrearProducto';
 import ModalCrearServicio from './components/Creations/ModalCrearServicio';
 import AboutUs from './components/screens/AboutUs';
+import Contact from './components/screens/Contact';
 import Doctors from './components/screens/Doctors';
 import Home from './components/screens/Home';
 import Orders from './components/screens/Orders';
@@ -32,6 +33,7 @@ function App() {
         <Route path='/products/crearProducto' element={<ModalCrearProducto/>}/>
         <Route path='/services/crearServicio' element={<ModalCrearServicio/>}/>
         <Route path='/doctors/crearDoctor' element={<ModalAñadirDoctor/>}/>
+        <Route path='/contact' element={<Contact/>}/>
       </Routes>
     </div>
     </div>
