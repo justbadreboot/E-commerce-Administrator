@@ -165,7 +165,7 @@ const Products = () => {
 
   }
   return (
-    <div className='w-9/12 h-full px-6 py-6 mx-auto bg-gray-50 '>
+    <div className='w-4/5 h-full px-6 py-6 mx-auto bg-gray-50 '>
       <div className=" -mx-3 drop-shadow-lg table-container">
 
         <div className="flex-none w-full h-full max-w-full px-3 table-container">

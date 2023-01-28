@@ -13,7 +13,7 @@ const Store = () => {
   const [direccion, setDireccion]=useState("Quito-Ecuador-...")
   
   return (
-    <div className=" pb-10 h-screen block w-10/12 transition-all duration-200 bg-gray-50 ">
+    <div className=" pb-10 h-screen block w-4/5 transition-all duration-200 bg-gray-50 ">
       <div className=''>
         <div className='flex items-center justify-center pt-7 text-green-100 text-3xl'>
           <strong>Información de la tienda</strong>
