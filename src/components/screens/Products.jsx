@@ -1,4 +1,6 @@
 import React,{useState} from 'react'
+import { NavLink } from 'react-router-dom'
+import ModalCrearProducto from '../ModalCrearProducto'
 import ElementsProducts from '../Tables/ElementsProducts'
 
 const Products = () => {
@@ -170,7 +172,7 @@ const Products = () => {
           <div className=" min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border ">
             <div className="p-6  mb-0 bg-white border-b-0 border-b-solid rounded-2xl h-3gl">
 
-              <div className=' overflow-x-auto sm:flex grid grid-cols-1  ' >
+              <div className=' overflow-x-auto sm:flex grid grid-cols-1 pb-3' >
                 <h6 className='pr-8'><strong>Productos</strong></h6>
                 <div className="grid items-center w-8/12 grid-cols-1 grid-rows-2 sm:grid-cols-6 sm:flex">
                   <div className='pl-2'>
@@ -227,8 +229,8 @@ const Products = () => {
                     </select>
                   </div>
 
-                  <div>
-                  <i className="fa-solid fa-pills"></i>  
+                  <div className='w-8/12'>
+                  <NavLink to="crearProducto"><i className="fa-solid fa-pills  "></i></NavLink>
                   </div>    
                   </div>      
                 </div>

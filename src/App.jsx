@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import ModalCrearProducto from './components/ModalCrearProducto';
 import AboutUs from './components/screens/AboutUs';
 import Doctors from './components/screens/Doctors';
 import Home from './components/screens/Home';
@@ -26,6 +27,7 @@ function App() {
         <Route path="/promotions" element={<Promotions/>}/>
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/about' element={<AboutUs/>}/>
+        <Route path='/products/crearProducto' element={<ModalCrearProducto/>}/>
       </Routes>
     </div>
     </div>
