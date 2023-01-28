@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import ModalCrearProducto from './components/ModalCrearProducto';
+import ModalAñadirDoctor from './components/Creations/ModalAñadirDoctor';
+import ModalCrearProducto from './components/Creations/ModalCrearProducto';
+import ModalCrearServicio from './components/Creations/ModalCrearServicio';
 import AboutUs from './components/screens/AboutUs';
 import Doctors from './components/screens/Doctors';
 import Home from './components/screens/Home';
@@ -28,6 +30,8 @@ function App() {
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/about' element={<AboutUs/>}/>
         <Route path='/products/crearProducto' element={<ModalCrearProducto/>}/>
+        <Route path='/services/crearServicio' element={<ModalCrearServicio/>}/>
+        <Route path='/doctors/crearDoctor' element={<ModalAñadirDoctor/>}/>
       </Routes>
     </div>
     </div>

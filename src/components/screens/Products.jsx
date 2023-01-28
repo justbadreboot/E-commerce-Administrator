@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom'
-import ModalCrearProducto from '../ModalCrearProducto'
+import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsProducts from '../Tables/ElementsProducts'
 
 const Products = () => {
