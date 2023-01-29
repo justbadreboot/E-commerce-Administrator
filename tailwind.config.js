@@ -5,9 +5,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'tall': '400px',
+        // => @media (min-height: 800px) { ... }
+      },
       spacing:{
         '3gl': '85vh',
-        '2gl':'70vh',
+        '2gl':'65vh',
       },
       colors:{
         'green':{

@@ -165,7 +165,8 @@ const Doctors = () => {
 
   }
   return (
-    <div className='w-4/5 h-full px-6 py-6 mx-auto bg-gray-50 '>
+    <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10 h-screen bg-gray-50'>
+    <div className='w-full h-full px-6 py-6 mx-auto bg-gray-50 '>
       <div className=" -mx-3 drop-shadow-lg table-container">
 
         <div className="flex-none w-full h-full max-w-full px-3 table-container">
@@ -243,6 +244,7 @@ const Doctors = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

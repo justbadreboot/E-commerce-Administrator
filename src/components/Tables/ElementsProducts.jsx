@@ -6,13 +6,13 @@ const ElementsProducts = (props) => {
     const producto=props.products
     switch (props.products.caducidad) {
         case 'Ingerible':
-            colorClass = 'from-success-100 to-success-60';
+            colorClass = 'from-success-100 to-success-60 broder rounded-lg p-1';
             break;
         case 'Expirado':
-            colorClass = 'from-error-100 to-error-80';
+            colorClass = 'from-error-100 to-error-80 broder rounded-lg p-1';
             break;
         case 'Por Expirar':
-            colorClass = 'from-warning-100 to-warning-80';
+            colorClass = 'from-warning-100 to-warning-80 broder rounded-lg p-1';
             break;
         default:
             colorClass = '';
