@@ -8,10 +8,22 @@ import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServi
 
 const Navbar = () => {
     const [selectedTab, setSelectedTab] = useState('home');
+    const [isOpen, setIsOpen] = useState(false);
+    let botonclass=''
+    let navclass=''
+
+        if(isOpen){
+            botonclass='mx-48 translate-x-0'
+            navclass='left-0 translate-x-0 h-4/5'
+        }
+        else{
+            navclass='-translate-x-full '
+            botonclass='mx-0 -translate-x-50'
+        }
     return (
 <div className='flex'>
 
-        <div className='z-40 w-0 h-4/5 ease-nav-brand fixed inset-y-0 my-4 lg:bg-white lg:w-52  -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 lg:left-0 lg:translate-x-0 lg:bg-transparent'>
+        <div className={`z-40 lg:h-4/5 w-52 fixed inset-y-0 my-4 lg:bg-white lg:w-52 ${navclass} flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-100 lg:left-0 lg:translate-x-0`}>
             <div className='flex'>
                 <div>
                     <img src="./images/logo-template.png" className='inline w-40 transition-all duration-200 h-full mx-5 ' />
@@ -154,13 +166,14 @@ const Navbar = () => {
             </div>
         </div>
         </div>
-        <div className='z-40 fixed lg:mx-48 lg:hidden mx-0 '>
+        
+        <div className={`z-40 fixed lg:mx-48 lg:hidden transition-transform duration-500 ${botonclass}`} onClick={()=>{if(isOpen){setIsOpen(false)}else{setIsOpen(true)}}}>
                     <button class="relative group">
-                        <div class="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-8 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md">
-                            <div class="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden group-focus:-translate-x-1.5 group-focus:rotate-180">
-                                <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:rotate-[42deg] group-focus:w-2/3 delay-150"></div>
-                                <div class="bg-white h-[2px] w-7 rounded transform transition-all duration-300 group-focus:translate-x-10"></div>
-                                <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:-rotate-[42deg] group-focus:w-2/3 delay-150"></div>
+                        <div class={`relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-8 ring-opacity-30 duration-200 shadow-md ${isOpen ? 'ring-4' : ''}`}>
+                            <div class={`flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden ${isOpen ? 'rotate-180 -translate-x-1' : ''}`}>
+                                <div class={`bg-white h-[2px] w-7 transform transition-all duration-300 origin-left delay-150 ${isOpen ? 'rotate-[25deg] w-2/3' : ''}`}></div>
+                                <div class={`bg-white h-[2px] w-7 rounded transform transition-all duration-300 ${isOpen ? 'translate-x-10' : ''}`}></div>
+                                <div class={`bg-white h-[2px] w-7 transform transition-all duration-300 origin-left delay-150 ${isOpen ? 'w-2/3 -rotate-[25deg]' : ''}`}></div>
                             </div>
                         </div>
                     </button>
