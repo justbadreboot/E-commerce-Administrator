@@ -18,6 +18,7 @@ import Navbar from './components/shared/Navbar/Navbar';
 
 function App() {
   return (
+    
     <div className='App bg-gray-50'>
     <div className="m-0 flex font-sans antialiased font-normal text-base leading-default  text-slate-500 ">
     <Navbar/>
@@ -35,6 +36,8 @@ function App() {
         <Route path='/doctors/crearDoctor' element={<ModalAñadirDoctor/>}/>
         <Route path='/contact' element={<Contact/>}/>
       </Routes>
+
+
     </div>
     </div>
   );
