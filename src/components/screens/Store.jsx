@@ -13,7 +13,7 @@ const Store = () => {
   const [direccion, setDireccion]=useState("Quito-Ecuador-...")
   
   return (
-    <div className='ml-60 '>
+    <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10 h-screen bg-gray-50'>
     <div className=" pb-10 h-screen block w-full transition-all duration-200 bg-gray-50 ">
       <div className=''>
         <div className='flex items-center justify-center pt-7 text-green-100 text-3xl'>

@@ -53,12 +53,12 @@ const ModalAñadirDoctor = () => {
         }
     };
     return (
-        <div className='mx-52 my-auto '>
+        <div className='mx-auto  my-10 z-50'>
             <div className="inset-0 transition-opacity rounded-2xl">
                 <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
 
-            <form className="bg-white p-6 rounded-2xl drop-shadow-2xl h-3gl overflow-y-auto" onSubmit={handleSubmit}>
+            <form className="bg-white p-6 rounded-2xl mx-auto my-auto drop-shadow-2xl h-2gl overflow-y-auto" onSubmit={handleSubmit}>
 
                 <NavLink to="/doctors">
                     <button className="absolute top-0 right-0 p-4 text-black bg-white rounded-full hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
@@ -67,7 +67,7 @@ const ModalAñadirDoctor = () => {
                         </svg>
                     </button>
                 </NavLink>
-                <h1 className='text-center pb-2'><strong>Ingreso de Productos</strong></h1>
+                <h1 className='text-center pb-2'><strong>Ingreso de Doctores</strong></h1>
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">

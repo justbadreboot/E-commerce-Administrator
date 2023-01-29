@@ -3,22 +3,26 @@ import { NavLink } from 'react-router-dom'
 import { BsGraphUp } from "react-icons/bs";
 import { AiFillMedicineBox } from "react-icons/ai";
 import { FaMoneyBillAlt } from "react-icons/fa";
-import { RiTeamFill} from "react-icons/ri";
+import { RiTeamFill } from "react-icons/ri";
 import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServices, MdLocalOffer } from "react-icons/md";
 
 const Navbar = () => {
     const [selectedTab, setSelectedTab] = useState('home');
     return (
+<div className='flex'>
 
-        <div className='z-50 max-w-20 ease-nav-brand fixed inset-y-0 my-4  w-0 lg:w-52  -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
-            <div>
-                <img src="./images/logo-template.png" className='inline w-40 transition-all duration-200 h-full mx-5 '/>
-            </div>
-            <hr class="h-px mt-1 w-40 mx-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
+        <div className='z-40 w-0 h-4/5 ease-nav-brand fixed inset-y-0 my-4 lg:bg-white lg:w-52  -translate-x-full flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-200 lg:left-0 lg:translate-x-0 lg:bg-transparent'>
+            <div className='flex'>
+                <div>
+                    <img src="./images/logo-template.png" className='inline w-40 transition-all duration-200 h-full mx-5 ' />
+                </div>
 
-        <div className='max-w-72 inset-y-0 my-4 ml-1 mr-0  flex-wrap items-center justify-between overflow-y-auto rounded-2xl bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
-            <div className='pb-5 '>
-                <ul className="flex flex-col pl-0  mb-0">
+                </div>
+                <hr class="h-px mt-1 w-40 mx-5 bg-transparent bg-gradient-to-r from-transparent via-black/100 to-transparent" />
+
+                <div className='max-w-72 inset-y-0 my-4 ml-1 mr-0  flex-wrap items-center justify-between overflow-y-auto rounded-2xl bg-white p-0 antialiased shadow-none transition-transform duration-200 xl:left-0 xl:translate-x-0 xl:bg-transparent'>
+                    <div className='pb-5 '>
+                        <ul className="flex flex-col pl-0  mb-0">
                         <NavLink to="/" className=
                             {` ${selectedTab === 'home' ?
                                 'py-3 shadow-xl text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg bg-white p-4 font-semibold text-slate-700 transition-colors' :
@@ -146,10 +150,21 @@ const Navbar = () => {
                             <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Contact Us</p>
                         </NavLink>
                     </div>
-                    
                 </ul>
             </div>
         </div>
+        </div>
+        <div className='z-40 fixed lg:mx-48 lg:hidden mx-0 '>
+                    <button class="relative group">
+                        <div class="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-8 group-focus:ring-4 ring-opacity-30 duration-200 shadow-md">
+                            <div class="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-300 origin-center overflow-hidden group-focus:-translate-x-1.5 group-focus:rotate-180">
+                                <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:rotate-[42deg] group-focus:w-2/3 delay-150"></div>
+                                <div class="bg-white h-[2px] w-7 rounded transform transition-all duration-300 group-focus:translate-x-10"></div>
+                                <div class="bg-white h-[2px] w-7 transform transition-all duration-300 origin-left group-focus:-rotate-[42deg] group-focus:w-2/3 delay-150"></div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
         </div>
     )
 }

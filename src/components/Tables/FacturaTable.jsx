@@ -6,21 +6,22 @@ import ElementsFacturas from './ElementsFacturas'
 
 const FacturaTable = () => {
     const products = [
-        { nombre: "1578942635", categoria: "17/11/2022", stock: "1712793049", marca: "1712793049", caducidad: "Ingerible", peso: "15,50" },
-        { nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-        { nombre: "Arten", categoria: "Corticoides", stock: "130", marca: "bayern", caducidad: "Expirado", peso: "600" },
-        { nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-        { nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-        { nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-        { nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-        { nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-        { nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
+        { numero: "1578942635", fecha: "17/11/2022", cedula: "1710793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1778945635", fecha: "20/01/2023", cedula: "1724793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1875947635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1578942635", fecha: "15/12/2022", cedula: "1715793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1978742625", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1328942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1328942435", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
+        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
     
       ]
     
       const [searchValue, setSearchValue] = useState('')
       const [filteredProducts, setFilteredProducts] = useState(products)
-      const [selectedButton, setSelectedButton] = useState("Nombre");
+      const [selectedButton, setSelectedButton] = useState("numero");
       const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
       const [selectedOption, setSelectedOption] = useState("Todos");
       const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
@@ -29,17 +30,17 @@ const FacturaTable = () => {
       const handleChangestatus = (event) => {
         let productCopia = null
         if (searchValue.length >= 2) {
-          if (selectedButton == "Nombre") {
-            productCopia = products.filter(product => product.nombre.includes(searchValue))
+          if (selectedButton == "numero") {
+            productCopia = products.filter(product => product.numero.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.marca.includes(searchValue))
+            productCopia = products.filter(product => product.cedula.includes(searchValue))
           }
     
           setSelectedOptionstatus(event.target.value);
     
           if (selectedOption !== "Todos") {
-            productCopia = productCopia.filter(product => product.categoria.includes(selectedOption))
+            productCopia = productCopia.filter(product => product.fecha.includes(selectedOption))
           }
           console.log(productCopia)
           if (event.target.value === "Todos") {
@@ -47,7 +48,7 @@ const FacturaTable = () => {
           }
           else {
             const estado = event.target.value;
-            setFilteredProducts(productCopia.filter(product => product.caducidad.includes(estado)))
+            setFilteredProducts(productCopia.filter(product => product.nombre.includes(estado)))
           }
         }
         else {
@@ -57,7 +58,7 @@ const FacturaTable = () => {
             productCopia = products
           }
           else {
-            productCopia = products.filter(product => product.categoria.includes(selectedOption))
+            productCopia = products.filter(product => product.fecha.includes(selectedOption))
           }
           console.log(productCopia)
           if (event.target.value === "Todos") {
@@ -65,7 +66,7 @@ const FacturaTable = () => {
           }
           else {
             const estado = event.target.value;
-            setFilteredProducts(products.filter(product => product.caducidad.includes(estado)))
+            setFilteredProducts(products.filter(product => product.nombre.includes(estado)))
           }
         }
     
@@ -74,24 +75,24 @@ const FacturaTable = () => {
       const handleChange = (event) => {
         let productCopia;
         if (searchValue.length >= 2) {
-          if (selectedButton == "Nombre") {
-            productCopia = products.filter(product => product.nombre.includes(searchValue))
+          if (selectedButton == "numero") {
+            productCopia = products.filter(product => product.numero.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.marca.includes(searchValue))
+            productCopia = products.filter(product => product.cedula.includes(searchValue))
           }
     
           setSelectedOption(event.target.value);
     
           if (selectedOptionstatus !== "Todos") {
-            productCopia = productCopia.filter(product => product.caducidad.includes(selectedOptionstatus))
+            productCopia = productCopia.filter(product => product.nombre.includes(selectedOptionstatus))
           }
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
           else {
             const elementos = event.target.value;
-            setFilteredProducts(productCopia.filter(product => product.categoria.includes(elementos)))
+            setFilteredProducts(productCopia.filter(product => product.fecha.includes(elementos)))
           }
         }
         else {
@@ -101,14 +102,14 @@ const FacturaTable = () => {
             productCopia = products
           }
           else {
-            productCopia = products.filter(product => product.caducidad.includes(selectedOptionstatus))
+            productCopia = products.filter(product => product.nombre.includes(selectedOptionstatus))
           }
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
           else {
             const elementos = event.target.value;
-            setFilteredProducts(productCopia.filter(product => product.categoria.includes(elementos)))
+            setFilteredProducts(productCopia.filter(product => product.fecha.includes(elementos)))
           }
         }
     
@@ -126,29 +127,29 @@ const FacturaTable = () => {
           productosCopia = products;
           if (selectedOptionstatus !== "Todos") {
             const prod = productosCopia
-            productosCopia = prod.filter(product => product.caducidad.includes(selectedOptionstatus))
+            productosCopia = prod.filter(product => product.nombre.includes(selectedOptionstatus))
           }
         }
         else {
           if (selectedOptionstatus === "Todos") {
             productosCopia = products;
             const prod = productosCopia
-            productosCopia = prod.filter(product => product.categoria.includes(selectedOption))
+            productosCopia = prod.filter(product => product.fecha.includes(selectedOption))
           }
           else {
-            productosCopia = products.filter(product => product.caducidad.includes(selectedOptionstatus))
+            productosCopia = products.filter(product => product.nombre.includes(selectedOptionstatus))
             const prod = productosCopia
-            productosCopia = prod.filter(product => product.categoria.includes(selectedOption))
+            productosCopia = prod.filter(product => product.fecha.includes(selectedOption))
           }
         }
-        if (selectedButton === "Nombre") {
+        if (selectedButton === "numero") {
           setSearchValue(e.target.value)
           console.log(searchValue.length)
           console.log(searchValue)
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.nombre.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.numero.includes(searchValue)))
     
           }
         }
@@ -159,7 +160,7 @@ const FacturaTable = () => {
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.marca.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.cedula.includes(searchValue)))
     
           }
         }
@@ -183,7 +184,7 @@ const FacturaTable = () => {
                         <input
                           className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                           type="text"
-                          placeholder="Nombre o marca"
+                          placeholder="numero o cedula"
                           value={searchValue}
                           onChange={handleSearch}
                         />
@@ -191,45 +192,25 @@ const FacturaTable = () => {
                       <div className='flex'>
                       <div className='sm:pl-5 pr-3'>
                         <button
-                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'Nombre' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'numero' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                           onClick={handleButtonClick}
                         >
                           <strong>
-                            Nombre
+                            numero
                           </strong>
                         </button>
                       </div>
                       <div className='pr-3'>
                         <button
-                          className={`pr-3 pl-3 rounded-lg ${selectedButton === 'Marca' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                          className={`pr-3 pl-3 rounded-lg ${selectedButton === 'cedula' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                           onClick={handleButtonClick}
                         >
                           <strong>
-                            Marca
+                            cedula
                           </strong>
                         </button>
                       </div>
-                      </div>
-                      <div className='flex'>
-                      <div className='pr-3'>
-                        <select value={selectedOptionstatus} onChange={handleChangestatus} className={`pr-3 pl-3 rounded-lg bg-gray-50 shadow-inner `}>
-                          {optionsstatus.map((option) => (
-                            <option className='bg-white border-none' key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className='pr-3'>
-                        <select value={selectedOption} onChange={handleChange} className={`pr-3 pl-3 rounded-lg  bg-gray-50 shadow-inner`}>
-                          {options.map((option) => (
-                            <option className='bg-white border-transparent ' key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </select>
                       </div> 
-                      </div>      
                     </div>
                   </div>
                   <div className="p-0 overflow-x-auto overflow-y-scroll h-2gl">

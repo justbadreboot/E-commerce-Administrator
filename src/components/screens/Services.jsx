@@ -166,7 +166,7 @@ const Services = () => {
 
   }
   return (
-    <div className='w-4/5 ml-60'>
+    <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10 h-screen bg-gray-50'>
     <div className='w-full h-full px-6 py-6 mx-auto bg-gray-50 '>
       <div className=" -mx-3 drop-shadow-lg table-container">
 
