@@ -4,11 +4,17 @@ import { BsGraphUp } from "react-icons/bs";
 import { AiFillMedicineBox } from "react-icons/ai";
 import { FaMoneyBillAlt } from "react-icons/fa";
 import { RiTeamFill } from "react-icons/ri";
+import { FiLogOut } from "react-icons/fi";
 import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServices, MdLocalOffer } from "react-icons/md";
 
 const Navbar = () => {
     const [selectedTab, setSelectedTab] = useState('home');
     const [isOpen, setIsOpen] = useState(false);
+
+    const handleclick=()=>{
+        localStorage.setItem('rol','');
+        window.location.reload();
+    }
     let botonclass=''
     let navclass=''
 
@@ -23,7 +29,7 @@ const Navbar = () => {
     return (
 <div className='flex'>
 
-        <div className={`z-40 lg:h-4/5 w-52 fixed inset-y-0 my-4 lg:bg-white lg:w-52 ${navclass} flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-100 lg:left-0 lg:translate-x-0`}>
+        <div className={`z-40 lg:h-5/6 w-52 fixed inset-y-0 my-4 lg:bg-white lg:w-52 ${navclass} flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-100 lg:left-0 lg:translate-x-0`}>
             <div className='flex'>
                 <div>
                     <img src="./images/logo-template.png" className='inline w-40 transition-all duration-200 h-full mx-5 ' />
@@ -160,6 +166,21 @@ const Navbar = () => {
                                 <RiTeamFill className='w-9 h-9' />
                             </div>
                             <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Contact Us</p>
+                        </NavLink>
+                    </div>
+                    <div onClick={handleclick}>
+                        <NavLink to="/"
+                            className=
+                            {` ${selectedTab === 'logout' ?
+                                'py-3 shadow-xl text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors' :
+                                'py-3 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap px-4 transition-colors'}`}
+                        >
+                            <div className={` ${selectedTab === 'logout' ?
+                                'bg-gradient-to-tl from-green-100 to-green-20 shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                                'shadow-lg mr-2 flex h-10 w-10 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
+                                <FiLogOut className='w-10 h-10' />
+                            </div>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Products</p>
                         </NavLink>
                     </div>
                 </ul>
