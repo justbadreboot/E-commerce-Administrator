@@ -39,7 +39,9 @@ const Login = () => {
             // Recargar la página
             window.location.reload();
         } else if (email === usuario2.email && password === usuario2.password) {
-            setMessage('Las credenciales pertenecen a usuario2');
+            localStorage.setItem('rol', 'Repartidor')
+            // Recargar la página
+            window.location.reload();
         } else {
             setMessage('Correo o contraseña incorrectos');
         }
