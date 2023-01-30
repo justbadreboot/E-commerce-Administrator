@@ -29,7 +29,7 @@ const Navbar = () => {
     return (
 <div className='flex'>
 
-        <div className={`z-40 lg:h-5/6 w-52 fixed inset-y-0 my-4 lg:bg-white lg:w-52 ${navclass} flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-100 lg:left-0 lg:translate-x-0`}>
+        <div className={`z-40 lg:h-5/6 w-52 fixed border-none inset-y-0 my-4 lg:bg-white lg:w-52 ${navclass} flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-100 lg:left-0 lg:translate-x-0`}>
             <div className='flex'>
                 <div>
                     <img src="./images/logo-template.png" className='inline w-40 transition-all duration-200 h-full mx-5 ' />
@@ -43,8 +43,8 @@ const Navbar = () => {
                         <ul className="flex flex-col pl-0  mb-0">
                         <NavLink to="/" className=
                             {` ${selectedTab === 'home' ?
-                                'py-3 shadow-xl text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg bg-white p-4 font-semibold text-slate-700 transition-colors' :
-                                'py-3 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap px-4 transition-colors'}`}
+                                'py-3 border-none shadow-xl text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg bg-white p-4 font-semibold text-slate-700 transition-colors' :
+                                'py-3 borber-none text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap px-4 transition-colors'}`}
                             onClick={() => setSelectedTab('home')}>
                             <div className={` ${selectedTab === 'home' ?
                                 'w-8 h-8 bg-gradient-to-tl from-green-100 to-green-20 shadow-lg mr-2 flex items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :

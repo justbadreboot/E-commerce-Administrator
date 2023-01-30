@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 
-const Modal = (props) => {
+const ModalServicio = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.nombre);
@@ -77,7 +77,7 @@ const Modal = (props) => {
                                 <div className="flex w-3/4 mx-auto my-auto">
 
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Peso:</label>
+                                        <label className="block font-medium text-gray-700">Precio:</label>
                                         <input
                                             type="text"
                                             className={`form-input w-1/3 ${borderclass}`}
@@ -87,7 +87,7 @@ const Modal = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Categoría:</label>
+                                        <label className="block font-medium text-gray-700">Especialidad:</label>
                                         <input
                                             type="text"
                                             className={`form-input w-2/3 ${borderclass}`}
@@ -97,7 +97,7 @@ const Modal = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Stock:</label>
+                                        <label className="block font-medium text-gray-700">Doctor:</label>
                                         <input
                                             type="text"
                                             className={`form-input w-1/3 ${borderclass}`}
@@ -178,4 +178,4 @@ const Modal = (props) => {
     );
 }
 
-export default Modal
+export default ModalServicio
