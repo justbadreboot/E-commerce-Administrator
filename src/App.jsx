@@ -9,7 +9,7 @@ function App() {
   const rol = localStorage.getItem('rol');
 
   return (
-    <>
+    <div className='bg-gray-50'>
       {rol=="Admin" ||rol=="Repartidor" ? (
         <>
           {localStorage.getItem('rol') === "Admin" ? (
@@ -21,7 +21,7 @@ function App() {
       ) : (
         <Login/>
       )}
-    </>
+    </div>
   );
 }
 
