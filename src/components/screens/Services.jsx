@@ -6,15 +6,15 @@ import ElementsServices from '../Tables/ElementsServices'
 
 const Services = () => {
   const products = [
-    { foto: "./logo192.png", nombre: "Inyecciones", doctor: "Analgésico", precio: "130", especialidad: "bayern"},
-    { foto: "./logo192.png", nombre: "Ibuprofeno", doctor: "Patología", precio: "130", especialidad: "meditin" },
-    { foto: "./logo192.png", nombre: "Arten", doctor: "Corticoides", precio: "130", especialidad: "bayern"},
-    { foto: "./logo192.png", nombre: "Ibuprofeno", doctor: "AINE", precio: "130", especialidad: "Carlos Herrera" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", doctor: "AINE", precio: "130", especialidad: "meditin"},
-    { foto: "./logo192.png", nombre: "Ibuprofeno", doctor: "AINE", precio: "130", especialidad: "meditin" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", doctor: "AINE", precio: "130", especialidad: "meditin" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", doctor: "AINE", precio: "130", especialidad: "meditin"},
-    { foto: "./logo192.png", nombre: "Ibuprofeno", doctor: "AINE", precio: "130", especialidad: "meditin" },
+    { foto: "./logo192.png", nombre: "Inyecciones", especialidad: "Analgésico", precio: "130", doctor: "bayern"},
+    { foto: "./logo192.png", nombre: "Consulta medica", especialidad: "Patología", precio: "130", doctor: "Cesar Campos" },
+    { foto: "./logo192.png", nombre: "Estudio inmunológico", especialidad: "Inmunología", precio: "130", doctor: "Camila Juana"},
+    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "Carlos Herrera" },
+    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin"},
+    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin" },
+    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin" },
+    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin"},
+    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin" },
 
   ]
 
@@ -184,7 +184,7 @@ const Services = () => {
                     <input
                       className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                       type="text"
-                      placeholder="Nombre o doctor"
+                      placeholder="Nombre o Doctor"
                       value={searchValue}
                       onChange={handleSearch}
                     />
@@ -202,11 +202,11 @@ const Services = () => {
                   </div>
                   <div className='pr-3'>
                     <button
-                      className={`pr-3 pl-3 rounded-lg ${selectedButton === 'Especialidad' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                      className={`pr-3 pl-3 rounded-lg ${selectedButton === 'doctor' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                       onClick={handleButtonClick}
                     >
                       <strong>
-                        Especialidad
+                        doctor
                       </strong>
                     </button>
                   </div>
@@ -234,9 +234,9 @@ const Services = () => {
                   <thead className="align-bottom">
                     <tr>
                       <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Servicio</th>
-                      <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Especialidad</th>
+                      <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">doctor</th>
                       <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Precio</th>
-                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Doctor</th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">especialidad</th>
                       <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                       <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                     </tr>
