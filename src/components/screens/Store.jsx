@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import Empleados from '../Empleados';
+import { useDispatch, useSelector } from 'react-redux';
+import Prueba from '../../Prueba';
 
 const Store = () => {
+  const storeState=useSelector(state => state.store)
+  console.log(storeState)
+
   const [editing, setEditing] = useState(false);
   const [editstore, setEditstore] = useState(false);
   const [mission, setMission] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nobis maiores recusandae natus asperiores ducimus ab nisi quos error ipsam, suscipit eum. Quo, commodi dolorem! Alias, harum architecto? Doloribus, possimus.");
@@ -13,7 +18,9 @@ const Store = () => {
   const [direccion, setDireccion]=useState("Quito-Ecuador-...")
   
   return (
+
     <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10 h-screen bg-gray-50'>
+      <Prueba/>
     <div className=" pb-10 h-screen block w-full transition-all duration-200 bg-gray-50 ">
       <div className=''>
         <div className='flex items-center justify-center pt-7 text-green-100 text-3xl'>
