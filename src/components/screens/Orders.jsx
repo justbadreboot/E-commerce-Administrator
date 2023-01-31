@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import ElementsOrders from '../Tables/ElementsOrders'
 import ElementsProducts from '../Tables/ElementsProducts'
+import FacturaDetails from '../Tables/FacturaDetails'
 import FacturaTable from '../Tables/FacturaTable'
 import OrdenesTable from '../Tables/OrdenesTable'
 
