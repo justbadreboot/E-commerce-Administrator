@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 
-const Modal = (props) => {
+const ModalFactura = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.nombre);
@@ -178,4 +178,4 @@ const Modal = (props) => {
     );
 }
 
-export default Modal
+export default ModalFactura

@@ -6,7 +6,7 @@ import ElementsServices from '../Tables/ElementsServices'
 
 const Services = () => {
   const products = [
-    { foto: "./logo192.png", nombre: "Inyecciones", especialidad: "Analgésico", precio: "130", doctor: "bayern"},
+    { foto: "./logo192.png", nombre: "Inyecciones", especialidad: "Analgésico", precio: "130", doctor: "bayern", descripcion:"  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem nesciunt laudantium libero quisquam culpa, adipisci tenetur ratione corrupti, officia quis est similique vel dolor debitis animi. Eum voluptates consequatur consectetur."},
     { foto: "./logo192.png", nombre: "Consulta medica", especialidad: "Patología", precio: "130", doctor: "Cesar Campos" },
     { foto: "./logo192.png", nombre: "Estudio inmunológico", especialidad: "Inmunología", precio: "130", doctor: "Camila Juana"},
     { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "Carlos Herrera" },
@@ -17,6 +17,7 @@ const Services = () => {
     { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin" },
 
   ]
+
 
   const [searchValue, setSearchValue] = useState('')
   const [filteredProducts, setFilteredProducts] = useState(products)

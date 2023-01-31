@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from '../shared/Modal';
+import ModalOrders from '../shared/modales/ModalOrders';
 
 const ElementsOrders = (props) => {
     let colorClass = '';
@@ -75,7 +76,7 @@ const ElementsOrders = (props) => {
         <span className={`bg-gradient-to-tl ${colorClass2} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.EstadoPago}</span>
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-      <Modal producto={producto}/>
+      <ModalOrders producto={producto}/>
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
         <a href="javascript:;" className="font-semibold leading-tight text-xs text-slate-400"> Eliminar </a>

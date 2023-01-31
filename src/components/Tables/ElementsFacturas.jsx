@@ -1,5 +1,8 @@
 import React,{useState} from 'react'
+import { NavLink } from 'react-router-dom';
 import Modal from '../shared/Modal';
+import ModalFactura from '../shared/modales/ModalFactura';
+import FacturaDetails from './FacturaDetails';
 
 const ElementsFacturas = (props) => {
     const producto=props.products
@@ -24,7 +27,7 @@ const ElementsFacturas = (props) => {
         <span className="font-semibold leading-tight text-xs text-slate-400">{props.products.total} $</span>
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-      <Modal producto={producto}/>
+        <FacturaDetails factura={producto}/>
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
         <a href="javascript:;" className="font-semibold leading-tight text-xs text-slate-400"> Eliminar </a>

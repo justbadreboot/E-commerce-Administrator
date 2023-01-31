@@ -13,6 +13,7 @@ import Promotions from '../screens/Promotions';
 import Services from '../screens/Services';
 import Store from '../screens/Store';
 import Navbar from '../shared/Navbar/Navbar';
+import FacturaDetails from '../Tables/FacturaDetails';
 
 
 
@@ -33,6 +34,7 @@ const RutasAdministrador = () => {
         <Route path='/services/crearServicio' element={<ModalCrearServicio/>}/>
         <Route path='/doctors/crearDoctor' element={<ModalAñadirDoctor/>}/>
         <Route path='/contact' element={<Contact/>}/>
+        <Route path='/detalleFactura' element={<FacturaDetails/>}/>
       </Routes>
 
 

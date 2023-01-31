@@ -1,17 +1,14 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 
-const Modal = (props) => {
+const ModalServicio = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.nombre);
     const [image, setImage] = useState(props.producto.foto);
-    const [weight, setWeight] = useState(props.producto.peso);
-    const [category, setCategory] = useState(props.producto.categoria);
-    const [stock, setStock] = useState(props.producto.stock);
+    const [weight, setWeight] = useState(props.producto.precio);
+    const [category, setCategory] = useState(props.producto.especialidad);
+    const [stock, setStock] = useState(props.producto.doctor);
     const [description, setDescription] = useState(props.producto.descripcion);
-    const [brand, setBrand] = useState(props.producto.marca);
-    const [price1, setPrice1] = useState(props.producto.precio1);
-    const [price2, setPrice2] = useState(props.producto.precio2);
     const handleEdit = () => {
         setEditing(true);
     };
@@ -77,7 +74,7 @@ const Modal = (props) => {
                                 <div className="flex w-3/4 mx-auto my-auto">
 
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Peso:</label>
+                                        <label className="block font-medium text-gray-700">Precio:</label>
                                         <input
                                             type="text"
                                             className={`form-input w-1/3 ${borderclass}`}
@@ -87,7 +84,7 @@ const Modal = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Categoría:</label>
+                                        <label className="block font-medium text-gray-700">Especialidad:</label>
                                         <input
                                             type="text"
                                             className={`form-input w-2/3 ${borderclass}`}
@@ -97,48 +94,17 @@ const Modal = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Stock:</label>
+                                        <label className="block font-medium text-gray-700">Doctor:</label>
                                         <input
                                             type="text"
-                                            className={`form-input w-1/3 ${borderclass}`}
+                                            className={`form-input w-2/3 ${borderclass}`}
                                             value={stock}
                                             disabled={!editing}
                                             onChange={(e) => setStock(e.target.value)}
                                         />
                                     </div>
                                 </div>
-                                <div className="flex w-3/4 mx-auto">
-                                    <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Marca:</label>
-                                        <input
-                                            type="text"
-                                            className={`form-input w-2/3 ${borderclass}`}
-                                            value={brand}
-                                            disabled={!editing}
-                                            onChange={(e) => setBrand(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Precio 1:</label>
-                                        <input
-                                            type="text"
-                                            className={`form-input w-2/3 ${borderclass}`}
-                                            value={price1}
-                                            disabled={!editing}
-                                            onChange={(e) => setPrice1(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Precio 2:</label>
-                                        <input
-                                            type="text"
-                                            className={`form-input w-1/3 ${borderclass}`}
-                                            value={price2}
-                                            disabled={!editing}
-                                            onChange={(e) => setPrice2(e.target.value)}
-                                        />
-                                    </div>
-                                </div>
+                                
                                 <div className="w-9/12 mx-auto">
 
                                     <div className="w-4/5">
@@ -178,4 +144,4 @@ const Modal = (props) => {
     );
 }
 
-export default Modal
+export default ModalServicio

@@ -5,10 +5,10 @@ import ElementsProducts from '../Tables/ElementsProducts'
 
 const Products = () => {
   const products = [
-    { foto: "./logo192.png", nombre: "Paracetamol", categoria: "Analgésico", stock: "130", marca: "bayern", caducidad: "Ingerible", peso: "600" },
+    { foto: "./logo192.png", nombre: "Paracetamol", categoria: "Analgésico", stock: "130", marca: "bayern", caducidad: "Ingerible", peso: "600", descripcion:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam, sed ducimus explicabo aut earum atque fugiat labore nulla voluptates modi commodi amet quaerat vel. Non cumque molestiae nemo odit?" },
     { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
     { foto: "./logo192.png", nombre: "Arten", categoria: "Corticoides", stock: "130", marca: "bayern", caducidad: "Expirado", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
+    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Expirado", peso: "600" },
     { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
     { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
     { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
@@ -16,6 +16,7 @@ const Products = () => {
     { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
 
   ]
+  
 
   const [searchValue, setSearchValue] = useState('')
   const [filteredProducts, setFilteredProducts] = useState(products)
