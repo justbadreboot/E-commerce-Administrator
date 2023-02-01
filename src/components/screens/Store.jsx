@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Empleados from '../Empleados';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreData } from '../../services/actions/StoreData';
+import Loader from '../../Loader';
 
 
 const Store = () => {
@@ -26,6 +27,7 @@ const Store = () => {
   return (
 
     <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10 h-screen bg-gray-50'>
+      <Loader/>
     <div className=" pb-10 h-screen block w-full transition-all duration-200 bg-gray-50 ">
       <div className=''>
         <div className='flex items-center justify-center pt-7 text-green-100 text-3xl'>

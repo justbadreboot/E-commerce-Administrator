@@ -3,7 +3,11 @@ import Modal from '../shared/Modal';
 import { useSelector } from 'react-redux';
 
 const ElementsProducts = (props) => {
-    /*const datosProductos=useSelector(state=>state.products)
+    /*const [isSame, setIsSame] = useState(false);
+
+    const dateFromAPI = new Date(props.dateFromAPI);
+    const currentDate = new Date();
+    const datosProductos=useSelector(state=>state.products)
     console.log(datosProductos)*/
     let colorClass = '';
     const producto=props.products
@@ -29,20 +33,20 @@ const ElementsProducts = (props) => {
                         <img src={props.products.foto} className="inline-flex items-center justify-center mr-4 text-white transition-all duration-200 ease-soft-in-out text-sm h-9 w-9 rounded-xl" alt="user1" />
                     </div>
                     <div className="flex flex-col justify-center">
-                        <h6 className="mb-0 leading-normal text-sm">{props.products.nombre}</h6>
+                        <h6 className="mb-0 leading-normal text-sm">{props.products.name}</h6>
                         <p className="mb-0 leading-tight text-xs text-slate-400">{props.products.categoria}</p>
                     </div>
                 </div>
             </td>
             <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
         <p className="mb-0 font-semibold leading-tight text-xs">{props.products.stock}</p>
-        <p className="mb-0 leading-tight text-xs text-slate-400">{props.products.marca}</p>
+        <p className="mb-0 leading-tight text-xs text-slate-400">{props.products.brand}</p>
       </td>
       <td className="p-2 leading-normal text-center align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
         <span className={`bg-gradient-to-tl ${colorClass} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.caducidad}</span>
       </td>
       <td className="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <span className="font-semibold leading-tight text-xs text-slate-400">{props.products.peso} gr</span>
+        <span className="font-semibold leading-tight text-xs text-slate-400">{props.products.weight} gr</span>
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
       <Modal producto={producto}/>

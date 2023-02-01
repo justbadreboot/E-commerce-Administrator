@@ -176,18 +176,18 @@ const ModalCrearProducto = () => {
                     Categoría
                 </label>
                 <select
-  className="w-full border border-gray-400 bg-white p-2 rounded-md"
-  name="category"
-  value={formData.category}
-  onChange={handleChange}
->
-  <option value="" disabled>Seleccione una categoría</option>
-  {category.map((item) => (
-    <option key={item.id} value={item.name}>
-      {item.name}
-    </option>
-  ))}
-</select>
+                    className="w-full border border-gray-400 bg-white p-2 rounded-md"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                >
+                    <option value="" disabled>Seleccione una categoría</option>
+                    {category.map((item) => (
+                        <option key={item.id} value={item.name}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
                 <div className="text-red-500">{errors.category}</div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Descripción

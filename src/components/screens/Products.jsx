@@ -1,10 +1,17 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsProducts from '../Tables/ElementsProducts'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { ProductsData } from '../../services/actions/StoreData'
 
 const Products = () => {
+  /*const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(ProductsData());
+  }, [dispatch]);*/
+
   const products1=useSelector(state=>state.products)
   console.log(products1.data)
   const products = products1.data
@@ -21,16 +28,16 @@ const Products = () => {
     let productCopia = null
     if (searchValue.length >= 2) {
       if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.nombre.includes(searchValue))
+        productCopia = products.filter(product => product.name.includes(searchValue))
       }
       else {
-        productCopia = products.filter(product => product.marca.includes(searchValue))
+        productCopia = products.filter(product => product.brand.includes(searchValue))
       }
 
       setSelectedOptionstatus(event.target.value);
 
       if (selectedOption !== "Todos") {
-        productCopia = productCopia.filter(product => product.categoria.includes(selectedOption))
+        productCopia = productCopia.filter(product => product.category.includes(selectedOption))
       }
       console.log(productCopia)
       if (event.target.value === "Todos") {
@@ -48,7 +55,7 @@ const Products = () => {
         productCopia = products
       }
       else {
-        productCopia = products.filter(product => product.categoria.includes(selectedOption))
+        productCopia = products.filter(product => product.category.includes(selectedOption))
       }
       console.log(productCopia)
       if (event.target.value === "Todos") {
@@ -66,10 +73,10 @@ const Products = () => {
     let productCopia;
     if (searchValue.length >= 2) {
       if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.nombre.includes(searchValue))
+        productCopia = products.filter(product => product.name.includes(searchValue))
       }
       else {
-        productCopia = products.filter(product => product.marca.includes(searchValue))
+        productCopia = products.filter(product => product.brand.includes(searchValue))
       }
 
       setSelectedOption(event.target.value);
@@ -82,7 +89,7 @@ const Products = () => {
       }
       else {
         const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.categoria.includes(elementos)))
+        setFilteredProducts(productCopia.filter(product => product.category.includes(elementos)))
       }
     }
     else {
@@ -99,7 +106,7 @@ const Products = () => {
       }
       else {
         const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.categoria.includes(elementos)))
+        setFilteredProducts(productCopia.filter(product => product.category.includes(elementos)))
       }
     }
 
@@ -124,12 +131,12 @@ const Products = () => {
       if (selectedOptionstatus === "Todos") {
         productosCopia = products;
         const prod = productosCopia
-        productosCopia = prod.filter(product => product.categoria.includes(selectedOption))
+        productosCopia = prod.filter(product => product.category.includes(selectedOption))
       }
       else {
         productosCopia = products.filter(product => product.caducidad.includes(selectedOptionstatus))
         const prod = productosCopia
-        productosCopia = prod.filter(product => product.categoria.includes(selectedOption))
+        productosCopia = prod.filter(product => product.category.includes(selectedOption))
       }
     }
     if (selectedButton === "Nombre") {
@@ -139,7 +146,7 @@ const Products = () => {
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
-        setFilteredProducts(productosCopia.filter(product => product.nombre.includes(searchValue)))
+        setFilteredProducts(productosCopia.filter(product => product.name.includes(searchValue)))
 
       }
     }
@@ -150,7 +157,7 @@ const Products = () => {
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
-        setFilteredProducts(productosCopia.filter(product => product.marca.includes(searchValue)))
+        setFilteredProducts(productosCopia.filter(product => product.brand.includes(searchValue)))
 
       }
     }
@@ -175,7 +182,7 @@ const Products = () => {
                     <input
                       className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                       type="text"
-                      placeholder="Nombre o marca"
+                      placeholder="Nombre o brand"
                       value={searchValue}
                       onChange={handleSearch}
                     />
