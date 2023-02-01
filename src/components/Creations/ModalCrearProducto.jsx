@@ -1,13 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { CategoryData } from '../../services/actions/StoreData';
 
 const ModalCrearProducto = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(CategoryData());
+    }, [dispatch]);
+
+    const category=useSelector(state=>state.category.data)
+    console.log(category.data)
     const [isOpen, setIsOpen] = useState(false);
 
     const [formData, setFormData] = useState({
         name: "",
         description: "",
-        quantity: "",
+        stock: "",
         price1: "",
         price2: "",
         photo: "",
@@ -19,7 +30,7 @@ const ModalCrearProducto = () => {
     const [errors, setErrors] = useState({
         name: "",
         description: "",
-        quantity: "",
+        stock: "",
         price1: "",
         price2: "",
         photo: "",
@@ -49,7 +60,6 @@ const ModalCrearProducto = () => {
     const handleSubmit = event => {
         event.preventDefault();
         if (validateForm()) {
-            // Enviar datos del formulario a la API
         }
     };
     return (
@@ -89,11 +99,11 @@ const ModalCrearProducto = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="quantity"
-                            value={formData.quantity}
+                            name="stock"
+                            value={formData.stock}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.quantity}</div>
+                        <div className="text-red-500">{errors.stock}</div>
                     </div>
                 </div>
                 <div className='flex'>
@@ -166,16 +176,18 @@ const ModalCrearProducto = () => {
                     Categoría
                 </label>
                 <select
-                    className="w-full border border-gray-400 bg-white p-2 rounded-md"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                >
-                    <option value="" disabled>Seleccione una categoría</option>
-                    <option value="categoria1">Categoría 1</option>
-                    <option value="categoria2">Categoría 2</option>
-                    <option value="categoria3">Categoría 3</option>
-                </select>
+  className="w-full border border-gray-400 bg-white p-2 rounded-md"
+  name="category"
+  value={formData.category}
+  onChange={handleChange}
+>
+  <option value="" disabled>Seleccione una categoría</option>
+  {category.map((item) => (
+    <option key={item.id} value={item.name}>
+      {item.name}
+    </option>
+  ))}
+</select>
                 <div className="text-red-500">{errors.category}</div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Descripción

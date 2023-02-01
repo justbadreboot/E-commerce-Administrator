@@ -1,7 +1,10 @@
 import React,{useState} from 'react'
 import Modal from '../shared/Modal';
+import { useSelector } from 'react-redux';
 
 const ElementsProducts = (props) => {
+    /*const datosProductos=useSelector(state=>state.products)
+    console.log(datosProductos)*/
     let colorClass = '';
     const producto=props.products
     switch (props.products.caducidad) {

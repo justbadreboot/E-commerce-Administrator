@@ -2,21 +2,12 @@ import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsProducts from '../Tables/ElementsProducts'
+import { useSelector } from 'react-redux'
 
 const Products = () => {
-  const products = [
-    { foto: "./logo192.png", nombre: "Paracetamol", categoria: "Analgésico", stock: "130", marca: "bayern", caducidad: "Ingerible", peso: "600", descripcion:"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis veniam, sed ducimus explicabo aut earum atque fugiat labore nulla voluptates modi commodi amet quaerat vel. Non cumque molestiae nemo odit?" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-    { foto: "./logo192.png", nombre: "Arten", categoria: "Corticoides", stock: "130", marca: "bayern", caducidad: "Expirado", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Expirado", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", categoria: "AINE", stock: "130", marca: "meditin", caducidad: "Por Expirar", peso: "600" },
-
-  ]
-  
+  const products1=useSelector(state=>state.products)
+  console.log(products1.data)
+  const products = products1.data
 
   const [searchValue, setSearchValue] = useState('')
   const [filteredProducts, setFilteredProducts] = useState(products)
