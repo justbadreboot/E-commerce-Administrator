@@ -6,6 +6,7 @@ import { FaMoneyBillAlt } from "react-icons/fa";
 import { RiTeamFill } from "react-icons/ri";
 import { FiLogOut } from "react-icons/fi";
 import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServices, MdLocalOffer } from "react-icons/md";
+import { BiCategoryAlt } from "react-icons/bi";
 
 const Navbar = () => {
     const [selectedTab, setSelectedTab] = useState('home');
@@ -66,7 +67,7 @@ const Navbar = () => {
                                 'shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
                                 <MdStoreMallDirectory className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Store</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Tienda</p>
                         </NavLink>
                     </div>
                     <div>
@@ -82,7 +83,23 @@ const Navbar = () => {
                                 'shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
                                 <MdProductionQuantityLimits className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Products</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Productos</p>
+                        </NavLink>
+                    </div>
+                    <div>
+                        <NavLink to="/categories"
+                            className=
+                            {` ${selectedTab === 'categories' ?
+                                'py-3 shadow-xl text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors' :
+                                'py-3 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap px-4 transition-colors'}`}
+                            onClick={() => setSelectedTab('categories')}
+                        >
+                            <div className={` ${selectedTab === 'categories' ?
+                                'bg-gradient-to-tl from-green-100 to-green-20 shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
+                                'shadow-lg mr-2 flex h-9 w-9 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
+                                <BiCategoryAlt className='w-9 h-9' />
+                            </div>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Categorias</p>
                         </NavLink>
                     </div>
                     <div>
@@ -99,7 +116,7 @@ const Navbar = () => {
 
                                 <MdOutlineMedicalServices className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Services</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Servicios</p>
                         </NavLink>
                     </div>
                     <div>
@@ -115,7 +132,7 @@ const Navbar = () => {
 
                                 <AiFillMedicineBox className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Doctors</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Doctores</p>
                         </NavLink>
                     </div>
                     <div>
@@ -131,7 +148,7 @@ const Navbar = () => {
 
                                 <MdLocalOffer className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Promotions</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Promociones</p>
                         </NavLink>
                     </div>
                     <div>
@@ -148,7 +165,7 @@ const Navbar = () => {
 
                                 <FaMoneyBillAlt className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Orders</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Ordenes</p>
                         </NavLink>
                     </div>
                     <div>
@@ -165,7 +182,7 @@ const Navbar = () => {
 
                                 <RiTeamFill className='w-9 h-9' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Contact Us</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Contactanos</p>
                         </NavLink>
                     </div>
                     <div onClick={handleclick}>
@@ -180,7 +197,7 @@ const Navbar = () => {
                                 'shadow-lg mr-2 flex h-10 w-10 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
                                 <FiLogOut className='w-10 h-10' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Products</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Salir</p>
                         </NavLink>
                     </div>
                 </ul>

@@ -16,6 +16,7 @@ const Store = () => {
 
 
   const storeData=useSelector(state => state.store.data)
+  console.log(storeData)
 
   const [editing, setEditing] = useState(false);
   const [editstore, setEditstore] = useState(false);
@@ -24,7 +25,7 @@ const Store = () => {
   const [description, setDescription]=useState(storeData[0].description)
   const [name, setName]=useState(storeData[0].name)
   const [phone, setPhone]=useState(storeData[0].phone)
-  const [correo, setCorreo]=useState("KrugerMed@mail.com")
+  const [email, setEmail]=useState(storeData[0].email)
   const [address, setAddress]=useState(storeData[0].address)
 
 
@@ -37,7 +38,7 @@ const Store = () => {
         description,
         name,
         phone,
-        correo,
+        email,
         address
       })
       .then(res => {
@@ -177,11 +178,11 @@ const Store = () => {
                     {editstore ? (
                       <input
                         className="border  p-2 rounded-lg resize-none"
-                        value={correo}
-                        onChange={e => setCorreo(e.target.value)}
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                       />
                     ) : (
-                      <label>{correo}</label>
+                      <label>{email}</label>
                     )}
                      </li>
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Dirección:</strong> &nbsp;

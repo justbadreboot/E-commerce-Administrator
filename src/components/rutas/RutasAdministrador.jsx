@@ -4,6 +4,7 @@ import ModalAñadirDoctor from '../Creations/ModalAñadirDoctor';
 import ModalCrearProducto from '../Creations/ModalCrearProducto';
 import ModalCrearServicio from '../Creations/ModalCrearServicio';
 import AboutUs from '../screens/AboutUs';
+import Categories from '../screens/Categories';
 import Contact from '../screens/Contact';
 import Doctors from '../screens/Doctors';
 import Home from '../screens/Home';
@@ -35,6 +36,7 @@ const RutasAdministrador = () => {
         <Route path='/doctors/crearDoctor' element={<ModalAñadirDoctor/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/detalleFactura' element={<FacturaDetails/>}/>
+        <Route path='/categories' element={<Categories/>}/>
       </Routes>
 
 
