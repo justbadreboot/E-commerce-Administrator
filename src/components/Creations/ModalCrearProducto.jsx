@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { CategoryData } from '../../services/actions/StoreData';
+import { uploadProductFile } from '../../firebaseConfig';
 
 const ModalCrearProducto = () => {
     const dispatch = useDispatch();
@@ -12,8 +13,8 @@ const ModalCrearProducto = () => {
     }, [dispatch]);
 
     const category=useSelector(state=>state.category.data)
-    console.log(category.data)
     const [isOpen, setIsOpen] = useState(false);
+    const [foto,setphoto]=useState(null);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -21,7 +22,7 @@ const ModalCrearProducto = () => {
         stock: "",
         price1: "",
         price2: "",
-        photo: "",
+        photo: null,
         brand: "",
         weight: "",
         category: ""
@@ -42,7 +43,7 @@ const ModalCrearProducto = () => {
     const handleChange = event => {
         setFormData({
             ...formData,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         });
     };
 
@@ -57,10 +58,13 @@ const ModalCrearProducto = () => {
         return Object.values(newErrors).every(error => error === "");
     };
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
-        if (validateForm()) {
-        }
+
+        const result= await uploadProductFile(foto);
+        console.log(result)
+        /*if (validateForm()) {
+        }*/
     };
     return (
         <div className='mx-auto my-10 z-50 '>
@@ -141,7 +145,7 @@ const ModalCrearProducto = () => {
                     className="w-full border border-gray-400 p-2 rounded-md"
                     type="file"
                     name="photo"
-                    onChange={handleChange}
+                    onChange={e=>setphoto(e.target.files[0])}
                 />
                 <div className="text-red-500">{errors.photo}</div>
                 <div className='flex'>

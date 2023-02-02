@@ -6,7 +6,7 @@ import { productSuccess, productFailure } from "../../features/services/ProductS
 export const StoreData = () => {
     return async (dispatch) => {
         try {
-          const response = await axios.get('https://product-production-cf12.up.railway.app/api/category/all');
+          const response = await axios.get('https://landing-production-11fd.up.railway.app/api/landing');
           dispatch(fetchDataSuccess(response.data));
         } catch (error) {
           dispatch(fetchDataFailure(error.message));

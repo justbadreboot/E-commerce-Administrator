@@ -10,6 +10,7 @@ export const store = configureStore({
     counter: counterReducer,
     store:StoreReducer,
     products:ProductReducer,
-    category:CategoryReducer
+    category:CategoryReducer,
+    putSlice:StoreReducer
   },
 });
