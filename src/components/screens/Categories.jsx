@@ -2,15 +2,17 @@ import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import ElementsProducts from '../Tables/ElementsProducts'
 import { useSelector, useDispatch } from 'react-redux'
+import { CategoryData } from '../../services/actions/StoreData'
+import ElementsCategory from '../Tables/ElementsCategory'
 
 const Categories = () => {
-  /*const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(ProductsData());
-  }, [dispatch]);*/
+    dispatch(CategoryData());
+  }, [dispatch]);
 
-  const products1=useSelector(state=>state.products)
+  const products1=useSelector(state=>state.category)
   console.log(products1.data)
   const products = products1.data
 
@@ -228,7 +230,7 @@ const Categories = () => {
                   </div>
 
                   <div className='w-8/12'>
-                  <NavLink to="crearProducto"><i className="fa-solid fa-pills  "></i></NavLink>
+                  <NavLink to="crearCategoria"><i className="fa-solid fa-pills  "></i></NavLink>
                   </div>    
                   </div>      
                 </div>
@@ -238,16 +240,17 @@ const Categories = () => {
                   <thead className="align-bottom">
                     <tr>
                       <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Producto</th>
-                      <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Stock/Marca</th>
-                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Status</th>
-                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Peso</th>
+                      <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nombre</th>
+                      <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
+
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                       <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                       <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                     </tr>
                   </thead>
                   <tbody>
                     {filteredProducts.map(product => (
-                      <ElementsProducts
+                      <ElementsCategory
                       products={product}
 
                       />

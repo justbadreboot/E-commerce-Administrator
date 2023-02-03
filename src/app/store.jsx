@@ -5,6 +5,7 @@ import counterReducer from '../features/counter/counterSlice';
 import  StoreReducer  from '../features/services/StoreSlice';
 import ProductReducer from '../features/services/ProductSlice';
 import CategoryReducer from '../features/services/CategorySlice';
+import { postData } from '../features/services/CategorySlice';
 
 
 export const store = configureStore({

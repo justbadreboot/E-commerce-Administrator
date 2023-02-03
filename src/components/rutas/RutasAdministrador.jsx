@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
+import ModalAñadirCategoria from '../Creations/ModalAñadirCategoria';
 import ModalAñadirDoctor from '../Creations/ModalAñadirDoctor';
 import ModalCrearProducto from '../Creations/ModalCrearProducto';
 import ModalCrearServicio from '../Creations/ModalCrearServicio';
@@ -37,6 +38,7 @@ const RutasAdministrador = () => {
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/detalleFactura' element={<FacturaDetails/>}/>
         <Route path='/categories' element={<Categories/>}/>
+        <Route path='/categories/crearCategoria' element={<ModalAñadirCategoria/>}/>
       </Routes>
 
 
