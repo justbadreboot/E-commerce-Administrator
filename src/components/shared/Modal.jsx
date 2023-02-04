@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 const Modal = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
-    const [name, setName] = useState(props.producto.nombre);
+    const id=props.producto.id
+    const [name, setName] = useState(props.producto.name);
     const [image, setImage] = useState(props.producto.image);
-    const [weight, setWeight] = useState(props.producto.peso);
-    const [category, setCategory] = useState(props.producto.categoria);
+    const [weight, setWeight] = useState(props.producto.weight);
+    const [category, setCategory] = useState(props.producto.category.name);
     const [stock, setStock] = useState(props.producto.stock);
-    const [description, setDescription] = useState(props.producto.descripcion);
-    const [brand, setBrand] = useState(props.producto.marca);
-    const [price1, setPrice1] = useState(props.producto.precio1);
-    const [price2, setPrice2] = useState(props.producto.precio2);
+    const [description, setDescription] = useState(props.producto.description);
+    const [brand, setBrand] = useState(props.producto.brand);
+    const [price1, setPrice1] = useState(props.producto.pvp);
+    const [price2, setPrice2] = useState(props.producto.pvd);
+
+    const dispatch = useDispatch();
     const handleEdit = () => {
         setEditing(true);
     };
@@ -30,7 +35,15 @@ const Modal = (props) => {
 
     const handleSave = () => {
         setEditing(false);
-        //onSave({ image, weight, category, stock, description, brand, price1, price2 });
+        axios.put(`https://product-production-cf12.up.railway.app/api/product/${id}`, {
+            /*Paramettros*/
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.error(err);
+          });
     };
     return (
         <div>

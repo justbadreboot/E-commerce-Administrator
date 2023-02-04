@@ -9,3 +9,7 @@ const initialState = {
     payload,
   });
   
+export const putProdAction= payload=>({
+  type: PUT_ACTION,
+  payload
+})

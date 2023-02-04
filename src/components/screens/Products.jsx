@@ -4,22 +4,70 @@ import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsProducts from '../Tables/ElementsProducts'
 import { useSelector, useDispatch } from 'react-redux'
 import { ProductsData } from '../../services/actions/StoreData'
+import { CategoryData } from '../../services/actions/StoreData'
+import Loader from '../../Loader'
 
 const Products = () => {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false)
+  const products1=useSelector(state=>state.products.data)
+
 
   useEffect(() => {
     dispatch(ProductsData());
+    setFilteredProducts(products1);
   }, [dispatch]);
 
-  const products1=useSelector(state=>state.products)
-  console.log(products1.data)
-  const products = products1.data
+  useEffect(() => {
+    dispatch(CategoryData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (products1.length != 0) {
+      setIsLoading(false)
+    }
+    else{
+      setIsLoading(true)
+    }
+  }, [products1.length != 0])
+
+  const today = Date.now();
+  const oneWeekLater = today + 7 * 24 * 60 * 60 * 1000;
+  const twoWeeksLater = today + 14 * 24 * 60 * 60 * 1000;
+
+  const producto2 = products1.map(object => {
+    const expiration = Date.parse(object.expiration);
+    let expiracion;
+  
+    if (expiration <= today) {
+      expiracion = "Expirado";
+    } else if (expiration <= twoWeeksLater && expiration>today) {
+      expiracion = "Por expirar";
+    } else if (expiration >= twoWeeksLater) {
+      expiracion = "Ingerible";
+    } else {
+      expiracion = "";
+    }
+  
+    return { ...object, expiracion };
+  });
+
+console.log(producto2)
+
+  const category=useSelector(state=>state.category.data)
+  const products = producto2
+  
+  const [filteredProducts, setFilteredProducts] = useState(products)
+
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products1]);
+
 
   const [searchValue, setSearchValue] = useState('')
-  const [filteredProducts, setFilteredProducts] = useState(products)
   const [selectedButton, setSelectedButton] = useState("Nombre");
-  const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
+  const options=category.map(categorie=>(categorie.name));
+  options.unshift("Todos");
   const [selectedOption, setSelectedOption] = useState("Todos");
   const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
@@ -45,7 +93,7 @@ const Products = () => {
       }
       else {
         const estado = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.caducidad.includes(estado)))
+        setFilteredProducts(productCopia.filter(product => product.expiracion.includes(estado)))
       }
     }
     else {
@@ -63,7 +111,7 @@ const Products = () => {
       }
       else {
         const estado = event.target.value;
-        setFilteredProducts(products.filter(product => product.caducidad.includes(estado)))
+        setFilteredProducts(products.filter(product => product.expiracion.includes(estado)))
       }
     }
 
@@ -82,7 +130,7 @@ const Products = () => {
       setSelectedOption(event.target.value);
 
       if (selectedOptionstatus !== "Todos") {
-        productCopia = productCopia.filter(product => product.caducidad.includes(selectedOptionstatus))
+        productCopia = productCopia.filter(product => product.expiracion.includes(selectedOptionstatus))
       }
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
@@ -99,14 +147,16 @@ const Products = () => {
         productCopia = products
       }
       else {
-        productCopia = products.filter(product => product.caducidad.includes(selectedOptionstatus))
+        productCopia = products.filter(product => product.expiracion.includes(selectedOptionstatus))
       }
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
       else {
         const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.category.includes(elementos)))
+        console.log(elementos)
+        console.log(productCopia)
+        setFilteredProducts(productCopia.filter(product => product.category.name.includes(elementos)))
       }
     }
 
@@ -124,7 +174,7 @@ const Products = () => {
       productosCopia = products;
       if (selectedOptionstatus !== "Todos") {
         const prod = productosCopia
-        productosCopia = prod.filter(product => product.caducidad.includes(selectedOptionstatus))
+        productosCopia = prod.filter(product => product.expiracion.includes(selectedOptionstatus))
       }
     }
     else {
@@ -134,7 +184,7 @@ const Products = () => {
         productosCopia = prod.filter(product => product.category.includes(selectedOption))
       }
       else {
-        productosCopia = products.filter(product => product.caducidad.includes(selectedOptionstatus))
+        productosCopia = products.filter(product => product.expiracion.includes(selectedOptionstatus))
         const prod = productosCopia
         productosCopia = prod.filter(product => product.category.includes(selectedOption))
       }
@@ -221,11 +271,12 @@ const Products = () => {
                   </div>
                   <div className='pr-3'>
                     <select value={selectedOption} onChange={handleChange} className={`pr-3 pl-3 rounded-lg  bg-gray-50 shadow-inner`}>
-                      {options.map((option) => (
-                        <option className='bg-white border-transparent ' key={option} value={option}>
-                          {option}
+                    <option value="" disabled>Categoria</option>
+                    {options.map((item) => (
+                        <option key={item} value={item}>
+                            {item}
                         </option>
-                      ))}
+                    ))}
                     </select>
                   </div>
 
@@ -248,12 +299,12 @@ const Products = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredProducts.map(product => (
+                    {!isLoading?( filteredProducts.map(product => (
                       <ElementsProducts
                       products={product}
-
+                      categorias={category}
                       />
-                    ))}
+                    ))):(<Loader/>)}
                   </tbody>
                 </table>
               </div>

@@ -6,6 +6,7 @@ import { CategoryData } from '../../services/actions/StoreData';
 import { uploadProductFile } from '../../firebaseConfig';
 import { postProductApi } from '../../services/actions/StorePost';
 import Swal from "sweetalert2";
+import { ProductsData } from '../../services/actions/StoreData';
 
 const ModalCrearProducto = () => {
     const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const ModalCrearProducto = () => {
         if (validateForm()) {
             if(foto!=null){
                 setCategoria(category.find((objeto)=>objeto.name===formData.category))
-                console.log(formData.category)
+                console.log(categoria)
                 const result= await uploadProductFile(foto);
                 const data = {
                     name: formData.name,
@@ -97,7 +98,8 @@ const ModalCrearProducto = () => {
                         icon: 'success',
                         text: 'Producto añadida correctamente'
                     });
-                    setFormData({
+                    dispatch(ProductsData());
+                    /*setFormData({
                         name: "",
                         description: "",
                         stock: "",
@@ -109,7 +111,7 @@ const ModalCrearProducto = () => {
                         expiration:"",
                         size:""
                     })
-                    setphoto(null)
+                    setphoto(null)*/
                 }
                 catch (error) {
                     Swal.fire({

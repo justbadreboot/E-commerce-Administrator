@@ -17,7 +17,6 @@ const Categories = () => {
   )
 useEffect(()=>{
   setFilteredProducts(products);
-  console.log(filteredProducts)
 },[products]);
 
   useEffect(() => {
