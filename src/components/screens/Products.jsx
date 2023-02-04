@@ -6,11 +6,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { ProductsData } from '../../services/actions/StoreData'
 
 const Products = () => {
-  /*const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(ProductsData());
-  }, [dispatch]);*/
+  }, [dispatch]);
 
   const products1=useSelector(state=>state.products)
   console.log(products1.data)

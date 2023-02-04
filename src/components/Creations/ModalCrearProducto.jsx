@@ -113,7 +113,7 @@ const ModalCrearProducto = () => {
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Precio 1
+                            PVP
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
@@ -126,7 +126,7 @@ const ModalCrearProducto = () => {
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Precio 2
+                            PVD
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
@@ -193,6 +193,34 @@ const ModalCrearProducto = () => {
                     ))}
                 </select>
                 <div className="text-red-500">{errors.category}</div>
+                <div className='flex'>
+                    <div className='pr-10'>
+                        <label className="block text-gray-700 font-medium mb-2 mt-4">
+                            Expiración
+                        </label>
+                        <input
+                            className="w-full border border-gray-400 p-2 rounded-md"
+                            type="text"
+                            name="brand"
+                            value={formData.brand}
+                            onChange={handleChange}
+                        />
+                        <div className="text-red-500">{errors.brand}</div>
+                    </div>
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-2 mt-4">
+                            Tamaño
+                        </label>
+                        <input
+                            className="w-full border border-gray-400 p-2 rounded-md"
+                            type="number"
+                            name="weight"
+                            value={formData.weight}
+                            onChange={handleChange}
+                        />
+                        <div className="text-red-500">{errors.weight}</div>
+                    </div>
+                </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Descripción
                 </label>
