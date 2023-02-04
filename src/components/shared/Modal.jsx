@@ -4,7 +4,7 @@ const Modal = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.nombre);
-    const [image, setImage] = useState(props.producto.foto);
+    const [image, setImage] = useState(props.producto.image);
     const [weight, setWeight] = useState(props.producto.peso);
     const [category, setCategory] = useState(props.producto.categoria);
     const [stock, setStock] = useState(props.producto.stock);

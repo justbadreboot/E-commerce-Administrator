@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { CategoryData } from '../../services/actions/StoreData';
 import { uploadProductFile } from '../../firebaseConfig';
+import { postProductApi } from '../../services/actions/StorePost';
+import Swal from "sweetalert2";
 
 const ModalCrearProducto = () => {
     const dispatch = useDispatch();
@@ -14,30 +16,39 @@ const ModalCrearProducto = () => {
 
     const category=useSelector(state=>state.category.data)
     const [isOpen, setIsOpen] = useState(false);
+    const [error, setError] = useState("");
     const [foto,setphoto]=useState(null);
+    const [categoria,setCategoria]=useState({
+        description:"",
+        id:"",
+        image:"",
+        name:""
+    })
 
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         stock: "",
-        price1: "",
-        price2: "",
-        photo: null,
+        pvd: "",
+        pvp: "",
         brand: "",
         weight: "",
-        category: ""
+        category: "",
+        expiration:"",
+        size:""
     });
 
     const [errors, setErrors] = useState({
         name: "",
         description: "",
         stock: "",
-        price1: "",
-        price2: "",
-        photo: "",
+        pvd: "",
+        pvp: "",
         brand: "",
         weight: "",
-        category: ""
+        category: "",
+        expiration:"",
+        size:""
     });
 
     const handleChange = event => {
@@ -60,11 +71,59 @@ const ModalCrearProducto = () => {
 
     const handleSubmit = async event => {
         event.preventDefault();
+        if (validateForm()) {
+            if(foto!=null){
+                setCategoria(category.find((objeto)=>objeto.name===formData.category))
+                console.log(formData.category)
+                const result= await uploadProductFile(foto);
+                const data = {
+                    name: formData.name,
+                    description: formData.description,
+                    image: `${result}`,
+                    stock: formData.stock,
+                    pvd: formData.pvd,
+                    pvp: formData.pvp,
+                    brand: formData.brand,
+                    weight: formData.weight,
+                    category: categoria,
+                    expiration:formData.expiration,
+                    size:formData.size
+                }
+                console.log(data)
+                try {
+                    dispatch(postProductApi(data))
+                    Swal.fire({
+                        title: 'Excelente!',
+                        icon: 'success',
+                        text: 'Producto añadida correctamente'
+                    });
+                    setFormData({
+                        name: "",
+                        description: "",
+                        stock: "",
+                        pvd: "",
+                        pvp: "",
+                        brand: "",
+                        weight: "",
+                        category: "",
+                        expiration:"",
+                        size:""
+                    })
+                    setphoto(null)
+                }
+                catch (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        icon: 'error',
+                        text: "Porfavor, intenta de nuevo en unos momentos"
+                    });
+                }
+            }
+            else{
+                setError("Debe tener una foto")
+            }
 
-        const result= await uploadProductFile(foto);
-        console.log(result)
-        /*if (validateForm()) {
-        }*/
+        }
     };
     return (
         <div className='mx-auto my-10 z-50 '>
@@ -118,11 +177,11 @@ const ModalCrearProducto = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="price1"
-                            value={formData.price1}
+                            name="pvp"
+                            value={formData.pvp}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.price1}</div>
+                        <div className="text-red-500">{errors.pvp}</div>
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -131,11 +190,11 @@ const ModalCrearProducto = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="price2"
-                            value={formData.price2}
+                            name="pvd"
+                            value={formData.pvd}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.price2}</div>
+                        <div className="text-red-500">{errors.pvd}</div>
                     </div>
                 </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -147,7 +206,7 @@ const ModalCrearProducto = () => {
                     name="photo"
                     onChange={e=>setphoto(e.target.files[0])}
                 />
-                <div className="text-red-500">{errors.photo}</div>
+                <div className="text-red-500">{error}</div>
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -200,12 +259,12 @@ const ModalCrearProducto = () => {
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
-                            type="text"
-                            name="brand"
-                            value={formData.brand}
+                            type="date"
+                            name="expiration"
+                            value={formData.expiration}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.brand}</div>
+                        <div className="text-red-500">{errors.expiration}</div>
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -214,11 +273,11 @@ const ModalCrearProducto = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="weight"
-                            value={formData.weight}
+                            name="size"
+                            value={formData.size}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.weight}</div>
+                        <div className="text-red-500">{errors.size}</div>
                     </div>
                 </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
