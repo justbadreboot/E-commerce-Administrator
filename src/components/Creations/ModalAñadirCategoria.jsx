@@ -5,6 +5,8 @@ import { CategoryData } from '../../services/actions/StoreData';
 import { uploadProductFile } from '../../firebaseConfig';
 import { Connect } from 'react-redux';
 import { postDataToApi } from '../../services/actions/StorePost';
+import * as Yup from "yup";
+import Swal from "sweetalert2";
 
 const ModalAñadirCategoria = () => {
     const dispatch = useDispatch();
@@ -19,15 +21,13 @@ const ModalAñadirCategoria = () => {
     const [formData, setFormData] = useState({
         name: "",
         description: "",
-        photo: null,
     });
 
     const [errors, setErrors] = useState({
         name: "",
         description: "",
-        photo: "",
     });
-
+    const [error, setError] = useState("");
     const handleChange = event => {
         setFormData({
             ...formData,
@@ -48,15 +48,42 @@ const ModalAñadirCategoria = () => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        const result= await uploadProductFile(foto);
-        const data={
-            name:formData.name,
-            description:formData.description,
-            image:`${result}`
+        if (validateForm()) {
+            if (foto != null) {
+                const result = await uploadProductFile(foto);
+                const data = {
+                    name: formData.name,
+                    description: formData.description,
+                    image: `${result}`
+                }
+
+                try {
+                    dispatch(postDataToApi(data))
+                    Swal.fire({
+                        title: 'Excelente!',
+                        icon: 'success',
+                        text: 'Categoria añadida correctamente'
+                    });
+                    setFormData({
+                        name:"",
+                        description:""
+                    })
+                    setphoto(null)
+                }
+                catch (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        icon: 'error',
+                        text: "Porfavor, intenta de nuevo en unos momentos"
+                    });
+                }
+            }
+            else {
+                setError("Debe tener una foto")
+            }
+
+
         }
-        dispatch(postDataToApi(data))
-        /*if (validateForm()) {
-        }*/
     };
     return (
         <div className='mx-auto my-10 z-50 '>
@@ -98,7 +125,7 @@ const ModalAñadirCategoria = () => {
                     name="photo"
                     onChange={e=>setphoto(e.target.files[0])}
                 />
-                <div className="text-red-500">{errors.photo}</div>
+                <div className="text-red-500">{error}</div>
                
                 
                 <label className="block text-gray-700 font-medium mb-2 mt-4">

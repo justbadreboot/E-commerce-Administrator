@@ -6,6 +6,7 @@ import  StoreReducer  from '../features/services/StoreSlice';
 import ProductReducer from '../features/services/ProductSlice';
 import CategoryReducer from '../features/services/CategorySlice';
 import { postData } from '../features/services/CategorySlice';
+import dataSlice from '../features/services/serverApi';
 
 
 export const store = configureStore({
@@ -15,6 +16,7 @@ export const store = configureStore({
     products:ProductReducer,
     category:CategoryReducer,
     putSlice:StoreReducer,
+    data:dataSlice,
   },
 });
 
