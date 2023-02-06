@@ -2,9 +2,10 @@ import React from 'react';
 import CardDataU from '../CardDataU';
 import BarCard from '../statisctics/BarCard';
 import LineChart from '../statisctics/LineChart';
+import { useSelector, useDispatch } from 'react-redux'
+import { CategoryData } from '../../services/actions/StoreData';
 
 const Home = () => {
-
   return (
     <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10'>
     <div className=" w-full h-screen py-6 mx-auto bg-gray-50 ">

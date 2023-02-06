@@ -1,37 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { CategoryData } from '../../services/actions/StoreData';
+import { uploadProductFile } from '../../firebaseConfig';
+import { postProductApi } from '../../services/actions/StorePost';
+import Swal from "sweetalert2";
+import { ProductsData } from '../../services/actions/StoreData';
 
 const ModalCrearProducto = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(CategoryData());
+    }, [dispatch]);
+
+    const category=useSelector(state=>state.category.data)
     const [isOpen, setIsOpen] = useState(false);
+    const [error, setError] = useState("");
+    const [foto,setphoto]=useState(null);
+    const [categoria,setCategoria]=useState({
+        description:"",
+        id:"",
+        image:"",
+        name:""
+    })
 
     const [formData, setFormData] = useState({
         name: "",
         description: "",
-        quantity: "",
-        price1: "",
-        price2: "",
-        photo: "",
+        stock: "",
+        pvd: "",
+        pvp: "",
         brand: "",
         weight: "",
-        category: ""
+        category: "",
+        expiration:"",
+        size:""
     });
 
     const [errors, setErrors] = useState({
         name: "",
         description: "",
-        quantity: "",
-        price1: "",
-        price2: "",
-        photo: "",
+        stock: "",
+        pvd: "",
+        pvp: "",
         brand: "",
         weight: "",
-        category: ""
+        category: "",
+        expiration:"",
+        size:""
     });
 
     const handleChange = event => {
         setFormData({
             ...formData,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         });
     };
 
@@ -46,10 +70,61 @@ const ModalCrearProducto = () => {
         return Object.values(newErrors).every(error => error === "");
     };
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
         if (validateForm()) {
-            // Enviar datos del formulario a la API
+            if(foto!=null){
+                setCategoria(category.find((objeto)=>objeto.name===formData.category))
+                console.log(categoria)
+                const result= await uploadProductFile(foto);
+                const data = {
+                    name: formData.name,
+                    description: formData.description,
+                    image: `${result}`,
+                    stock: formData.stock,
+                    pvd: formData.pvd,
+                    pvp: formData.pvp,
+                    brand: formData.brand,
+                    weight: formData.weight,
+                    category: categoria,
+                    expiration:formData.expiration,
+                    size:formData.size
+                }
+                console.log(data)
+                try {
+                    dispatch(postProductApi(data))
+                    Swal.fire({
+                        title: 'Excelente!',
+                        icon: 'success',
+                        text: 'Producto añadida correctamente'
+                    });
+                    dispatch(ProductsData());
+                    /*setFormData({
+                        name: "",
+                        description: "",
+                        stock: "",
+                        pvd: "",
+                        pvp: "",
+                        brand: "",
+                        weight: "",
+                        category: "",
+                        expiration:"",
+                        size:""
+                    })
+                    setphoto(null)*/
+                }
+                catch (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        icon: 'error',
+                        text: "Porfavor, intenta de nuevo en unos momentos"
+                    });
+                }
+            }
+            else{
+                setError("Debe tener una foto")
+            }
+
         }
     };
     return (
@@ -89,39 +164,39 @@ const ModalCrearProducto = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="quantity"
-                            value={formData.quantity}
+                            name="stock"
+                            value={formData.stock}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.quantity}</div>
+                        <div className="text-red-500">{errors.stock}</div>
                     </div>
                 </div>
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Precio 1
+                            PVP
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="price1"
-                            value={formData.price1}
+                            name="pvp"
+                            value={formData.pvp}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.price1}</div>
+                        <div className="text-red-500">{errors.pvp}</div>
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Precio 2
+                            PVD
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="price2"
-                            value={formData.price2}
+                            name="pvd"
+                            value={formData.pvd}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.price2}</div>
+                        <div className="text-red-500">{errors.pvd}</div>
                     </div>
                 </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -131,9 +206,9 @@ const ModalCrearProducto = () => {
                     className="w-full border border-gray-400 p-2 rounded-md"
                     type="file"
                     name="photo"
-                    onChange={handleChange}
+                    onChange={e=>setphoto(e.target.files[0])}
                 />
-                <div className="text-red-500">{errors.photo}</div>
+                <div className="text-red-500">{error}</div>
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -172,11 +247,41 @@ const ModalCrearProducto = () => {
                     onChange={handleChange}
                 >
                     <option value="" disabled>Seleccione una categoría</option>
-                    <option value="categoria1">Categoría 1</option>
-                    <option value="categoria2">Categoría 2</option>
-                    <option value="categoria3">Categoría 3</option>
+                    {category.map((item) => (
+                        <option key={item.id} value={item.name}>
+                            {item.name}
+                        </option>
+                    ))}
                 </select>
                 <div className="text-red-500">{errors.category}</div>
+                <div className='flex'>
+                    <div className='pr-10'>
+                        <label className="block text-gray-700 font-medium mb-2 mt-4">
+                            Expiración
+                        </label>
+                        <input
+                            className="w-full border border-gray-400 p-2 rounded-md"
+                            type="date"
+                            name="expiration"
+                            value={formData.expiration}
+                            onChange={handleChange}
+                        />
+                        <div className="text-red-500">{errors.expiration}</div>
+                    </div>
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-2 mt-4">
+                            Tamaño
+                        </label>
+                        <input
+                            className="w-full border border-gray-400 p-2 rounded-md"
+                            type="number"
+                            name="size"
+                            value={formData.size}
+                            onChange={handleChange}
+                        />
+                        <div className="text-red-500">{errors.size}</div>
+                    </div>
+                </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Descripción
                 </label>

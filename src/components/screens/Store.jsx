@@ -1,18 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Empleados from '../Empleados';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoreData } from '../../services/actions/StoreData';
+import Loader from '../../Loader';
+import axios from 'axios';
+import {uploadFile} from '../../firebaseConfig'
+
 
 const Store = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(StoreData());
+  }, [dispatch]);
+
+
+  const storeData=useSelector(state => state.store.data)
+  console.log(storeData)
+
   const [editing, setEditing] = useState(false);
   const [editstore, setEditstore] = useState(false);
-  const [mission, setMission] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit nobis maiores recusandae natus asperiores ducimus ab nisi quos error ipsam, suscipit eum. Quo, commodi dolorem! Alias, harum architecto? Doloribus, possimus.");
-  const [vision, setVision] = useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit reiciendis cupiditate commodi eveniet laboriosam voluptates quos magni culpa, nobis incidunt ullam necessitatibus non impedit id dolorem. Deleniti ducimus quae voluptates?");
-  const [descripcion, setDescripcion]=useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit reiciendis cupiditate commodi eveniet laboriosam voluptates quos magni culpa, nobis incidunt ullam necessitatibus non impedit id dolorem. Deleniti ducimus quae voluptates?")
-  const [nombre, setNombre]=useState("Kruger Med")
-  const [telefono, setTelefono]=useState("(+513) 02322598")
-  const [correo, setCorreo]=useState("KrugerMed@mail.com")
-  const [direccion, setDireccion]=useState("Quito-Ecuador-...")
+  const [mission, setMission] = useState(storeData[0].mission);
+  const [vision, setVision] = useState(storeData[0].vision);
+  const [description, setDescription]=useState(storeData[0].description)
+  const [name, setName]=useState(storeData[0].name)
+  const [phone, setPhone]=useState(storeData[0].phone)
+  const [email, setEmail]=useState(storeData[0].email)
+  const [address, setAddress]=useState(storeData[0].address)
+
+
+  const handleEdit = () => {
+    setEditing(false);
+    setEditstore(false)
+      axios.put('https://landing-production-11fd.up.railway.app/api/landing/{id}?id=1', {
+        mission,
+        vision,
+        description,
+        name,
+        phone,
+        email,
+        address
+      })
+      .then(res => {
+        console.log(res);
+            dispatch(StoreData());
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+
   
   return (
+
     <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10 h-screen bg-gray-50'>
     <div className=" pb-10 h-screen block w-full transition-all duration-200 bg-gray-50 ">
       <div className=''>
@@ -64,7 +104,7 @@ const Store = () => {
                   {editing && (
                     <button
                       className="bg-blue-500 text-white p-2 rounded-lg mt-4"
-                      onClick={() => setEditing(false)}
+                      onClick={() => handleEdit()}
                     >
                       Guardar
                     </button>
@@ -103,11 +143,11 @@ const Store = () => {
                       <textarea
                         className="border w-full p-2 rounded-lg resize-none"
                         rows="4"
-                        value={descripcion}
-                        onChange={e => setDescripcion(e.target.value)}
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
                       />
                     ) : (
-                      <div>{descripcion}</div>
+                      <div>{description}</div>
                     )}
                   </p>
                   <hr className="h-px my-6 bg-transparent bg-gradient-to-r from-transparent via-white to-transparent" />
@@ -116,44 +156,44 @@ const Store = () => {
                     {editstore ? (
                       <input
                         className="border p-2 rounded-lg resize-none"
-                        value={nombre}
-                        onChange={e => setNombre(e.target.value)}
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                       />
                     ) : (
-                      <label>{nombre}</label>
+                      <label>{name}</label>
                     )}
                     </li>
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Telefono:</strong> &nbsp;
                     {editstore ? (
                       <input
                         className="border  p-2 rounded-lg resize-none"
-                        value={telefono}
-                        onChange={e => setTelefono(e.target.value)}
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
                       />
                     ) : (
-                      <label>{telefono}</label>
+                      <label>{phone}</label>
                     )}
                      </li>
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Correo:</strong> &nbsp;
                     {editstore ? (
                       <input
                         className="border  p-2 rounded-lg resize-none"
-                        value={correo}
-                        onChange={e => setCorreo(e.target.value)}
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                       />
                     ) : (
-                      <label>{correo}</label>
+                      <label>{email}</label>
                     )}
                      </li>
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Dirección:</strong> &nbsp;
                     {editstore ? (
                       <input
                         className="border  p-2 rounded-lg resize-none"
-                        value={direccion}
-                        onChange={e => setDireccion(e.target.value)}
+                        value={address}
+                        onChange={e => setAddress(e.target.value)}
                       />
                     ) : (
-                      <label>{direccion}</label>
+                      <label>{address}</label>
                     )}
                      </li>
                      
@@ -163,7 +203,7 @@ const Store = () => {
                   {editstore && (
                     <button
                       className="bg-blue-500 text-white p-2 rounded-lg mt-4"
-                      onClick={() => setEditstore(false)}
+                      onClick={() => handleEdit()}
                     >
                       Guardar
                     </button>

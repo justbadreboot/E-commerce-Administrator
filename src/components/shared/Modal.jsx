@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { uploadProductFile } from '../../firebaseConfig';
 
 const Modal = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
-    const [name, setName] = useState(props.producto.nombre);
-    const [image, setImage] = useState(props.producto.foto);
-    const [weight, setWeight] = useState(props.producto.peso);
-    const [category, setCategory] = useState(props.producto.categoria);
+    const id=props.producto.id
+    const categorias=props.categorias
+    console.log(props.producto.category)
+    const [name, setName] = useState(props.producto.name);
+    const [foto,setFoto]=useState(false);
+    const [image, setImage] = useState(props.producto.image);
+    const [weight, setWeight] = useState(props.producto.weight);
+    const [category, setCategory] = useState(props.producto.category.name);
     const [stock, setStock] = useState(props.producto.stock);
-    const [description, setDescription] = useState(props.producto.descripcion);
-    const [brand, setBrand] = useState(props.producto.marca);
-    const [price1, setPrice1] = useState(props.producto.precio1);
-    const [price2, setPrice2] = useState(props.producto.precio2);
+    const [description, setDescription] = useState(props.producto.description);
+    const [brand, setBrand] = useState(props.producto.brand);
+    const [price1, setPrice1] = useState(props.producto.pvp);
+    const [price2, setPrice2] = useState(props.producto.pvd);
+
+    const dispatch = useDispatch();
     const handleEdit = () => {
         setEditing(true);
     };
@@ -28,9 +37,47 @@ const Modal = (props) => {
         editImage='hidden'
     }
 
-    const handleSave = () => {
+    const handlePhoto=(e)=>{
+        setImage(e.target.files[0])
+        setFoto(true)
+    }
+
+    const handleSave =async event => {
         setEditing(false);
-        //onSave({ image, weight, category, stock, description, brand, price1, price2 });
+        console.log(category)
+        let enviada=categorias.filter(product => product.name.includes(category))
+        let categoriaTemp=enviada[0]
+        const data={
+            description: description,
+            image:"",
+            stock:stock,
+            pvd: price2,
+            pvp:price1,
+            brand: brand,
+            weight: weight,
+            name:name,
+            category: categoriaTemp,
+            expiration:props.producto.expiration,
+            size:props.producto.size
+        }
+        console.log(data)
+
+        if(foto===true){
+            const result= await uploadProductFile(image);
+            data.image=`${result}`
+        }
+        else{
+            data.image=image
+        }
+        axios.put(`https://product-production-cf12.up.railway.app/api/product/${id}`, {
+            data
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.error(err);
+          });
     };
     return (
         <div>
@@ -69,7 +116,7 @@ const Modal = (props) => {
                                                 accept="image/*"
                                                 className="hidden"
                                                 disabled={!editing}
-                                                onChange={(e) => setImage(e.target.files[0])}
+                                                onChange={handlePhoto}
                                             />
                                         </label>
                                     </div>
@@ -88,13 +135,16 @@ const Modal = (props) => {
                                     </div>
                                     <div className="w-1/3">
                                         <label className="block font-medium text-gray-700">Categoría:</label>
-                                        <input
-                                            type="text"
-                                            className={`form-input w-2/3 ${borderclass}`}
+                                        <select
+                                            className={`form-select w-2/3 ${borderclass}`}
                                             value={category}
                                             disabled={!editing}
                                             onChange={(e) => setCategory(e.target.value)}
-                                        />
+                                        >
+                                            {categorias.map(option => (
+                                                <option key={option.id} value={option.name}>{option.name}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                     <div className="w-1/3">
                                         <label className="block font-medium text-gray-700">Stock:</label>
@@ -119,7 +169,7 @@ const Modal = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Precio 1:</label>
+                                        <label className="block font-medium text-gray-700">PVP:</label>
                                         <input
                                             type="text"
                                             className={`form-input w-2/3 ${borderclass}`}
@@ -129,7 +179,7 @@ const Modal = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Precio 2:</label>
+                                        <label className="block font-medium text-gray-700">PVD:</label>
                                         <input
                                             type="text"
                                             className={`form-input w-1/3 ${borderclass}`}

@@ -1,28 +1,47 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsProducts from '../Tables/ElementsProducts'
 import ElementsServices from '../Tables/ElementsServices'
+import { useDispatch, useSelector } from 'react-redux'
+import { ServiceData } from '../../services/actions/StoreData'
+import { EspecialidadData } from '../../services/actions/StoreData'
+import Loader from '../../Loader'
 
 const Services = () => {
-  const products = [
-    { foto: "./logo192.png", nombre: "Inyecciones", especialidad: "Analgésico", precio: "130", doctor: "bayern", descripcion:"  Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem nesciunt laudantium libero quisquam culpa, adipisci tenetur ratione corrupti, officia quis est similique vel dolor debitis animi. Eum voluptates consequatur consectetur."},
-    { foto: "./logo192.png", nombre: "Consulta medica", especialidad: "Patología", precio: "130", doctor: "Cesar Campos" },
-    { foto: "./logo192.png", nombre: "Estudio inmunológico", especialidad: "Inmunología", precio: "130", doctor: "Camila Juana"},
-    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "Carlos Herrera" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin"},
-    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin" },
-    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin"},
-    { foto: "./logo192.png", nombre: "Ibuprofeno", especialidad: "AINE", precio: "130", doctor: "meditin" },
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false)
+  const products1=useSelector(state=>state.service.data)
 
-  ]
+  useEffect(() => {
+    dispatch(ServiceData());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(EspecialidadData());
+  }, [dispatch]);
+  const especialidad=useSelector(state=>state.especialidad.data)
+
+  console.log(products1)
+
+  const products = products1
+  useEffect(() => {
+    if (products1.length != 0) {
+      setIsLoading(false)
+    }
+    else{
+      setIsLoading(true)
+    }
+  }, [products1.length != 0])
 
 
   const [searchValue, setSearchValue] = useState('')
   const [filteredProducts, setFilteredProducts] = useState(products)
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products1]);
   const [selectedButton, setSelectedButton] = useState("Nombre");
-  const options = ["Todos", "Analgésico", "AINE", "Corticoides", "Patología"];
+  const options =especialidad.map(categorie=>(categorie.name));
+  options.unshift("Todos");
   const [selectedOption, setSelectedOption] = useState("Todos");
   const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
@@ -31,7 +50,7 @@ const Services = () => {
     let productCopia = null
     if (searchValue.length >= 2) {
       if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.nombre.includes(searchValue))
+        productCopia = products.filter(product => product.name.includes(searchValue))
       }
       else {
         productCopia = products.filter(product => product.doctor.includes(searchValue))
@@ -40,7 +59,7 @@ const Services = () => {
       setSelectedOptionstatus(event.target.value);
 
       if (selectedOption !== "Todos") {
-        productCopia = productCopia.filter(product => product.especialidad.includes(selectedOption))
+        productCopia = productCopia.filter(product => product.specialty.name.includes(selectedOption))
       }
       console.log(productCopia)
       if (event.target.value === "Todos") {
@@ -58,7 +77,7 @@ const Services = () => {
         productCopia = products
       }
       else {
-        productCopia = products.filter(product => product.especialidad.includes(selectedOption))
+        productCopia = products.filter(product => product.specialty.name.includes(selectedOption))
       }
       console.log(productCopia)
       if (event.target.value === "Todos") {
@@ -76,7 +95,7 @@ const Services = () => {
     let productCopia;
     if (searchValue.length >= 2) {
       if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.nombre.includes(searchValue))
+        productCopia = products.filter(product => product.name.includes(searchValue))
       }
       else {
         productCopia = products.filter(product => product.doctor.includes(searchValue))
@@ -92,7 +111,7 @@ const Services = () => {
       }
       else {
         const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.especialidad.includes(elementos)))
+        setFilteredProducts(productCopia.filter(product => product.specialty.name.includes(elementos)))
       }
     }
     else {
@@ -109,7 +128,7 @@ const Services = () => {
       }
       else {
         const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.especialidad.includes(elementos)))
+        setFilteredProducts(productCopia.filter(product => product.specialty.name.includes(elementos)))
       }
     }
 
@@ -134,12 +153,12 @@ const Services = () => {
       if (selectedOptionstatus === "Todos") {
         productosCopia = products;
         const prod = productosCopia
-        productosCopia = prod.filter(product => product.especialidad.includes(selectedOption))
+        productosCopia = prod.filter(product => product.specialty.name.includes(selectedOption))
       }
       else {
         productosCopia = products.filter(product => product.caducidad.includes(selectedOptionstatus))
         const prod = productosCopia
-        productosCopia = prod.filter(product => product.especialidad.includes(selectedOption))
+        productosCopia = prod.filter(product => product.specialty.name.includes(selectedOption))
       }
     }
     if (selectedButton === "Nombre") {
@@ -149,7 +168,7 @@ const Services = () => {
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
-        setFilteredProducts(productosCopia.filter(product => product.nombre.includes(searchValue)))
+        setFilteredProducts(productosCopia.filter(product => product.name.includes(searchValue)))
 
       }
     }
@@ -191,26 +210,6 @@ const Services = () => {
                     />
                   </div>
                   <div className='flex'>
-                  <div className='sm:pl-5 pr-3'>
-                    <button
-                      className={`pl-3 pr-3 rounded-lg ${selectedButton === 'Nombre' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
-                      onClick={handleButtonClick}
-                    >
-                      <strong>
-                        Nombre
-                      </strong>
-                    </button>
-                  </div>
-                  <div className='pr-3'>
-                    <button
-                      className={`pr-3 pl-3 rounded-lg ${selectedButton === 'doctor' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
-                      onClick={handleButtonClick}
-                    >
-                      <strong>
-                        doctor
-                      </strong>
-                    </button>
-                  </div>
                   </div>
                   <div className='flex'>
 
@@ -235,20 +234,18 @@ const Services = () => {
                   <thead className="align-bottom">
                     <tr>
                       <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Servicio</th>
-                      <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">doctor</th>
+                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Especialidad</th>
                       <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Precio</th>
-                      <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">especialidad</th>
                       <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                       <th className="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredProducts.map(product => (
+                    {!isLoading?(filteredProducts.map(product => (
                       <ElementsServices
                       services={product}
-
                       />
-                    ))}
+                    ))):(<Loader/>)}
                   </tbody>
                 </table>
               </div>

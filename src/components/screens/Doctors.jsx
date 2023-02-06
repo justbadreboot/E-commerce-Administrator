@@ -1,24 +1,36 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsDoctors from '../Tables/ElementsDoctors'
 import ElementsProducts from '../Tables/ElementsProducts'
+import { useDispatch, useSelector } from 'react-redux'
+import { DoctorData } from '../../services/actions/StoreData'
+import Loader from '../../Loader'
 
 const Doctors = () => {
-  const products = [
-    { foto: "./logo192.png", nombre: "Juanito Alcachofa", numero: "02322598", correo: "correo@correo.com", cedula: "1712793049", direccion: "Tungas" },
-    { foto: "./logo192.png", nombre: "Andres Calvopiña", numero: "02432798", correo: "correo@correo.com", cedula: "1759794059", direccion: "Por Expirar" },
-    { foto: "./logo192.png", nombre: "Juanito Alcachofa", numero: "02322598", correo: "correo@correo.com", cedula: "1712793049", direccion: "Tungas" },
-    { foto: "./logo192.png", nombre: "Andres Calvopiña", numero: "02432798", correo: "correo@correo.com", cedula: "1759794059", direccion: "Por Expirar" },
-    { foto: "./logo192.png", nombre: "Juanito Alcachofa", numero: "02322598", correo: "correo@correo.com", cedula: "1712793049", direccion: "Tungas" },
-    { foto: "./logo192.png", nombre: "Andres Calvopiña", numero: "02432798", correo: "correo@correo.com", cedula: "1759794059", direccion: "Por Expirar" },
-    { foto: "./logo192.png", nombre: "Juanito Alcachofa", numero: "02322598", correo: "correo@correo.com", cedula: "1712793049", direccion: "Tungas" },
-    { foto: "./logo192.png", nombre: "Andres Calvopiña", numero: "02432798", correo: "correo@correo.com", cedula: "1759794059", direccion: "Por Expirar" },
+  const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false)
+  const products1=useSelector(state=>state.doctor.data)
 
-  ]
+  useEffect(() => {
+    dispatch(DoctorData());
+  }, [dispatch]);
+  const products=products1
+
+  useEffect(() => {
+    if (products1.length != 0) {
+      setIsLoading(false)
+    }
+    else{
+      setIsLoading(true)
+    }
+  }, [products1.length != 0])
 
   const [searchValue, setSearchValue] = useState('')
   const [filteredProducts, setFilteredProducts] = useState(products)
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products1]);
   const [selectedButton, setSelectedButton] = useState("Nombre");
   const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
   const [selectedOption, setSelectedOption] = useState("Todos");
@@ -29,10 +41,10 @@ const Doctors = () => {
     let productCopia = null
     if (searchValue.length >= 2) {
       if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.nombre.includes(searchValue))
+        productCopia = products.filter(product => product.name.includes(searchValue))
       }
       else {
-        productCopia = products.filter(product => product.cedula.includes(searchValue))
+        productCopia = products.filter(product => product.document.includes(searchValue))
       }
 
       setSelectedOptionstatus(event.target.value);
@@ -74,10 +86,10 @@ const Doctors = () => {
     let productCopia;
     if (searchValue.length >= 2) {
       if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.nombre.includes(searchValue))
+        productCopia = products.filter(product => product.name.includes(searchValue))
       }
       else {
-        productCopia = products.filter(product => product.cedula.includes(searchValue))
+        productCopia = products.filter(product => product.document.includes(searchValue))
       }
 
       setSelectedOption(event.target.value);
@@ -147,7 +159,7 @@ const Doctors = () => {
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
-        setFilteredProducts(productosCopia.filter(product => product.nombre.includes(searchValue)))
+        setFilteredProducts(productosCopia.filter(product => product.name.includes(searchValue)))
 
       }
     }
@@ -158,7 +170,7 @@ const Doctors = () => {
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
-        setFilteredProducts(productosCopia.filter(product => product.cedula.includes(searchValue)))
+        setFilteredProducts(productosCopia.filter(product => product.document.includes(searchValue)))
 
       }
     }
@@ -183,7 +195,7 @@ const Doctors = () => {
                     <input
                       className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                       type="text"
-                      placeholder="Nombre o cedula"
+                      placeholder="Nombre o document"
                       value={searchValue}
                       onChange={handleSearch}
                     />
@@ -231,12 +243,12 @@ const Doctors = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredProducts.map(product => (
+                    {!isLoading?( filteredProducts.map(product => (
                       <ElementsDoctors
                       products={product}
 
                       />
-                    ))}
+                    ))):(<Loader/>)}
                   </tbody>
                 </table>
               </div>
