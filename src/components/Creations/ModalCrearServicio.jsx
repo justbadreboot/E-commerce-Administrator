@@ -1,31 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { EspecialidadData } from '../../services/actions/StoreData';
+import { uploadServicesFile } from '../../firebaseConfig';
+import { postServicesApi } from '../../services/actions/StorePost';
 
 const ModalCrearServicio = () => {
+    const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
+    const [photo,setPhoto]=useState(null)
+
+    useEffect(() => {
+        dispatch(EspecialidadData());
+      }, [dispatch]);
+      const especialidad=useSelector(state=>state.especialidad.data)
 
     const [formData, setFormData] = useState({
         name: "",
         description: "",
-        quantity: "",
-        price1: "",
-        price2: "",
-        photo: "",
-        brand: "",
-        weight: "",
-        category: ""
+        price: "",
+        speciality:""
     });
 
     const [errors, setErrors] = useState({
         name: "",
         description: "",
-        quantity: "",
-        price1: "",
-        price2: "",
-        photo: "",
-        brand: "",
-        weight: "",
-        category: ""
+        price: "",
+        image:"",
+        speciality:""
     });
 
     const handleChange = event => {
@@ -46,11 +48,35 @@ const ModalCrearServicio = () => {
         return Object.values(newErrors).every(error => error === "");
     };
 
-    const handleSubmit = event => {
+    const handleSubmit= async event => {
         event.preventDefault();
-        if (validateForm()) {
-            // Enviar datos del formulario a la API
+        if(photo == null){
+            setErrors({
+                image:"Necesita una foto"
+            })
         }
+        else{
+            if (validateForm()) {
+                const result= await uploadServicesFile(photo);
+                const data={
+                    name: formData.name,
+                    description: formData.description,
+                    price: formData.price,
+                    image:result,
+                    speciality:formData.speciality
+                }
+                dispatch(postServicesApi(formData.speciality,data))
+                        setFormData({
+                            name: "",
+                            description: "",
+                            price: "",
+                            speciality:""
+                    })
+                    setPhoto(null)
+                // Enviar datos del formulario a la API
+            }
+        }
+
     };
     return (
         <div className='mx-auto my-10 z-50'>
@@ -89,11 +115,11 @@ const ModalCrearServicio = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="number"
-                            name="quantity"
-                            value={formData.quantity}
+                            name="price"
+                            value={formData.price}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.quantity}</div>
+                        <div className="text-red-500">{errors.price}</div>
                     </div>
                 </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -103,9 +129,30 @@ const ModalCrearServicio = () => {
                     className="w-full border border-gray-400 p-2 rounded-md"
                     type="file"
                     name="photo"
-                    onChange={handleChange}
+                    onChange={e=>setPhoto(e.target.files[0])}
                 />
                 <div className="text-red-500">{errors.photo}</div>
+                <div className=''>
+                    <div>
+                        <label className="block text-gray-700 font-medium mb-2 mt-4">
+                            Especialidad:
+                        </label>
+                        <select
+                            className="w-full border border-gray-400 bg-white p-2 rounded-md"
+                            name="speciality"
+                            value={formData.speciality}
+                            onChange={handleChange}
+                        >
+                            <option value="" disabled>Seleccione una especialidad</option>
+                            {especialidad.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
+                        <div className="text-red-500">{errors.category}</div>
+                    </div>
+                </div>
 
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Descripción
