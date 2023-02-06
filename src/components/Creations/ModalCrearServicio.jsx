@@ -106,42 +106,6 @@ const ModalCrearServicio = () => {
                     onChange={handleChange}
                 />
                 <div className="text-red-500">{errors.photo}</div>
-                <div className='flex'>
-                    <div className='pr-10'>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Doctor Asignado
-                        </label>
-                        <select
-                            className="w-full border border-gray-400 bg-white p-2 rounded-md"
-                            name="category"
-                            value={formData.category}
-                            onChange={handleChange}
-                        >
-                            <option value="" disabled>Seleccione un doctor</option>
-                            <option value="categoria1">Carlos Herrera</option>
-                            <option value="categoria2">Doctor 2</option>
-                            <option value="categoria3">Doctor </option>
-                        </select>
-                        <div className="text-red-500">{errors.brand}</div>
-                    </div>
-                    <div>
-                    <label className="block text-gray-700 font-medium mb-2 mt-4">
-                    Especialidad:
-                </label>
-                <select
-                    className="w-full border border-gray-400 bg-white p-2 rounded-md"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                >
-                    <option value="" disabled>Seleccione una Especialidad</option>
-                    <option value="categoria1">Categoría 1</option>
-                    <option value="categoria2">Categoría 2</option>
-                    <option value="categoria3">Categoría 3</option>
-                </select>
-                <div className="text-red-500">{errors.category}</div>
-                    </div>
-                </div>
 
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Descripción

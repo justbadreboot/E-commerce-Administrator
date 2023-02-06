@@ -1,31 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
+import { EspecialidadData } from '../../services/actions/StoreData';
+import { useSelector, useDispatch } from 'react-redux';
+import { postDoctorApi } from '../../services/actions/StorePost';
+import { uploadDoctorFile } from '../../firebaseConfig';
 
 const ModalAñadirDoctor = () => {
+    const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
+    const [photo,setPhoto] = useState(null)
+
+    useEffect(() => {
+        dispatch(EspecialidadData());
+      }, [dispatch]);
+      const especialidad=useSelector(state=>state.especialidad.data)
+
 
     const [formData, setFormData] = useState({
         name: "",
-        description: "",
-        quantity: "",
-        price1: "",
-        price2: "",
-        photo: "",
-        brand: "",
-        weight: "",
-        category: ""
+        lastName:"",
+        phone: "",
+        email: "",
+        address: "",
+        document: "",
+        speciality: ""
     });
 
     const [errors, setErrors] = useState({
         name: "",
-        description: "",
-        quantity: "",
-        price1: "",
-        price2: "",
-        photo: "",
-        brand: "",
-        weight: "",
-        category: ""
+        lastName:"",
+        phone: "",
+        email: "",
+        image: "",
+        address: "",
+        speciality: ""
     });
 
     const handleChange = event => {
@@ -46,11 +54,31 @@ const ModalAñadirDoctor = () => {
         return Object.values(newErrors).every(error => error === "");
     };
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
-        if (validateForm()) {
-            // Enviar datos del formulario a la API
+        console.log(formData.speciality)
+        if(photo == null){
+            setErrors({
+                image:"Necesita una foto"
+            })
         }
+        else{
+            if (validateForm()) {
+                const result= await uploadDoctorFile(photo);
+                const data={
+                    name: formData.name,
+                    lastName:formData.lastName,
+                    phone: formData.phone,
+                    email: formData.email,
+                    image: result,
+                    address: formData.address,
+                    document: formData.document,
+                }
+                dispatch(postDoctorApi(formData.speciality,data))
+                // Enviar datos del formulario a la API
+            }
+        }
+
     };
     return (
         <div className='mx-auto  my-10 z-50'>
@@ -58,7 +86,7 @@ const ModalAñadirDoctor = () => {
                 <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
 
-            <form className="bg-white p-6 rounded-2xl mx-auto my-auto drop-shadow-2xl h-2gl overflow-y-auto" onSubmit={handleSubmit}>
+            <form className="bg-white p-6 rounded-2xl mx-auto my-auto drop-shadow-2xl h-3gl overflow-y-auto" onSubmit={handleSubmit}>
 
                 <NavLink to="/doctors">
                     <button className="absolute top-0 right-0 p-4 text-black bg-white rounded-full hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
@@ -82,19 +110,20 @@ const ModalAñadirDoctor = () => {
                         />
                         <div className="text-red-500">{errors.name}</div>
                     </div>
-                    <div>
+                    <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Cedula:
+                            Apellido:
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="text"
-                            name="quantity"
-                            value={formData.quantity}
+                            name="lastName"
+                            value={formData.lastName}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.quantity}</div>
+                        <div className="text-red-500">{errors.lastName}</div>
                     </div>
+                    
                 </div>
                 <div className='flex'>
                     <div className='pr-10'>
@@ -104,11 +133,11 @@ const ModalAñadirDoctor = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="text"
-                            name="price1"
-                            value={formData.price1}
+                            name="phone"
+                            value={formData.phone}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.price1}</div>
+                        <div className="text-red-500">{errors.phone}</div>
                     </div>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -117,11 +146,11 @@ const ModalAñadirDoctor = () => {
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="text"
-                            name="price2"
-                            value={formData.price2}
+                            name="email"
+                            value={formData.email}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.price2}</div>
+                        <div className="text-red-500">{errors.email}</div>
                     </div>
                 </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -130,40 +159,58 @@ const ModalAñadirDoctor = () => {
                 <input
                     className="w-full border border-gray-400 p-2 rounded-md"
                     type="file"
-                    name="photo"
-                    onChange={handleChange}
+                    name="image"
+                    onChange={e=>setPhoto(e.target.files[0])}
                 />
-                <div className="text-red-500">{errors.photo}</div>
-                <div className='flex'>
-                    <div className='pr-10'>
+                <div className="text-red-500">{errors.image}
+                <div className=''>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
                             Dirección:
                         </label>
                         <input
                             className="w-full border border-gray-400 p-2 rounded-md"
                             type="text"
-                            name="brand"
-                            value={formData.brand}
+                            name="address"
+                            value={formData.address}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.brand}</div>
+                        <div className="text-red-500">{errors.address}</div>
                     </div>
+                
+                </div>
+                <div className='flex'>
+                <div className='pr-10'>
+                        <label className="block text-gray-700 font-medium mb-2 mt-4">
+                            Cedula:
+                        </label>
+                        <input
+                            className="w-full border border-gray-400 p-2 rounded-md"
+                            type="text"
+                            name="document"
+                            value={formData.document}
+                            onChange={handleChange}
+                        />
+                        <div className="text-red-500">{errors.document}</div>
+                    </div>
+
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
                             Especialidad:
                         </label>
                         <select
                             className="w-full border border-gray-400 bg-white p-2 rounded-md"
-                            name="category"
-                            value={formData.category}
+                            name="speciality"
+                            value={formData.speciality}
                             onChange={handleChange}
                         >
                             <option value="" disabled>Seleccione una especialidad</option>
-                            <option value="categoria1">Categoría 1</option>
-                            <option value="categoria2">Categoría 2</option>
-                            <option value="categoria3">Categoría 3</option>
+                            {especialidad.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
                         </select>
-                        <div className="text-red-500">{errors.category}</div>
+                        <div className="text-red-500">{errors.speciality}</div>
                     </div>
                 </div>
                 <button className="bg-blue-500 text-white py-2 px-4 rounded-md mt-4" >

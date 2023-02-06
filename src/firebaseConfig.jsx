@@ -27,3 +27,10 @@ export async function uploadProductFile(file){
   const url=await getDownloadURL(storageRef)
   return url
 }
+
+export async function uploadDoctorFile(file){
+  const storageRef = ref(storage, `Doctors/${v4()}`)
+  await uploadBytes(storageRef, file)
+  const url=await getDownloadURL(storageRef)
+  return url
+}
