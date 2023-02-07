@@ -29,9 +29,15 @@ export const CategorySlice= createSlice({
           CategoryDeleteFailure: (state, action) => {
             state.error = action.payload;
           },
+          CategoryPostSuccess: (state,obj) => {
+            state.data.push(obj)
+          },
+          CategoryPostFailure: (state, action) => {
+            state.error = action.payload;
+          },
     }
 })
 
-export const {CategorySuccess, CategoryFailure, CategoryDeleteSuccess, CategoryDeleteFailure}=CategorySlice.actions
+export const {CategorySuccess, CategoryFailure, CategoryDeleteSuccess, CategoryDeleteFailure, CategoryPostSuccess, CategoryPostFailure}=CategorySlice.actions
 
 export default CategorySlice.reducer

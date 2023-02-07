@@ -28,9 +28,15 @@ export const DoctorSlice= createSlice({
           DoctorDeleteFailure: (state, action) => {
             state.error = action.payload;
           },
+          DoctorPostSuccess: (state, action) => {
+            state.data.push(action)
+          },
+          DoctorDeleteFailure: (state, action) => {
+            state.error = action.payload;
+          },
     }
 })
 
-export const {DoctorSuccess, DoctorFailure, DoctorDeleteSuccess, DoctorDeleteFailure}=DoctorSlice.actions
+export const {DoctorSuccess, DoctorFailure, DoctorDeleteSuccess, DoctorDeleteFailure, DoctorPostSuccess, DoctorPostFailure}=DoctorSlice.actions
 
 export default DoctorSlice.reducer

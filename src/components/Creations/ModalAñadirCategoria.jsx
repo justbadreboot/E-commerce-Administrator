@@ -58,17 +58,13 @@ const ModalAñadirCategoria = () => {
                 }
 
                 try {
+                    console.log(data)
                     dispatch(postDataToApi(data))
-                    Swal.fire({
-                        title: 'Excelente!',
-                        icon: 'success',
-                        text: 'Categoria añadida correctamente'
-                    });
-                    setFormData({
+                    /*setFormData({
                         name:"",
                         description:""
                     })
-                    setphoto(null)
+                    setphoto(null)*/
                 }
                 catch (error) {
                     Swal.fire({

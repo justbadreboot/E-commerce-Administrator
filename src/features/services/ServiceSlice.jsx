@@ -23,8 +23,15 @@ export const ServiceSlice = createSlice({
           },
           serviceDeleteFailure:(state, action)=>{
             state.error = action.payload;
+          },
+          servicePostSuccess:(state,obj)=>{
+            state.data.push(obj)
+          },
+          servicePostFailure:(state, action)=>{
+            state.error = action.payload;
           }
+          
     }
 })
-export const {serviceSuccess, serviceFailure, serviceDeleteSuccess, serviceDeleteFailure}=ServiceSlice.actions
+export const {serviceSuccess, serviceFailure, serviceDeleteSuccess, serviceDeleteFailure, servicePostSuccess, servicePostFailure}=ServiceSlice.actions
 export default ServiceSlice.reducer

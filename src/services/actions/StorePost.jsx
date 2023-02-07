@@ -1,37 +1,43 @@
 import { async } from '@firebase/util';
 import axios from 'axios';
-import { CategorySuccess, CategoryFailure } from '../../features/services/CategorySlice';
-import { productSuccess, productFailure } from '../../features/services/ProductSlice';
-import { DoctorSuccess,DoctorFailure } from '../../features/services/DoctorSlice';
-import { serviceSuccess, serviceFailure } from '../../features/services/ServiceSlice';
-import { EspecialidadSuccess, EspecialidadFailure } from '../../features/services/EspecialidadSlice';
+import { DoctorPostSuccess, DoctorPostFailure } from '../../features/services/DoctorSlice';
+import { productPostSuccess, productPostFailure } from '../../features/services/ProductSlice';
+import { CategoryPostSuccess, CategoryPostFailure } from '../../features/services/CategorySlice';
+import { servicePostSuccess, servicePostFailure } from '../../features/services/ServiceSlice';
+import { EspecialidadPostSuccess, EspecialidadPostFailure } from '../../features/services/EspecialidadSlice';
 import Swal from "sweetalert2";
 
 export const postDataToApi = data => async dispatch => {
   try {
     const response = await axios.post('https://product-production-cf12.up.railway.app/api/category', data);
-    dispatch(CategorySuccess(response.data));
+    dispatch(CategoryPostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
       text: 'Categoria añadido correctamente'
   });
   } catch (error) {
-    dispatch(CategoryFailure(error.message));
+    dispatch(CategoryPostFailure(error.message));
+    console.log(error.message)
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
   }
 };
 
 export const postProductApi =data=> async dispatch=>{
   try {
     const response = await axios.post('https://product-production-cf12.up.railway.app/api/product', data);
-    dispatch(productSuccess(response.data));
+    dispatch(productPostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
       text: 'Producto añadido correctamente'
   });
   } catch (error) {
-    dispatch(productFailure(error.message));
+    dispatch(productPostFailure(error.message));
     Swal.fire({
       title: 'Error!',
       icon: 'error',
@@ -44,36 +50,52 @@ export const postProductApi =data=> async dispatch=>{
 export const postDoctorApi=(id, data)=>async dispatch=>{
   try{
     const response = await axios.post(`https://service-production-bb52.up.railway.app/api/specialty/${id}/doctor`, data);
-    dispatch(DoctorSuccess(response.data));
+    dispatch(DoctorPostSuccess(response.data));
+    console.log(response)
+    Swal.fire({
+      title: 'Excelente!',
+      icon: 'success',
+      text: 'Producto añadido correctamente'
+  });
 } catch (error) {
-  dispatch(DoctorFailure(error.message));
+  dispatch(DoctorPostFailure(error.message));
+  Swal.fire({
+    title: 'Error!',
+    icon: 'error',
+    text: "Porfavor, intenta de nuevo en unos momentos"
+});
 }
 }
 export const postServicesApi=(id, data)=>async dispatch=>{
   try{
     const response = await axios.post(`https://service-production-bb52.up.railway.app/api/specialty/${id}/service`, data);
-    dispatch(serviceSuccess(response.data));
+    dispatch(servicePostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
       text: 'Servicio añadido correctamente'
   });
 } catch (error) {
-  dispatch(serviceFailure(error.message));
+  dispatch(servicePostFailure(error.message));
+  Swal.fire({
+    title: 'Error!',
+    icon: 'error',
+    text: "Porfavor, intenta de nuevo en unos momentos"
+});
 }
 }
 
 export const postSpecialityApi=data=>async dispatch=>{
   try{
     const response = await axios.post(`https://service-production-bb52.up.railway.app/api/specialty`, data);
-    dispatch(EspecialidadSuccess(response.data));
+    dispatch(EspecialidadPostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
       text: 'Especialidad añadida correctamente'
   });
 } catch (error) {
-  dispatch(EspecialidadFailure(error.message));
+  dispatch(EspecialidadPostFailure(error.message));
   Swal.fire({
     title: 'Error!',
     icon: 'error',
