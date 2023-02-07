@@ -1,9 +1,19 @@
 import React from 'react'
 import Modal from '../shared/Modal';
+import { useSelector, useDispatch } from 'react-redux';
 import ModalServicio from '../shared/modales/ModalServicio';
+import { deleteServicesApi } from '../../services/actions/StoreDelete';
+import { ServiceData } from '../../services/actions/StoreData';
+import { NavLink } from 'react-router-dom';
 
 const ElementsServices = (props) => {
   const producto = props.services
+  const dispatch = useDispatch();
+
+  const handleDelete=()=>{
+    dispatch(deleteServicesApi(producto.id))
+    dispatch(ServiceData())
+}
 
   return (
     <tr>
@@ -29,7 +39,7 @@ const ElementsServices = (props) => {
         <ModalServicio producto={producto} />
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <a href="javascript:;" className="font-semibold leading-tight text-xs text-slate-400"> Eliminar </a>
+        <button  className="font-semibold leading-tight text-xs text-slate-400"  onClick={handleDelete}> Eliminar </button>
       </td>
     </tr>
   )

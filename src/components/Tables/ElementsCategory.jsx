@@ -1,8 +1,17 @@
 import React from 'react'
 import Modal from '../shared/Modal';
 import ModalCategories from '../shared/modales/ModalCategories';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteCategoryApi } from '../../services/actions/StoreDelete';
+import { CategoryData } from '../../services/actions/StoreData';
 
 const ElementsCategory = (props) => {
+    const dispatch = useDispatch();
+
+
+    const handleDelete=()=>{
+        dispatch(deleteCategoryApi(props.products.id))
+    }
     /*const [isSame, setIsSame] = useState(false);
 
     const dateFromAPI = new Date(props.dateFromAPI);
@@ -50,7 +59,7 @@ const ElementsCategory = (props) => {
       <ModalCategories producto={producto}/>
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <a href="javascript:;" className="font-semibold leading-tight text-xs text-slate-400"> Eliminar </a>
+        <a href="javascript:;" className="font-semibold leading-tight text-xs text-slate-400" onClick={handleDelete}> Eliminar </a>
       </td>
         </tr>
 

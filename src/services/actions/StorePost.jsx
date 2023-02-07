@@ -32,6 +32,11 @@ export const postProductApi =data=> async dispatch=>{
   });
   } catch (error) {
     dispatch(productFailure(error.message));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
   }
 
 }

@@ -7,6 +7,11 @@ const initialState = {
     error:null,
   }
 
+  const handleDelete = (id, data) => {
+    const newArray = data.filter(item => item.id !== id);
+    return newArray;
+  };
+
 export const CategorySlice= createSlice({
     name:'category',
     initialState,
@@ -18,9 +23,15 @@ export const CategorySlice= createSlice({
           CategoryFailure: (state, action) => {
             state.error = action.payload;
           },
+          CategoryDeleteSuccess: (state,id) => {
+            state.data=handleDelete(id, state.data)
+          },
+          CategoryDeleteFailure: (state, action) => {
+            state.error = action.payload;
+          },
     }
 })
 
-export const {CategorySuccess, CategoryFailure}=CategorySlice.actions
+export const {CategorySuccess, CategoryFailure, CategoryDeleteSuccess, CategoryDeleteFailure}=CategorySlice.actions
 
 export default CategorySlice.reducer
