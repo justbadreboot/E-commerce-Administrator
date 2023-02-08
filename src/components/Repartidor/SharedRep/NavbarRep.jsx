@@ -51,22 +51,6 @@ const NavbarRep = () => {
                             </div>
                             <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft'>Home</p>
                         </NavLink>
-                    <div>
-                        <NavLink to="/store"
-                            className=
-                            {` ${selectedTab === 'store' ?
-                                'py-3 shadow-xl text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap rounded-lg bg-white px-4 font-semibold text-slate-700 transition-colors' :
-                                'py-3 text-sm ease-nav-brand my-0 mx-3 flex items-center whitespace-nowrap px-4 transition-colors'}`}
-                            onClick={() => setSelectedTab('store')}
-                        >
-                            <div className={` ${selectedTab === 'store' ?
-                                'bg-gradient-to-tl from-green-100 to-green-20 shadow-lg mr-2 flex h-10 w-10 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5' :
-                                'shadow-lg mr-2 flex h-10 w-10 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
-                                <FaUserCircle className='w-9 h-9' />
-                            </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Store</p>
-                        </NavLink>
-                    </div>
                     <div onClick={handleclick}>
                         <NavLink to="/"
                             className=
@@ -80,7 +64,7 @@ const NavbarRep = () => {
                                 'shadow-lg mr-2 flex h-10 w-10 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5'}`}>
                                 <FiLogOut className='w-10 h-10' />
                             </div>
-                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Products</p>
+                            <p className='ml-1 duration-300 opacity-100 pointer-events-none ease-soft '>Salir</p>
                         </NavLink>
                     </div>
                 </ul>

@@ -1,20 +1,33 @@
 import React,{useState} from 'react'
+import axios from 'axios';
+import { uploadDoctorFile } from '../../../firebaseConfig';
 
 const ModalDoctors = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
-    const [name, setName] = useState(props.producto.nombre);
-    const [image, setImage] = useState(props.producto.foto);
-    const [weight, setWeight] = useState(props.producto.cedula);
-    const [category, setCategory] = useState(props.producto.correo);
+    const [name, setName] = useState(props.producto.name);
+    const [imageTemp, setImage] = useState(props.producto.imageTemp);
+    const [image, setImagen]=useState(null)
+    const [document, setDocument] = useState(props.producto.document);
+    const [id, setId]=useState(props.producto.id)
+    const [lastName,setLastName]=useState(props.producto.lastName)
+    const [email, setEmail] = useState(props.producto.email);
     const [stock, setStock] = useState(props.producto.stock);
     const [description, setDescription] = useState(props.producto.descripcion);
-    const [brand, setBrand] = useState(props.producto.numero);
-    const [price1, setPrice1] = useState(props.producto.direccion);
+    const [phone, setPhone] = useState(props.producto.phone);
+    const [address, setAddress] = useState(props.producto.address);
     const [price2, setPrice2] = useState(props.producto.precio2);
+    const [foto, setFoto]=useState(false)
     const handleEdit = () => {
         setEditing(true);
     };
+    const handlePhoto=(e)=>{
+        console.log(e.target.files[0])
+        setImage(e.target.files[0])
+        setFoto(true)
+        console.log(imageTemp)
+        console.log(foto)
+    }
 
     let borderclass=''
     let editImage=''
@@ -28,9 +41,33 @@ const ModalDoctors = (props) => {
         editImage='hidden'
     }
 
-    const handleSave = () => {
+    const handleSave =async event => {
         setEditing(false);
-        //onSave({ image, weight, category, stock, description, brand, price1, price2 });
+        console.log(foto)
+        if(foto===true){
+            const result= await uploadDoctorFile(imageTemp);
+            console.log(result)
+            setImagen(`${result}`)
+            console.log(image)
+        }
+
+        axios.put(`https://service-production-bb52.up.railway.app/api/specialty/${props.producto.specialty.id}/doctor`, {
+            image,
+            id,
+            name,
+            email,
+            address,
+            document,
+            lastName,
+            phone
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        //onSave({ imageTemp, document, email, stock, description, phone, address, price2 });
     };
     return (
         <div>
@@ -63,15 +100,15 @@ const ModalDoctors = (props) => {
                                         </div>
                                     </div>
                                     <div className="w-1/3 mx-auto">
-                                        <img src={`${image}`} className='w-2/3' />
+                                        <img src={`${imageTemp}`} className='w-2/3' />
                                         <label className={`flex items-center justify-center cursor-pointer w-2/3 ${editImage}`}>
                                             <i className="fa-solid fa-pen-to-square text-gray-500 text-xl"></i>
                                             <input
                                                 type="file"
-                                                accept="image/*"
+                                                accept="imageTemp/*"
                                                 className="hidden"
                                                 disabled={!editing}
-                                                onChange={(e) => setImage(e.target.files[0])}
+                                                onChange={handlePhoto}
                                             />
                                         </label>
                                     </div>
@@ -83,9 +120,9 @@ const ModalDoctors = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-3/4 ${borderclass}`}
-                                            value={weight}
+                                            value={document}
                                             disabled={!editing}
-                                            onChange={(e) => setWeight(e.target.value)}
+                                            onChange={(e) => setDocument(e.target.value)}
                                         />
                                     </div>
                                     <div className="w-2/3">
@@ -93,9 +130,9 @@ const ModalDoctors = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-4/5 ${borderclass}`}
-                                            value={category}
+                                            value={email}
                                             disabled={!editing}
-                                            onChange={(e) => setCategory(e.target.value)}
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                     </div>
                                 </div>
@@ -105,9 +142,9 @@ const ModalDoctors = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-2/3 ${borderclass}`}
-                                            value={brand}
+                                            value={phone}
                                             disabled={!editing}
-                                            onChange={(e) => setBrand(e.target.value)}
+                                            onChange={(e) => setPhone(e.target.value)}
                                         />
                                     </div>
                                     <div className="w-2/3">
@@ -115,9 +152,9 @@ const ModalDoctors = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-2/3 ${borderclass}`}
-                                            value={price1}
+                                            value={address}
                                             disabled={!editing}
-                                            onChange={(e) => setPrice1(e.target.value)}
+                                            onChange={(e) => setAddress(e.target.value)}
                                         />
                                     </div>
                                 </div>

@@ -10,6 +10,7 @@ import { postData } from '../features/services/CategorySlice';
 import dataSlice from '../features/services/serverApi';
 import DoctorReducer from '../features/services/DoctorSlice';
 import EspecialidadReducer from '../features/services/EspecialidadSlice';
+import OrdenReducer from '../features/services/OrdenSlice';
 
 
 export const store = configureStore({
@@ -22,7 +23,8 @@ export const store = configureStore({
     data:dataSlice,
     service:ServiceReducer,
     doctor:DoctorReducer,
-    especialidad:EspecialidadReducer
+    especialidad:EspecialidadReducer,
+    orden:OrdenReducer
   },
 });
 

@@ -5,6 +5,7 @@ import { productSuccess, productFailure } from "../../features/services/ProductS
 import { serviceSuccess, serviceFailure } from "../../features/services/ServiceSlice";
 import { DoctorSuccess, DoctorFailure } from "../../features/services/DoctorSlice";
 import { EspecialidadSuccess, EspecialidadFailure } from "../../features/services/EspecialidadSlice";
+import { OrdenSuccess, OrdenFailure } from "../../features/services/OrdenSlice";
 
 export const StoreData = () => {
     return async (dispatch) => {
@@ -69,3 +70,13 @@ export const CategoryData = () => {
       }
     };
   };
+  export const OrdenesData=()=>{
+    return async (dispatch) => {
+      try {
+        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/specialty');
+        dispatch(OrdenSuccess(response1.data));
+      } catch (error) {
+        dispatch(OrdenFailure(error.message));
+      }
+    };
+  }
