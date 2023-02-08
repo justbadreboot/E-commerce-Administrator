@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 const ElementsServices = (props) => {
   const producto = props.services
   const dispatch = useDispatch();
+  const especialidades=props.especialidad
 
   const handleDelete=()=>{
     dispatch(deleteServicesApi(producto.id))
@@ -36,7 +37,7 @@ const ElementsServices = (props) => {
       </td>
 
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <ModalServicio producto={producto} />
+        <ModalServicio producto={producto} especialidad={especialidades} />
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
         <button  className="font-semibold leading-tight text-xs text-slate-400"  onClick={handleDelete}> Eliminar </button>

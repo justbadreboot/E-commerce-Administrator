@@ -12,13 +12,16 @@ const Modal = (props) => {
     const [name, setName] = useState(props.producto.name);
     const [foto,setFoto]=useState(false);
     const [image, setImage] = useState(props.producto.image);
+    const [size, setSize] = useState(props.producto.size);
+    const [expiration, setExpiration] = useState(props.producto.expiration);
     const [weight, setWeight] = useState(props.producto.weight);
-    const [category, setCategory] = useState(props.producto.category.name);
+    const [category, setCategory] = useState(props.producto.category);
     const [stock, setStock] = useState(props.producto.stock);
     const [description, setDescription] = useState(props.producto.description);
     const [brand, setBrand] = useState(props.producto.brand);
-    const [price1, setPrice1] = useState(props.producto.pvp);
-    const [price2, setPrice2] = useState(props.producto.pvd);
+    const [pvp, setPrice1] = useState(props.producto.pvp);
+    const [pvd, setPrice2] = useState(props.producto.pvd);
+    
 
     const dispatch = useDispatch();
     const handleEdit = () => {
@@ -47,30 +50,37 @@ const Modal = (props) => {
         console.log(category)
         let enviada=categorias.filter(product => product.name.includes(category))
         let categoriaTemp=enviada[0]
-        const data={
+        /*const [data,setData]=useState({
             description: description,
             image:"",
             stock:stock,
-            pvd: price2,
-            pvp:price1,
+            pvd: pvd,
+            pvp:pvp,
             brand: brand,
             weight: weight,
             name:name,
-            category: categoriaTemp,
+            category: categoriaTemp.id,
             expiration:props.producto.expiration,
             size:props.producto.size
-        }
-        console.log(data)
+        })
 
-        if(foto===true){
+        */if(foto===true){
             const result= await uploadProductFile(image);
-            data.image=`${result}`
+            setImage(`${result}`)
         }
-        else{
-            data.image=image
-        }
+        console.log(category)
         axios.put(`https://product-production-cf12.up.railway.app/api/product/${id}`, {
-            data
+            description,
+            stock,
+            pvd,
+            pvp,
+            brand,
+            weight,
+            name,
+            category,
+            expiration,
+            size,
+            image
           })
           .then(res => {
             console.log(res);
@@ -142,7 +152,7 @@ const Modal = (props) => {
                                             onChange={(e) => setCategory(e.target.value)}
                                         >
                                             {categorias.map(option => (
-                                                <option key={option.id} value={option.name}>{option.name}</option>
+                                                <option key={option.id} value={option.id}>{option.name}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -173,7 +183,7 @@ const Modal = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-2/3 ${borderclass}`}
-                                            value={price1}
+                                            value={pvp}
                                             disabled={!editing}
                                             onChange={(e) => setPrice1(e.target.value)}
                                         />
@@ -183,7 +193,7 @@ const Modal = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-1/3 ${borderclass}`}
-                                            value={price2}
+                                            value={pvd}
                                             disabled={!editing}
                                             onChange={(e) => setPrice2(e.target.value)}
                                         />

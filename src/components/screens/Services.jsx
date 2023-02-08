@@ -242,6 +242,7 @@ const Services = () => {
                     {!isLoading?(filteredProducts.map(product => (
                       <ElementsServices
                       services={product}
+                      especialidad={especialidad}
                       />
                     ))):(<Loader/>)}
                   </tbody>
