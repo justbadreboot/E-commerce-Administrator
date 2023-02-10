@@ -6,6 +6,8 @@ import { serviceSuccess, serviceFailure } from "../../features/services/ServiceS
 import { DoctorSuccess, DoctorFailure } from "../../features/services/DoctorSlice";
 import { EspecialidadSuccess, EspecialidadFailure } from "../../features/services/EspecialidadSlice";
 import { OrdenSuccess, OrdenFailure } from "../../features/services/OrdenSlice";
+import { OrdenRepSuccess, OrdenRepFailure } from "../../features/services/OrderRepSlice";
+import { DireccionRepSuccess, DireccionRepFailure } from "../../features/services/DireccionRepSlice";
 
 export const StoreData = () => {
     return async (dispatch) => {
@@ -73,10 +75,30 @@ export const CategoryData = () => {
   export const OrdenesData=()=>{
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/specialty');
+        const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/order/all');
         dispatch(OrdenSuccess(response1.data));
       } catch (error) {
         dispatch(OrdenFailure(error.message));
+      }
+    };
+  }
+  export const OrdenesRepartidorData=()=>{
+    return async (dispatch) => {
+      try {
+        const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/order/delivery/1');
+        dispatch(OrdenRepSuccess(response1.data));
+      } catch (error) {
+        dispatch(OrdenRepFailure(error.message));
+      }
+    };
+  }
+  export const DireccionesData=(id)=>{
+    return async (dispatch) => {
+      try {
+        const response1 = await axios.get(`https://client-production-d410.up.railway.app/api/direction/${id}`);
+        dispatch(DireccionRepSuccess(response1.data));
+      } catch (error) {
+        dispatch(DireccionRepFailure(error.message));
       }
     };
   }

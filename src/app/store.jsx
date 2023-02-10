@@ -11,6 +11,8 @@ import dataSlice from '../features/services/serverApi';
 import DoctorReducer from '../features/services/DoctorSlice';
 import EspecialidadReducer from '../features/services/EspecialidadSlice';
 import OrdenReducer from '../features/services/OrdenSlice';
+import OrdenRepReducer from '../features/services/OrderRepSlice';
+import DireccionRepReducer from '../features/services/DireccionRepSlice';
 
 
 export const store = configureStore({
@@ -24,7 +26,9 @@ export const store = configureStore({
     service:ServiceReducer,
     doctor:DoctorReducer,
     especialidad:EspecialidadReducer,
-    orden:OrdenReducer
+    orden:OrdenReducer,
+    ordenRep:OrdenRepReducer,
+    direccionRep:DireccionRepReducer
   },
 });
 

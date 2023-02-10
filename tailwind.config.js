@@ -11,7 +11,10 @@ module.exports = {
       },
       spacing:{
         '3gl': '85vh',
+        '2.5gl':'75vh',
         '2gl':'65vh',
+        '4gh':'90vh',
+        '5gl':'95vh'
       },
       colors:{
         'green':{
@@ -113,5 +116,5 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
