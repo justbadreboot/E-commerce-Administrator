@@ -92,25 +92,31 @@ const ElementsOrdersR = (props) => {
                         {modal ? (
                             dir ? (
                                 <div className='text-center'>
-                                                                        <p><strong>Provincia:</strong> {dir.state}</p>
+                                    <p><strong>Provincia:</strong> {dir.state}</p>
                                     <p><strong>Sector:</strong> {dir.sector}</p>
                                     <p><strong>Calle Principal:</strong> {dir.mainStreet}</p>
                                     <p><strong>Calle Secundaria:</strong> {dir.secondStreet}</p>
+                                    <div className='flex justify-center'>
+                                        <div className="modal-action pr-3">
+                                            <label htmlFor={props.products.total} className="btn bg-error-100 text-white border-none">Cerrar</label>
+                                        </div>
+                                        <div className="modal-action">
+                                            <NavLink className="btn bg-green-100 text-white border-none" to={`/details/${props.products.id}`}>
+                                                Aceptar
+                                            </NavLink>
+                                        </div>
+                                    </div>
                                 </div>
                             ) : (
-                                <Loader />
+                                <>
+                                    <Loader />
+                                    <div className="modal-action pr-3">
+                                        <label htmlFor={props.products.total} className="btn bg-error-100 text-white border-none">Cerrar</label>
+                                    </div>
+                                </>
                             )
                         ) : (<Loader />)}
-                        <div className='flex justify-center'>
-                            <div className="modal-action pr-3">
-                                <label htmlFor={props.products.total} className="btn bg-error-100 text-white border-none">Cerrar</label>
-                            </div>
-                            <div className="modal-action">
-                                <NavLink className="btn bg-green-100 text-white border-none" to={`/details/${props.products.id}`}>
-                                    Aceptar
-                                </NavLink>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </td>
