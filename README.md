@@ -154,8 +154,8 @@ Kruger Med (Administrador) esta distribuida bajo los terminos de Apache License 
 <br/>
 <!-- CONTACT -->
 
-# 📫 Contact
-<div style="display:flex" align="center">
+# 📫 Contact & Acknowledgments
+<div style="display:flex">
 <div>
 <img style="border-radius: 50% !important;" src="https://avatars.githubusercontent.com/u/52048016?v=4" width="100px;" alt="photo author"/>
 
@@ -176,7 +176,7 @@ Kruger Med (Administrador) esta distribuida bajo los terminos de Apache License 
 </div>
 </div>
 <hr/>
-<div style="display:flex" align="center">
+<div style="display:flex">
 <div>
 <img style="border-radius: 50% !important;" src="https://avatars.githubusercontent.com/u/66704761?v=4" width="100px;" alt="photo author"/>
 
@@ -196,46 +196,20 @@ Kruger Med (Administrador) esta distribuida bajo los terminos de Apache License 
 [![linkedin][linkedin.js]][linkedin4-url] [![github][github.js]][github4-url]
 </div>
 </div>
-
 <hr/>
-
-Project Link: [Kruger Med](https://github.com/justbadreboot/E-commerce-Administrator)
-
-
-<!-- ACKNOWLEDGMENTS -->
-
 <br/>
+<div style="display:flex">
+<div>
+<a href="https://github.com/Juanse7793"><img src="https://avatars.githubusercontent.com/u/96317674?v=4" width="100px;" alt="Juan Sebastian Sotomayor"/><br /><sub><b>Juan Sebastian Sotomayor</b></sub></a><br /><a href="https://github.com/Juanse7793" title="Code">FrontEnd Kruger Mentor</a>
+</div>
+<br/>
+<hr/>
+<div>
+<a href="https://github.com/Juanse7793"><img src="https://avatars.githubusercontent.com/u/27781106?v=4" width="100px;" alt="Jaime Sayago Heredia"/><br /><sub><b>Jaime Sayago Heredia</b></sub></a><br /><a href="https://github.com/jaimepsayago" title="Code">BackEnd Kruger Mentor</a>
+</div>
+<div>
 
-# ℹ️ Acknowledgments
-<table>
-    <tbody>
-    <div style="display:flex">
-        <tr>
-        <td align="center"><a href="https://github.com/Adrian-Bastidas"><img src="https://avatars.githubusercontent.com/u/82623546?v=4" width="100px;" alt="Adrian Bastidas"/><br /><sub><b>Adrian Bastidas</b></sub></a><br /><a href="https://github.com/Adrian-Bastidas" title="Code">💻 Desarrollador</a></td>
-        <tr/>
-        <br/>
-        <tr>
-        <td align="center"><a href="https://github.com/jonato96"><img src="https://avatars.githubusercontent.com/u/80604082?v=4" width="100px;" alt="Jonathan Cisneros"/><br /><sub><b>Jonathan Sanchez</b></sub></a><br /><a href="https://github.com/jonato96" title="Code">💻 Desarrollador</a></td>
-        </tr>
-        </div>
-        <br/>
-        <tr>
-        <td align="center"><a href="https://github.com/BryanArmando"><img src="https://avatars.githubusercontent.com/u/66704761?v=4" width="100px;" alt="Bryan Armando"/><br /><sub><b>Bryan Armando</b></sub></a><br /><a href="https://github.com/BryanArmando" title="Code">💻 Desarrollador</a></td>
-        </tr>
-                <br/>
-        <tr>
-        <td align="center"><a href="https://github.com/orgs/justbadreboot/people/DaniCis"><img src="https://avatars.githubusercontent.com/u/52048016?v=4" width="100px;" alt="Daniela Cisneros"/><br /><sub><b>Daniela Cisneros</b></sub></a><br /><a href="https://github.com/orgs/justbadreboot/people/DaniCis" title="Code">💻 Desarrollador</a></td>
-        </tr>
-        <br/>
-        <tr>
-            <td align="center"><a href="https://github.com/Juanse7793"><img src="https://avatars.githubusercontent.com/u/96317674?v=4" width="100px;" alt="Juan Sebastian Sotomayor"/><br /><sub><b>Juan Sebastian Sotomayor</b></sub></a><br /><a href="https://github.com/Juanse7793" title="Code">FrontEnd Kruger Mentor</a></td>
-        </tr>
-                <br/>
-        <tr>
-            <td align="center"><a href="https://github.com/Juanse7793"><img src="https://avatars.githubusercontent.com/u/27781106?v=4" width="100px;" alt="Jaime Sayago Heredia"/><br /><sub><b>Jaime Sayago Heredia</b></sub></a><br /><a href="https://github.com/jaimepsayago" title="Code">BackEnd Kruger Mentor</a></td>
-        </tr>
-    </tbody>
-</table>
+
 
 [linkedin.js]: https://img.shields.io/badge/-LinkedIn-1C82AD?logo=LinkedIn
 [linkedin-url]: https://www.linkedin.com/in/daniela-cisneros
