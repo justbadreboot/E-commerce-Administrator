@@ -13,7 +13,6 @@ const OrdenesTable = () => {
   useEffect(()=>{
     setFilteredProducts(products);
   },[products1]);
-  console.log(products1)
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {

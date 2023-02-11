@@ -13,6 +13,7 @@ import EspecialidadReducer from '../features/services/EspecialidadSlice';
 import OrdenReducer from '../features/services/OrdenSlice';
 import OrdenRepReducer from '../features/services/OrderRepSlice';
 import DireccionRepReducer from '../features/services/DireccionRepSlice';
+import FacturaReducer from '../features/services/FacturaSlice';
 
 
 export const store = configureStore({
@@ -28,7 +29,8 @@ export const store = configureStore({
     especialidad:EspecialidadReducer,
     orden:OrdenReducer,
     ordenRep:OrdenRepReducer,
-    direccionRep:DireccionRepReducer
+    direccionRep:DireccionRepReducer,
+    factura:FacturaReducer
   },
 });
 

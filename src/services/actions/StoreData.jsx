@@ -8,6 +8,7 @@ import { EspecialidadSuccess, EspecialidadFailure } from "../../features/service
 import { OrdenSuccess, OrdenFailure } from "../../features/services/OrdenSlice";
 import { OrdenRepSuccess, OrdenRepFailure } from "../../features/services/OrderRepSlice";
 import { DireccionRepSuccess, DireccionRepFailure, ClientRepSuccess, ClientRepFailure } from "../../features/services/DireccionRepSlice";
+import { FacturaSuccess,FacturaFailure } from "../../features/services/FacturaSlice";
 
 export const StoreData = () => {
     return async (dispatch) => {
@@ -109,6 +110,16 @@ export const CategoryData = () => {
         dispatch(ClientRepSuccess(response1.data));
       } catch (error) {
         dispatch(ClientRepFailure(error.message));
+      }
+    };
+  }
+  export const FacturaData=()=>{
+    return async (dispatch) => {
+      try {
+        const response1 = await axios.get(`https://invoice-production-ea9a.up.railway.app/api/invoice`);
+        dispatch( FacturaSuccess(response1.data));
+      } catch (error) {
+        dispatch(FacturaFailure(error.message));
       }
     };
   }

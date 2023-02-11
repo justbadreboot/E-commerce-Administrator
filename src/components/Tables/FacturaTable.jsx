@@ -1,26 +1,38 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import ElementsProducts from '../Tables/ElementsProducts'
 import ElementsFacturas from './ElementsFacturas'
+import { FacturaData } from '../../services/actions/StoreData'
+import { useDispatch, useSelector } from 'react-redux'
+import Loader from '../../Loader'
 
 
 const FacturaTable = () => {
-    const products = [
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1710793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1778945635", fecha: "20/01/2023", cedula: "1724793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1875947635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "15/12/2022", cedula: "1715793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1978742625", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1328942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1328942435", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-    
-      ]
+  const dispatch = useDispatch();
+  const products1=useSelector(state=>state.factura.data)
+  useEffect(() => {
+    dispatch(FacturaData());
+    setFilteredProducts(products1);
+  }, [dispatch]);
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products1]);
+  const [isLoading, setIsLoading] = useState(false)
+
+
+  useEffect(() => {
+    if (products1.length != 0) {
+      setIsLoading(false)
+    }
+    else{
+      setIsLoading(true)
+    }
+  }, [products1.length != 0])
+  console.log(products1)
+    const products = products1
     
       const [searchValue, setSearchValue] = useState('')
-      const [filteredProducts, setFilteredProducts] = useState(products)
+      const [filteredProducts, setFilteredProducts] = useState(products1)
       const [selectedButton, setSelectedButton] = useState("numero");
       const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
       const [selectedOption, setSelectedOption] = useState("Todos");
@@ -226,12 +238,12 @@ const FacturaTable = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredProducts.map(product => (
+                      {!isLoading?( filteredProducts.map(product => (
                           <ElementsFacturas
                           products={product}
     
                           />
-                        ))}
+                          ))):(<Loader/>)}
                       </tbody>
                     </table>
                   </div>
