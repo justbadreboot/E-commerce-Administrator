@@ -9,6 +9,7 @@ import { OrdenSuccess, OrdenFailure } from "../../features/services/OrdenSlice";
 import { OrdenRepSuccess, OrdenRepFailure } from "../../features/services/OrderRepSlice";
 import { DireccionRepSuccess, DireccionRepFailure, ClientRepSuccess, ClientRepFailure } from "../../features/services/DireccionRepSlice";
 import { FacturaSuccess,FacturaFailure } from "../../features/services/FacturaSlice";
+import { ClientNSuccess, StatisticsFailure } from "../../features/services/StatisticsSlice";
 
 export const StoreData = () => {
     return async (dispatch) => {
@@ -120,6 +121,16 @@ export const CategoryData = () => {
         dispatch( FacturaSuccess(response1.data));
       } catch (error) {
         dispatch(FacturaFailure(error.message));
+      }
+    };
+  }
+  export const StatisticsData=()=>{
+    return async (dispatch) => {
+      try {
+        const response1 = await axios.get(`https://client-production-d410.up.railway.app/api/client/count`);
+        dispatch( ClientNSuccess(response1.data));
+      } catch (error) {
+        dispatch(StatisticsFailure(error.message));
       }
     };
   }
