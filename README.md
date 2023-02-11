@@ -155,40 +155,47 @@ Kruger Med (Administrador) esta distribuida bajo los terminos de Apache License 
 <!-- CONTACT -->
 
 # 📫 Contact
-
+<div style="display:flex" align="center">
+<div>
 <img style="border-radius: 50% !important;" src="https://avatars.githubusercontent.com/u/52048016?v=4" width="100px;" alt="photo author"/>
 
 <sub><b>Daniela Cisneros</b></sub>
 <br />
 
 [![linkedin][linkedin.js]][linkedin-url] [![github][github.js]][github-url]
+</div>
 
 <hr/>
-
+<div>
 <img style="border-radius: 50% !important;" src="https://avatars.githubusercontent.com/u/82623546?v=4" width="100px;" alt="photo author"/>
 
 <sub><b>Adrian Bastidas</b></sub>
 <br />
 
 [![linkedin][linkedin.js]][linkedin2-url] [![github][github.js]][github2-url]
-
+</div>
+</div>
 <hr/>
+<div style="display:flex" align="center">
+<div>
 <img style="border-radius: 50% !important;" src="https://avatars.githubusercontent.com/u/66704761?v=4" width="100px;" alt="photo author"/>
 
 <sub><b>Bryan Armando</b></sub>
 <br />
 
 [![linkedin][linkedin.js]][linkedin3-url] [![github][github.js]][github3-url]
+</div>
 
 <hr/>
-
-<hr/>
+<div>
 <img style="border-radius: 50% !important;" src="https://avatars.githubusercontent.com/u/80604082?v=4" width="100px;" alt="photo author"/>
 
 <sub><b>Jonathean Sanchez</b></sub>
 <br />
 
 [![linkedin][linkedin.js]][linkedin4-url] [![github][github.js]][github4-url]
+</div>
+</div>
 
 <hr/>
 
@@ -202,6 +209,7 @@ Project Link: [Kruger Med](https://github.com/justbadreboot/E-commerce-Administr
 # ℹ️ Acknowledgments
 <table>
     <tbody>
+    <div style="display:flex">
         <tr>
         <td align="center"><a href="https://github.com/Adrian-Bastidas"><img src="https://avatars.githubusercontent.com/u/82623546?v=4" width="100px;" alt="Adrian Bastidas"/><br /><sub><b>Adrian Bastidas</b></sub></a><br /><a href="https://github.com/Adrian-Bastidas" title="Code">💻 Desarrollador</a></td>
         <tr/>
@@ -209,6 +217,7 @@ Project Link: [Kruger Med](https://github.com/justbadreboot/E-commerce-Administr
         <tr>
         <td align="center"><a href="https://github.com/jonato96"><img src="https://avatars.githubusercontent.com/u/80604082?v=4" width="100px;" alt="Jonathan Cisneros"/><br /><sub><b>Jonathan Sanchez</b></sub></a><br /><a href="https://github.com/jonato96" title="Code">💻 Desarrollador</a></td>
         </tr>
+        </div>
         <br/>
         <tr>
         <td align="center"><a href="https://github.com/BryanArmando"><img src="https://avatars.githubusercontent.com/u/66704761?v=4" width="100px;" alt="Bryan Armando"/><br /><sub><b>Bryan Armando</b></sub></a><br /><a href="https://github.com/BryanArmando" title="Code">💻 Desarrollador</a></td>
