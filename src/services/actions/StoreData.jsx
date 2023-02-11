@@ -7,7 +7,7 @@ import { DoctorSuccess, DoctorFailure } from "../../features/services/DoctorSlic
 import { EspecialidadSuccess, EspecialidadFailure } from "../../features/services/EspecialidadSlice";
 import { OrdenSuccess, OrdenFailure } from "../../features/services/OrdenSlice";
 import { OrdenRepSuccess, OrdenRepFailure } from "../../features/services/OrderRepSlice";
-import { DireccionRepSuccess, DireccionRepFailure } from "../../features/services/DireccionRepSlice";
+import { DireccionRepSuccess, DireccionRepFailure, ClientRepSuccess, ClientRepFailure } from "../../features/services/DireccionRepSlice";
 
 export const StoreData = () => {
     return async (dispatch) => {
@@ -99,6 +99,16 @@ export const CategoryData = () => {
         dispatch(DireccionRepSuccess(response1.data));
       } catch (error) {
         dispatch(DireccionRepFailure(error.message));
+      }
+    };
+  }
+  export const ClientData=(id)=>{
+    return async (dispatch) => {
+      try {
+        const response1 = await axios.get(`https://client-production-d410.up.railway.app/api/client/${id}`);
+        dispatch(ClientRepSuccess(response1.data));
+      } catch (error) {
+        dispatch(ClientRepFailure(error.message));
       }
     };
   }

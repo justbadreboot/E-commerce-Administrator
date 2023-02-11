@@ -9,6 +9,10 @@ import Loader from '../../Loader'
 const OrdenesTable = () => {
   const dispatch = useDispatch();
   const products1=useSelector(state=>state.orden.data)
+  const [filteredProducts, setFilteredProducts] = useState(products1)
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products1]);
   console.log(products1)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -27,13 +31,12 @@ const OrdenesTable = () => {
 
     const products = products1
       const [searchValue, setSearchValue] = useState('')
-      const [filteredProducts, setFilteredProducts] = useState(products1)
+
       const [selectedButton, setSelectedButton] = useState("id");
       const options = ["Todos", "Pago pendiente","Pago efectuado","Cancelado"];
       const [selectedOption, setSelectedOption] = useState("Todos");
       const optionsstatus = ["Todos", "Por entregar", "En camino","Entregado"];
       const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
-    
       const handleChangestatus = (event) => {
         let productCopia = null
         if (searchValue.length >= 2) {

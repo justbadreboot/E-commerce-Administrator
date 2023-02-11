@@ -6,20 +6,23 @@ import ModalOrders from '../shared/modales/ModalOrders';
 import OrdersR from '../shared/modales/OrdersR';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../Loader';
-import { DireccionesData } from '../../services/actions/StoreData';
+import { ClientData, DireccionesData } from '../../services/actions/StoreData';
 
 const ElementsOrdersR = (props) => {
     const dispatch = useDispatch();
     const direccion = useSelector(state => state.direccionRep.data)
+    const cliente = useSelector(state => state.direccionRep.clients)
     const [modal, setModal] = useState(false)
     const dir = direccion.find(object => object.id === props.products.idAddress)
     const idA = props.products.idAddress
+    const cliA= props.products.idClient
     const handlesuch = () => {
         setModal(true)
     }
 
     useEffect(() => {
         dispatch(DireccionesData(idA));
+        dispatch(ClientData(cliA))
     }, [dispatch]);
 
     let colorClass = '';
