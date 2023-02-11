@@ -10,6 +10,11 @@ import { postData } from '../features/services/CategorySlice';
 import dataSlice from '../features/services/serverApi';
 import DoctorReducer from '../features/services/DoctorSlice';
 import EspecialidadReducer from '../features/services/EspecialidadSlice';
+import OrdenReducer from '../features/services/OrdenSlice';
+import OrdenRepReducer from '../features/services/OrderRepSlice';
+import DireccionRepReducer from '../features/services/DireccionRepSlice';
+import FacturaReducer from '../features/services/FacturaSlice';
+import StatisticsReducer from '../features/services/StatisticsSlice';
 
 
 export const store = configureStore({
@@ -22,7 +27,12 @@ export const store = configureStore({
     data:dataSlice,
     service:ServiceReducer,
     doctor:DoctorReducer,
-    especialidad:EspecialidadReducer
+    especialidad:EspecialidadReducer,
+    orden:OrdenReducer,
+    ordenRep:OrdenRepReducer,
+    direccionRep:DireccionRepReducer,
+    factura:FacturaReducer,
+    statistics:StatisticsReducer
   },
 });
 

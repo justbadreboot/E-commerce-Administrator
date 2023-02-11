@@ -1,27 +1,39 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import ElementsProducts from '../Tables/ElementsProducts'
 import ElementsFacturas from './ElementsFacturas'
+import { FacturaData } from '../../services/actions/StoreData'
+import { useDispatch, useSelector } from 'react-redux'
+import Loader from '../../Loader'
 
 
 const FacturaTable = () => {
-    const products = [
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1710793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1778945635", fecha: "20/01/2023", cedula: "1724793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1875947635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "15/12/2022", cedula: "1715793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1978742625", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1328942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1328942435", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-        { numero: "1578942635", fecha: "17/11/2022", cedula: "1712793049", nombre: "Adrian", apellido:"Bastidas", total: "15,50" },
-    
-      ]
+  const dispatch = useDispatch();
+  const products1=useSelector(state=>state.factura.data)
+  useEffect(() => {
+    dispatch(FacturaData());
+    setFilteredProducts(products1);
+  }, [dispatch]);
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products1]);
+  const [isLoading, setIsLoading] = useState(false)
+
+
+  useEffect(() => {
+    if (products1.length != 0) {
+      setIsLoading(false)
+    }
+    else{
+      setIsLoading(true)
+    }
+  }, [products1.length != 0])
+  console.log(products1)
+    const products = products1
     
       const [searchValue, setSearchValue] = useState('')
-      const [filteredProducts, setFilteredProducts] = useState(products)
-      const [selectedButton, setSelectedButton] = useState("numero");
+      const [filteredProducts, setFilteredProducts] = useState(products1)
+      const [selectedButton, setSelectedButton] = useState("Numero");
       const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
       const [selectedOption, setSelectedOption] = useState("Todos");
       const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
@@ -30,11 +42,11 @@ const FacturaTable = () => {
       const handleChangestatus = (event) => {
         let productCopia = null
         if (searchValue.length >= 2) {
-          if (selectedButton == "numero") {
-            productCopia = products.filter(product => product.numero.includes(searchValue))
+          if (selectedButton == "Numero") {
+            productCopia = products.filter(product => product.id.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.cedula.includes(searchValue))
+            productCopia = products.filter(product => product.clientDocument.includes(searchValue))
           }
     
           setSelectedOptionstatus(event.target.value);
@@ -75,11 +87,11 @@ const FacturaTable = () => {
       const handleChange = (event) => {
         let productCopia;
         if (searchValue.length >= 2) {
-          if (selectedButton == "numero") {
-            productCopia = products.filter(product => product.numero.includes(searchValue))
+          if (selectedButton == "Numero") {
+            productCopia = products.filter(product => product.id.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.cedula.includes(searchValue))
+            productCopia = products.filter(product => product.clientDocument.includes(searchValue))
           }
     
           setSelectedOption(event.target.value);
@@ -142,14 +154,14 @@ const FacturaTable = () => {
             productosCopia = prod.filter(product => product.fecha.includes(selectedOption))
           }
         }
-        if (selectedButton === "numero") {
+        if (selectedButton === "Numero") {
           setSearchValue(e.target.value)
           console.log(searchValue.length)
           console.log(searchValue)
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.numero.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.id.includes(searchValue)))
     
           }
         }
@@ -160,7 +172,7 @@ const FacturaTable = () => {
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.cedula.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.clientDocument.includes(searchValue)))
     
           }
         }
@@ -184,7 +196,7 @@ const FacturaTable = () => {
                         <input
                           className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                           type="text"
-                          placeholder="numero o cedula"
+                          placeholder="Numero o cedula"
                           value={searchValue}
                           onChange={handleSearch}
                         />
@@ -192,11 +204,11 @@ const FacturaTable = () => {
                       <div className='flex'>
                       <div className='sm:pl-5 pr-3'>
                         <button
-                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'numero' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'Numero' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                           onClick={handleButtonClick}
                         >
                           <strong>
-                            numero
+                            Numero
                           </strong>
                         </button>
                       </div>
@@ -226,12 +238,12 @@ const FacturaTable = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredProducts.map(product => (
+                      {!isLoading?( filteredProducts.map(product => (
                           <ElementsFacturas
                           products={product}
     
                           />
-                        ))}
+                          ))):(<Loader/>)}
                       </tbody>
                     </table>
                   </div>

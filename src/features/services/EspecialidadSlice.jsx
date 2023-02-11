@@ -18,9 +18,16 @@ export const EspecialidadSlice= createSlice({
           EspecialidadFailure: (state, action) => {
             state.error = action.payload;
           },
+          EspecialidadPostSuccess: (state, obj) => {
+            state.data.push(obj)
+
+          },
+          EspecialidadPostFailure: (state, action) => {
+            state.error = action.payload;
+          },
     }
 })
 
-export const {EspecialidadSuccess, EspecialidadFailure}=EspecialidadSlice.actions
+export const {EspecialidadSuccess, EspecialidadFailure, EspecialidadPostSuccess, EspecialidadPostFailure}=EspecialidadSlice.actions
 
 export default EspecialidadSlice.reducer

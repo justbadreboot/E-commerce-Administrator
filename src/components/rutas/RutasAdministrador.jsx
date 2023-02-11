@@ -2,6 +2,8 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom';
 import ModalAñadirCategoria from '../Creations/ModalAñadirCategoria';
 import ModalAñadirDoctor from '../Creations/ModalAñadirDoctor';
+import ModalAñadirEspecialidad from '../Creations/ModalAñadirEspecialidad';
+import ModalAñadirPromocion from '../Creations/ModalAñadirPromocion';
 import ModalCrearProducto from '../Creations/ModalCrearProducto';
 import ModalCrearServicio from '../Creations/ModalCrearServicio';
 import AboutUs from '../screens/AboutUs';
@@ -38,7 +40,9 @@ const RutasAdministrador = () => {
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/detalleFactura' element={<FacturaDetails/>}/>
         <Route path='/categories' element={<Categories/>}/>
+        <Route path='/doctors/crearEspecialidad' element={<ModalAñadirEspecialidad/>}/>
         <Route path='/categories/crearCategoria' element={<ModalAñadirCategoria/>}/>
+        <Route path='/promotions/createPromotions' element={<ModalAñadirPromocion/>}/>
       </Routes>
 
 

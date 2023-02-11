@@ -1,11 +1,20 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import CardDataU from '../CardDataU';
 import BarCard from '../statisctics/BarCard';
 import LineChart from '../statisctics/LineChart';
 import { useSelector, useDispatch } from 'react-redux'
 import { CategoryData } from '../../services/actions/StoreData';
+import { StatisticsData } from '../../services/actions/StoreData';
+
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const clients=useSelector(state=>state.statistics.Tuser)
+  useEffect(() => {
+    dispatch(StatisticsData());
+  }, [dispatch]);
+  console.log(clients)
+
   return (
     <div className='lg:w-4/5 lg:ml-60 w-11/12 mx-10'>
     <div className=" w-full h-screen py-6 mx-auto bg-gray-50 ">
@@ -17,8 +26,8 @@ const Home = () => {
           icono="fa-solid fa-sack-dollar text-lg relative top-3.5 text-white ni leading-none"
         />
         <CardDataU
-          titulo="Today's Users"
-          cantidad="2,300"
+          titulo="Clientes Actuales"
+          cantidad={`${clients}`}
           porcentaje="+3%"
           icono="fa-solid fa-solid fa-users text-lg relative top-3.5 text-white ni leading-none"
         />

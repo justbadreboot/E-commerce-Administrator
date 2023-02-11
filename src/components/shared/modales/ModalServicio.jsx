@@ -1,17 +1,28 @@
 import React,{useState} from 'react'
+import axios from 'axios'
+import { uploadServicesFile } from '../../../firebaseConfig'
 
 const ModalServicio = (props) => {
+    console.log(props.producto)
+    const especialidad=props.especialidad
+    console.log(especialidad)
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
-    const [name, setName] = useState(props.producto.nombre);
-    const [image, setImage] = useState(props.producto.foto);
-    const [weight, setWeight] = useState(props.producto.precio);
-    const [category, setCategory] = useState(props.producto.especialidad);
+    const [name, setName] = useState(props.producto.name);
+    const [id, setId]=useState(props.producto.id)
+    const [foto,setFoto]=useState(false)
+    const [image, setImage] = useState(props.producto.image);
+    const [price, setPrice] = useState(props.producto.price);
+    const [specialty, setSpecialty] = useState(props.producto.specialty);
     const [stock, setStock] = useState(props.producto.doctor);
-    const [description, setDescription] = useState(props.producto.descripcion);
+    const [description, setDescription] = useState(props.producto.description);
     const handleEdit = () => {
         setEditing(true);
     };
+    const handlePhoto=(e)=>{
+        setImage(e.target.files[0])
+        setFoto(true)
+    }
 
     let borderclass=''
     let editImage=''
@@ -25,9 +36,26 @@ const ModalServicio = (props) => {
         editImage='hidden'
     }
 
-    const handleSave = () => {
+    const handleSave = async event  => {
         setEditing(false);
-        //onSave({ image, weight, category, stock, description, brand, price1, price2 });
+        if(foto===true){
+            const result= await uploadServicesFile(image);
+            setImage(`${result}`)
+        }
+        axios.put(`https://service-production-bb52.up.railway.app/api/specialty/${specialty.id}/service`, {
+            description,
+            name,
+            price,
+            image,
+            id,
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.error(err);
+          });
+        //onSave({ image, price, specialty, stock, description, brand, price1, price2 });
     };
     return (
         <div>
@@ -48,7 +76,7 @@ const ModalServicio = (props) => {
                             </button>
                             <div className="max-auto">
                                 <div className="w-2/3 mx-auto">
-                                    <div className='mx-auto w-1/3'>
+                                    <div className='mx-auto w-3/4'>
                                         <input
                                             type="text"
                                             className={`form-input w-4/5 mx-auto justify-center font-bold ${borderclass}`}
@@ -66,7 +94,7 @@ const ModalServicio = (props) => {
                                                 accept="image/*"
                                                 className="hidden"
                                                 disabled={!editing}
-                                                onChange={(e) => setImage(e.target.files[0])}
+                                                onChange={handlePhoto}
                                             />
                                         </label>
                                     </div>
@@ -78,30 +106,23 @@ const ModalServicio = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-1/3 ${borderclass}`}
-                                            value={weight}
+                                            value={price}
                                             disabled={!editing}
-                                            onChange={(e) => setWeight(e.target.value)}
+                                            onChange={(e) => setPrice(e.target.value)}
                                         />
                                     </div>
-                                    <div className="w-1/3">
+                                    <div className="w-5/6">
                                         <label className="block font-medium text-gray-700">Especialidad:</label>
-                                        <input
-                                            type="text"
-                                            className={`form-input w-2/3 ${borderclass}`}
-                                            value={category}
+                                        <select
+                                            className={`form-select w-2/3 ${borderclass}`}
+                                            value={specialty.name}
                                             disabled={!editing}
-                                            onChange={(e) => setCategory(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">Doctor:</label>
-                                        <input
-                                            type="text"
-                                            className={`form-input w-2/3 ${borderclass}`}
-                                            value={stock}
-                                            disabled={!editing}
-                                            onChange={(e) => setStock(e.target.value)}
-                                        />
+                                            onChange={(e) => setSpecialty(e.target.value)}
+                                        >
+                                            {especialidad.map(option => (
+                                                <option key={option.id} value={option.id}>{option.name}</option>
+                                            ))}
+                                            </select>
                                     </div>
                                 </div>
                                 

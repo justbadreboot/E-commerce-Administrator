@@ -6,6 +6,10 @@ const initialState = {
     ],
     error:null,
   }
+  const handleDelete = (id, data) => {
+    const newArray = data.filter(item => item.id !== id);
+    return newArray;
+  };
 
 export const DoctorSlice= createSlice({
     name:'doctor',
@@ -18,9 +22,21 @@ export const DoctorSlice= createSlice({
           DoctorFailure: (state, action) => {
             state.error = action.payload;
           },
+          DoctorDeleteSuccess: (state, id) => {
+            state.data=handleDelete(id, state.data)
+          },
+          DoctorDeleteFailure: (state, action) => {
+            state.error = action.payload;
+          },
+          DoctorPostSuccess: (state, action) => {
+            state.data.push(action)
+          },
+          DoctorDeleteFailure: (state, action) => {
+            state.error = action.payload;
+          },
     }
 })
 
-export const {DoctorSuccess, DoctorFailure}=DoctorSlice.actions
+export const {DoctorSuccess, DoctorFailure, DoctorDeleteSuccess, DoctorDeleteFailure, DoctorPostSuccess, DoctorPostFailure}=DoctorSlice.actions
 
 export default DoctorSlice.reducer

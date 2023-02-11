@@ -1,9 +1,13 @@
 import React,{useState} from 'react'
+import { uploadProductFile } from '../../../firebaseConfig';
+import axios from 'axios';
 
 const ModalCategories = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.name);
+    const [id, setId]=useState(props.producto.id)
+    const [foto,setFoto]=useState(false)
     const [image, setImage] = useState(props.producto.image);
     const [weight, setWeight] = useState(props.producto.peso);
     const [category, setCategory] = useState(props.producto.categoria);
@@ -15,7 +19,10 @@ const ModalCategories = (props) => {
     const handleEdit = () => {
         setEditing(true);
     };
-
+    const handlePhoto=(e)=>{
+        setImage(e.target.files[0])
+        setFoto(true)
+    }
     let borderclass=''
     let editImage=''
 
@@ -28,8 +35,23 @@ const ModalCategories = (props) => {
         editImage='hidden'
     }
 
-    const handleSave = () => {
+    const handleSave = async event => {
         setEditing(false);
+        if(foto===true){
+            const result= await uploadProductFile(image);
+            setImage(`${result}`)
+        }
+        axios.put(`https://product-production-cf12.up.railway.app/api/category/${id}`, {
+            description,
+            image,
+            name
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.error(err);
+          });
         //onSave({ image, weight, category, stock, description, brand, price1, price2 });
     };
     return (
@@ -69,7 +91,7 @@ const ModalCategories = (props) => {
                                                 accept="image/*"
                                                 className="hidden"
                                                 disabled={!editing}
-                                                onChange={(e) => setImage(e.target.files[0])}
+                                                onChange={handlePhoto}
                                             />
                                         </label>
                                     </div>

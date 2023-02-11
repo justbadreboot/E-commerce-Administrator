@@ -66,13 +66,7 @@ const ModalCrearServicio = () => {
                     speciality:formData.speciality
                 }
                 dispatch(postServicesApi(formData.speciality,data))
-                        setFormData({
-                            name: "",
-                            description: "",
-                            price: "",
-                            speciality:""
-                    })
-                    setPhoto(null)
+
                 // Enviar datos del formulario a la API
             }
         }

@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import {getStorage, ref, uploadBytes, getDownloadURL} from 'firebase/storage'
+import {getStorage, ref, uploadBytes, getDownloadURL, deleteObject} from 'firebase/storage'
 import {v4} from 'uuid'
 
 const firebaseConfig = {
@@ -40,4 +40,15 @@ export async function uploadServicesFile(file){
   await uploadBytes(storageRef, file)
   const url=await getDownloadURL(storageRef)
   return url
+}
+
+export function deleteProductFile(file){
+  const storageRef=ref(storage, `Products/${file}`)
+  const resp=''
+  deleteObject(storageRef).then(()=>{
+    resp="Eliminado satisfactoriamente"
+  }).catch((error)=>{
+    resp="No se pudo eliminar"
+  })
+  return resp
 }

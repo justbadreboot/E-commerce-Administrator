@@ -8,7 +8,7 @@ import { postProductApi } from '../../services/actions/StorePost';
 import Swal from "sweetalert2";
 import { ProductsData } from '../../services/actions/StoreData';
 
-const ModalCrearProducto = () => {
+const ModalAñadirPromocion = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -91,8 +91,35 @@ const ModalCrearProducto = () => {
                     size:formData.size
                 }
                 console.log(data)
-                dispatch(postProductApi(data))
-                dispatch(ProductsData());
+                try {
+                    dispatch(postProductApi(data))
+                    Swal.fire({
+                        title: 'Excelente!',
+                        icon: 'success',
+                        text: 'Producto añadida correctamente'
+                    });
+                    dispatch(ProductsData());
+                    /*setFormData({
+                        name: "",
+                        description: "",
+                        stock: "",
+                        pvd: "",
+                        pvp: "",
+                        brand: "",
+                        weight: "",
+                        category: "",
+                        expiration:"",
+                        size:""
+                    })
+                    setphoto(null)*/
+                }
+                catch (error) {
+                    Swal.fire({
+                        title: 'Error!',
+                        icon: 'error',
+                        text: "Porfavor, intenta de nuevo en unos momentos"
+                    });
+                }
             }
             else{
                 setError("Debe tener una foto")
@@ -101,9 +128,9 @@ const ModalCrearProducto = () => {
         }
     };
     return (
-        <div className='mx-auto my-10 z-20 '>
+        <div className='mx-auto my-10 z-50 '>
             <div className="inset-0 transition-opacity rounded-2xl">
-                <div className="absolute inset-0 bg-gray-500 opacity-75 "></div>
+                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
 
             <form className="bg-white p-6 rounded-2xl drop-shadow-2xl h-3gl overflow-y-auto" onSubmit={handleSubmit}>
@@ -115,7 +142,7 @@ const ModalCrearProducto = () => {
                         </svg>
                     </button>
                 </NavLink>
-                <h1 className='text-center pb-2'><strong>Ingreso de Productos</strong></h1>
+                <h1 className='text-center pb-2'><strong>Ingreso de Promociones</strong></h1>
                 <div className='flex'>
                     <div className='pr-10'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -275,4 +302,4 @@ const ModalCrearProducto = () => {
     );
 }
 
-export default ModalCrearProducto
+export default ModalAñadirPromocion

@@ -197,7 +197,7 @@ const Services = () => {
               <div className=' overflow-x-auto sm:flex grid grid-cols-1 pb-3' >
                 <h6 className='pr-8'><strong>Servicios</strong></h6>
                 <div className="grid items-center w-8/12 grid-cols-1 grid-rows-2 sm:grid-cols-6 sm:flex">
-                  <div className='pl-2'>
+                  <div className='pl-2 pr-3'>
                     <span className="absolute z-50 text-sm leading-5.6  h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all">
                       <i className="fas fa-search" aria-hidden="true"></i>
                     </span>
@@ -208,8 +208,6 @@ const Services = () => {
                       value={searchValue}
                       onChange={handleSearch}
                     />
-                  </div>
-                  <div className='flex'>
                   </div>
                   <div className='flex'>
 
@@ -244,6 +242,7 @@ const Services = () => {
                     {!isLoading?(filteredProducts.map(product => (
                       <ElementsServices
                       services={product}
+                      especialidad={especialidad}
                       />
                     ))):(<Loader/>)}
                   </tbody>

@@ -1,44 +1,55 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import ElementsOrders from '../Tables/ElementsOrders'
 import ElementsProducts from '../Tables/ElementsProducts'
+import { useSelector, useDispatch } from 'react-redux'
+import { OrdenesData } from '../../services/actions/StoreData'
+import Loader from '../../Loader'
 
 const OrdenesTable = () => {
-    const products = [
-        { Id: "1235", EstadoPago: "Pagado", Fecha: "17/11/2023", Precio: "15,50", EstadoOrden: "Concluida", EstadoEnvio: "Entregado", EstadoPago:"Pagada" },
-        { Id: "1243", EstadoPago: "Ibuprofeno", Fecha: "17/10/2021", Precio: "130,00", EstadoOrden: "En Proceso", EstadoEnvio: "Por Entregar", EstadoPago: "Por Pagar" },
-        { Id: "1252", EstadoPago: "Arten", Fecha: "17/02/2013", Precio: "20,50", EstadoOrden: "Cancelada", EstadoEnvio: "Cancelada", EstadoPago: "Cancelada" },
-        { Id: "1231", EstadoPago: "Ibuprofeno", Fecha: "17/11/2023", Precio: "5,80", EstadoOrden: "Concluida", EstadoEnvio: "Entregado", EstadoPago: "Pagada" },
-        { Id: "1235", EstadoPago: "Ibuprofeno", Fecha: "17/11/2023", Precio: "50,30", EstadoOrden: "Cancelada", EstadoEnvio: "Cancelada", EstadoPago: "Cancelada" },
-        { Id: "1236", EstadoPago: "Ibuprofeno", Fecha: "17/11/2023", Precio: "45,00", EstadoOrden: "En Proceso", EstadoEnvio: "Entregado", EstadoPago: "Por Pagar" },
-        { Id: "1238", EstadoPago: "Ibuprofeno", Fecha: "17/11/2023", Precio: "130,00", EstadoOrden: "Concluida", EstadoEnvio: "Entregado", EstadoPago: "Pagada" },
-        { Id: "1239", EstadoPago: "Ibuprofeno", Fecha: "17/02/2013", Precio: "150,50", EstadoOrden: "Concluida", EstadoEnvio: "Entregado", EstadoPago: "Pagada" },
-        { Id: "1231", EstadoPago: "Ibuprofeno", Fecha: "17/02/2013", Precio: "130,20", EstadoOrden: "Concluida", EstadoEnvio: "Entregado", EstadoPago: "Pagada" },
-    
-      ]
-    
+  const dispatch = useDispatch();
+  const products1=useSelector(state=>state.orden.data)
+  const [filteredProducts, setFilteredProducts] = useState(products1)
+  useEffect(()=>{
+    setFilteredProducts(products);
+  },[products1]);
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    dispatch(OrdenesData());
+    setFilteredProducts(products1);
+  }, [dispatch]);
+  useEffect(() => {
+    if (products1.length != 0) {
+      setIsLoading(false)
+    }
+    else{
+      setIsLoading(true)
+    }
+  }, [products1.length != 0])
+
+    const products = products1
       const [searchValue, setSearchValue] = useState('')
-      const [filteredProducts, setFilteredProducts] = useState(products)
-      const [selectedButton, setSelectedButton] = useState("Id");
-      const options = ["Todos", "Analgésico", "AINE", "Corticoides","Concluida","17/11/2023","Pagada","Por Pagar"];
+
+      const [selectedButton, setSelectedButton] = useState("id");
+      const options = ["Todos", "Pago pendiente","Pago efectuado","Cancelado"];
       const [selectedOption, setSelectedOption] = useState("Todos");
-      const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado","Entregado"];
+      const optionsstatus = ["Todos", "Por entregar", "En camino","Entregado"];
       const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
-    
       const handleChangestatus = (event) => {
         let productCopia = null
         if (searchValue.length >= 2) {
-          if (selectedButton == "Id") {
-            productCopia = products.filter(product => product.Id.includes(searchValue))
+          if (selectedButton == "id") {
+            productCopia = products.filter(product => product.id.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.Fecha.includes(searchValue))
+            productCopia = products.filter(product => product.date.includes(searchValue))
           }
     
           setSelectedOptionstatus(event.target.value);
     
           if (selectedOption !== "Todos") {
-            productCopia = productCopia.filter(product => product.EstadoPago.includes(selectedOption))
+            productCopia = productCopia.filter(product => product.paymentState.state.includes(selectedOption))
           }
           console.log(productCopia)
           if (event.target.value === "Todos") {
@@ -46,7 +57,7 @@ const OrdenesTable = () => {
           }
           else {
             const estado = event.target.value;
-            setFilteredProducts(productCopia.filter(product => product.EstadoPago.includes(estado)))
+            setFilteredProducts(productCopia.filter(product => product.deliveryState.state.includes(estado)))
           }
         }
         else {
@@ -56,7 +67,7 @@ const OrdenesTable = () => {
             productCopia = products
           }
           else {
-            productCopia = products.filter(product => product.EstadoPago.includes(selectedOption))
+            productCopia = products.filter(product => product.paymentState.state.includes(selectedOption))
           }
           console.log(productCopia)
           if (event.target.value === "Todos") {
@@ -64,7 +75,7 @@ const OrdenesTable = () => {
           }
           else {
             const estado = event.target.value;
-            setFilteredProducts(products.filter(product => product.EstadoEnvio.includes(estado)))
+            setFilteredProducts(products.filter(product => product.deliveryState.state.includes(estado)))
           }
         }
     
@@ -73,24 +84,24 @@ const OrdenesTable = () => {
       const handleChange = (event) => {
         let productCopia;
         if (searchValue.length >= 2) {
-          if (selectedButton == "Id") {
-            productCopia = products.filter(product => product.Id.includes(searchValue))
+          if (selectedButton == "id") {
+            productCopia = products.filter(product => product.id.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.Fecha.includes(searchValue))
+            productCopia = products.filter(product => product.date.includes(searchValue))
           }
     
           setSelectedOption(event.target.value);
     
           if (selectedOptionstatus !== "Todos") {
-            productCopia = productCopia.filter(product => product.EstadoEnvio.includes(selectedOptionstatus))
+            productCopia = productCopia.filter(product => product.deliveryState.state.includes(selectedOptionstatus))
           }
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
           else {
             const elementos = event.target.value;
-            setFilteredProducts(productCopia.filter(product => product.EstadoPago.includes(elementos)))
+            setFilteredProducts(productCopia.filter(product => product.paymentState.state.includes(elementos)))
           }
         }
         else {
@@ -100,14 +111,14 @@ const OrdenesTable = () => {
             productCopia = products
           }
           else {
-            productCopia = products.filter(product => product.EstadoEnvio.includes(selectedOptionstatus))
+            productCopia = products.filter(product => product.deliveryState.state.includes(selectedOptionstatus))
           }
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
           else {
             const elementos = event.target.value;
-            setFilteredProducts(productCopia.filter(product => product.EstadoPago.includes(elementos)))
+            setFilteredProducts(productCopia.filter(product => product.paymentState.state.includes(elementos)))
           }
         }
     
@@ -125,40 +136,43 @@ const OrdenesTable = () => {
           productosCopia = products;
           if (selectedOptionstatus !== "Todos") {
             const prod = productosCopia
-            productosCopia = prod.filter(product => product.EstadoEnvio.includes(selectedOptionstatus))
+            productosCopia = prod.filter(product => product.deliveryState.state.includes(selectedOptionstatus))
           }
         }
         else {
           if (selectedOptionstatus === "Todos") {
             productosCopia = products;
             const prod = productosCopia
-            productosCopia = prod.filter(product => product.Fecha.includes(selectedOption))
+            productosCopia = prod.filter(product => product.date.includes(selectedOption))
           }
           else {
-            productosCopia = products.filter(product => product.EstadoEnvio.includes(selectedOptionstatus))
+            productosCopia = products.filter(product => product.deliveryState.state.includes(selectedOptionstatus))
             const prod = productosCopia
-            productosCopia = prod.filter(product => product.Fecha.includes(selectedOption))
+            productosCopia = prod.filter(product => product.date.includes(selectedOption))
           }
         }
-        if (selectedButton === "Id") {
-          setSearchValue(e.target.value)
+        if (selectedButton === "id") {
+          const buscao=e.target.value
+          console.log(''+buscao)
+          setSearchValue(buscao)
           console.log(searchValue.length)
-          console.log(searchValue)
-          if (searchValue.length === 1 || searchValue.length === 0) {
+          console.log(searchValue[0])
+          if (buscao.length === 0 ) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.Id.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.id==buscao))
     
           }
         }
         else {
-          setSearchValue(e.target.value)
+          const buscao=e.target.value
+          setSearchValue(""+e.target.value)
           console.log(searchValue.length)
           console.log(searchValue)
-          if (searchValue.length === 1 || searchValue.length === 0) {
+          if (buscao.length === 0 ) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.Fecha.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.date.includes(buscao)))
     
           }
         }
@@ -182,7 +196,7 @@ const OrdenesTable = () => {
                         <input
                           className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                           type="text"
-                          placeholder="Id o Fecha"
+                          placeholder="id o date"
                           value={searchValue}
                           onChange={handleSearch}
                         />
@@ -190,21 +204,21 @@ const OrdenesTable = () => {
                       <div className='flex'>
                       <div className='sm:pl-5 pr-3'>
                         <button
-                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'Id' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'id' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                           onClick={handleButtonClick}
                         >
                           <strong>
-                            Id
+                            id
                           </strong>
                         </button>
                       </div>
                       <div className='pr-3'>
                         <button
-                          className={`pr-3 pl-3 rounded-lg ${selectedButton === 'Fecha' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                          className={`pr-3 pl-3 rounded-lg ${selectedButton === 'date' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                           onClick={handleButtonClick}
                         >
                           <strong>
-                            Fecha
+                            date
                           </strong>
                         </button>
                       </div>
@@ -236,7 +250,7 @@ const OrdenesTable = () => {
                       <thead className="align-bottom">
                         <tr>
                           <th className="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">ID</th>
-                          <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Fecha</th>
+                          <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">date</th>
                           <th className="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Total</th>
                           <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Orden</th>
                           <th className="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Envío</th>
@@ -246,12 +260,12 @@ const OrdenesTable = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {filteredProducts.map(product => (
+                        {!isLoading?( filteredProducts.map(product => (
                           <ElementsOrders
                           products={product}
     
                           />
-                        ))}
+                          ))):(<Loader/>)}
                       </tbody>
                     </table>
                   </div>

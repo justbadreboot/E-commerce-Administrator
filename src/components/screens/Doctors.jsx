@@ -228,6 +228,9 @@ const Doctors = () => {
                   <div className='w-8/12'>
                   <NavLink to="crearDoctor"><i class="fa-solid fa-user-plus"></i></NavLink>
                   </div>    
+                  <div className='w-8/12 pl-3'>
+                  <NavLink to="crearEspecialidad"><i class="fa-solid fa-folder-plus"></i></NavLink>
+                  </div>  
                   </div>      
                 </div>
               </div>
