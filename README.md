@@ -46,7 +46,6 @@
     <li><a href="#⏩-usage">Usage</a></li>
     <li><a href="#📜-license">License</a></li>
     <li><a href="#📫-contact">Contact</a></li>
-    <li><a href="#ℹ️-acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -79,7 +78,7 @@ Esta es una aplicacion pensada para administrar el e-commerce de Kruger-med.
 - ![Javascript Badge](https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
 - ![vercel Badge](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white)
 - ![netlify Badge](https://img.shields.io/badge/Vercel-00C7B7?style=for-the-badge&logo=Netlify&logoColor=black)
-- ![railway Badge](https://img.shields.io/badge/Vercel-0B0D0E?style=for-the-badge&logo=Railway&logoColor=white)
+- ![railway Badge](https://img.shields.io/badge/Railways-0B0D0E?style=for-the-badge&logo=Railway&logoColor=white)
 
 <!-- GETTING STARTED -->
 
