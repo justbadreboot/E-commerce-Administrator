@@ -103,3 +103,19 @@ export const postSpecialityApi=data=>async dispatch=>{
 });
 }
 }
+export const postBillApi=data=>async dispatch=>{
+  try{
+    const response = await axios.post(`https://invoice-production-ea9a.up.railway.app/api/invoice/order`, data);
+    Swal.fire({
+      title: 'Excelente!',
+      icon: 'success',
+      text: 'Especialidad añadida correctamente'
+  });
+} catch (error) {
+  Swal.fire({
+    title: 'Error!',
+    icon: 'error',
+    text: "Porfavor, intenta de nuevo en unos momentos"
+});
+}
+}

@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import ElementsRepartidor from '../Tables/ElementsRepartidor'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
+import { postBillApi } from '../../services/actions/StorePost'
 
 const DetallesOrd = () => {
+    const dispatch = useDispatch();
+
     const { id } = useParams();
     const products = (useSelector(state => state.ordenRep.data)).find(object => object.id === parseInt(id))
     const client = (useSelector(state => state.direccionRep.clients)).find(object => object.id === products.idClient)
@@ -16,6 +19,10 @@ const DetallesOrd = () => {
     const [total,setTotal]=useState(products.total)
     const [subtotal,setSubtotal]=useState(products.subtotal)
     const [idClient,setIdClient]=useState(products.idClient)
+    const [clientDocument,setClientDocuemnt]=useState(client.document)
+    const [clientName,setClientName]=useState(client.firstName)
+    const [clientLastName,setClientLastName]=useState(client.lastName)
+    const [clientPhone,setClientPhone]=useState(client.phone)
     const [idAddress,setIdAddress]=useState(products.idAddress)
     const [deliveryState,setDeliveryState]=useState({
         id:2
@@ -27,13 +34,73 @@ const DetallesOrd = () => {
         id:products.paymentState.id
     })
     const [orderDetails,setOrderDetails]=useState(products.orderDetails)
+    const dates = new Date(date);
 
-    axios.put(`https://order-production-bfbc.up.railway.app/api/order/{id}?id=${products.id}`, {
+    const year = dates.getFullYear();
+    const month = (dates.getMonth() + 1).toString().padStart(2, "0");
+    const day = dates.getDate().toString().padStart(2, "0");
+
+    const dateString = `${year}-${month}-${day}`;
+
+    const handleSubmit=()=>{
+        deliveryState.id=3
+        orderState.id=2
+        paymentState.id=1
+        axios.put(`https://order-production-bfbc.up.railway.app/api/order/${products.id}`, {
+            id,
+            date,
+            total,
+            subtotal,
+            idClient,
+            clientDocument,
+            clientName,
+            clientLastName,
+            clientPhone,
+            idAddress,
+            deliveryState,
+            orderState,
+            paymentState,
+            orderDetails
+              })
+              .then(res => {
+                console.log(res);
+              })
+              .catch(err => {
+                console.error(err);
+              });
+              const direccion=direction.state+", "+direction.sector+","+direction.mainStreet+", "+direction.secondStreet+", "+direction.houseNumber
+              const data={
+                address:direccion,
+                clientDocument:clientDocument,
+                clientName:clientName,
+                clientLastName:clientLastName,
+                clientPhone:clientPhone,
+                date:dateString,
+                deliveryState:{id:3,
+                state:"Entregado"},
+                idAddress:idAddress,
+                idClient:idClient,
+                orderDetails:orderDetails,
+                orderState:{id:2,state:"Finalizada"},
+                paymentState:{id:1,state:"Pago efectuado"},
+                subtotal:subtotal,
+                total:total
+              }
+              dispatch(postBillApi(data))
+
+              
+    }
+
+    axios.put(`https://order-production-bfbc.up.railway.app/api/order/${products.id}`, {
         id,
         date,
         total,
         subtotal,
         idClient,
+        clientDocument,
+        clientName,
+        clientLastName,
+        clientPhone,
         idAddress,
         deliveryState,
         orderState,
@@ -47,13 +114,7 @@ const DetallesOrd = () => {
             console.error(err);
           });
 
-    const dates = new Date(date);
 
-    const year = dates.getFullYear();
-    const month = (dates.getMonth() + 1).toString().padStart(2, "0");
-    const day = dates.getDate().toString().padStart(2, "0");
-
-    const dateString = `${year}-${month}-${day}`;
 
     return (
         <div className='mx-auto w-screen z-50'>
@@ -143,7 +204,7 @@ const DetallesOrd = () => {
                     <div className="font-medium">{products.total} $</div>
                 </div>
             </div>
-            <NavLink to='/'>
+            <NavLink to='/' onClick={handleSubmit}>
                 <div className='w-full fixed bottom-0 left-0 '>
                     <button className='bg-blue-600 text-white w-full p-2 text-xl' >Terminar</button>
                 </div>

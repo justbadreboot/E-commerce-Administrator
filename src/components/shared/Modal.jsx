@@ -21,6 +21,10 @@ const Modal = (props) => {
     const [brand, setBrand] = useState(props.producto.brand);
     const [pvp, setPrice1] = useState(props.producto.pvp);
     const [pvd, setPrice2] = useState(props.producto.pvd);
+    const [porcentajeDescuento, setPorcentajeDescuento]=useState(props.producto.porcentajeDescuento)
+    if(porcentajeDescuento===null){
+        setPorcentajeDescuento(0)
+    }
     
 
     const dispatch = useDispatch();
@@ -80,7 +84,8 @@ const Modal = (props) => {
             category,
             expiration,
             size,
-            image
+            image,
+            porcentajeDescuento
           })
           .then(res => {
             console.log(res);
@@ -111,7 +116,7 @@ const Modal = (props) => {
                                     <div className='mx-auto w-1/3'>
                                         <input
                                             type="text"
-                                            className={`form-input w-4/5 mx-auto justify-center font-bold ${borderclass}`}
+                                            className={`form-input w-4/5 mx-auto justify-center font-bold bg-white ${borderclass}`}
                                             value={name}
                                             disabled={!editing}
                                             onChange={(e) => setName(e.target.value)}
@@ -119,7 +124,7 @@ const Modal = (props) => {
                                     </div>
                                     <div className="w-1/3 mx-auto">
                                         <img src={`${image}`} className='w-2/3' />
-                                        <label className={`flex items-center justify-center cursor-pointer w-2/3 ${editImage}`}>
+                                        <label className={`flex items-center justify-center cursor-pointer w-2/3  ${editImage}`}>
                                             <i className="fa-solid fa-pen-to-square text-gray-500 text-xl"></i>
                                             <input
                                                 type="file"
@@ -137,7 +142,7 @@ const Modal = (props) => {
                                         <label className="block font-medium text-gray-700">Peso:</label>
                                         <input
                                             type="text"
-                                            className={`form-input w-1/3 ${borderclass}`}
+                                            className={`form-input w-1/3 bg-white ${borderclass}`}
                                             value={weight}
                                             disabled={!editing}
                                             onChange={(e) => setWeight(e.target.value)}
@@ -146,7 +151,7 @@ const Modal = (props) => {
                                     <div className="w-1/3">
                                         <label className="block font-medium text-gray-700">Categoría:</label>
                                         <select
-                                            className={`form-select w-2/3 ${borderclass}`}
+                                            className={`form-select w-2/3 bg-white ${borderclass}`}
                                             value={category}
                                             disabled={!editing}
                                             onChange={(e) => setCategory(e.target.value)}
@@ -160,7 +165,7 @@ const Modal = (props) => {
                                         <label className="block font-medium text-gray-700">Stock:</label>
                                         <input
                                             type="text"
-                                            className={`form-input w-1/3 ${borderclass}`}
+                                            className={`form-input w-1/3 bg-white ${borderclass}`}
                                             value={stock}
                                             disabled={!editing}
                                             onChange={(e) => setStock(e.target.value)}
@@ -172,7 +177,7 @@ const Modal = (props) => {
                                         <label className="block font-medium text-gray-700">Marca:</label>
                                         <input
                                             type="text"
-                                            className={`form-input w-2/3 ${borderclass}`}
+                                            className={`form-input w-2/3 bg-white ${borderclass}`}
                                             value={brand}
                                             disabled={!editing}
                                             onChange={(e) => setBrand(e.target.value)}
@@ -182,21 +187,22 @@ const Modal = (props) => {
                                         <label className="block font-medium text-gray-700">PVP:</label>
                                         <input
                                             type="text"
-                                            className={`form-input w-2/3 ${borderclass}`}
+                                            className={`form-input w-2/3 bg-white ${borderclass}`}
                                             value={pvp}
                                             disabled={!editing}
                                             onChange={(e) => setPrice1(e.target.value)}
                                         />
                                     </div>
                                     <div className="w-1/3">
-                                        <label className="block font-medium text-gray-700">PVD:</label>
+                                        <label className="block font-medium text-gray-700">Descuento:</label>
                                         <input
                                             type="text"
-                                            className={`form-input w-1/3 ${borderclass}`}
-                                            value={pvd}
+                                            className={`form-input w-1/3 bg-white ${borderclass}`}
+                                            value={porcentajeDescuento}
                                             disabled={!editing}
-                                            onChange={(e) => setPrice2(e.target.value)}
+                                            onChange={(e) => setPorcentajeDescuento(e.target.value)}
                                         />
+                                        %
                                     </div>
                                 </div>
                                 <div className="w-9/12 mx-auto">
@@ -205,7 +211,7 @@ const Modal = (props) => {
                                         <label className="block font-medium text-gray-700">Descripción:</label>
                                         <textarea
                                             type="text"
-                                            className={`form-input w-11/12 resize-none ${borderclass}`}
+                                            className={`form-input w-11/12 resize-none bg-white ${borderclass}`}
                                             value={description}
                                             disabled={!editing}
                                             onChange={(e) => setDescription(e.target.value)}
@@ -215,7 +221,7 @@ const Modal = (props) => {
                                 <div className=" flex justify-end mx-5">
                                     {editing ? (
                                         <button
-                                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                                            className="bg-blue-500 text-white px-4 py-2 rounded  hover:bg-blue-700"
                                             onClick={handleSave}
                                         >
                                             Guardar
