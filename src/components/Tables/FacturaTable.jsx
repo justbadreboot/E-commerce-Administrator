@@ -33,7 +33,7 @@ const FacturaTable = () => {
     
       const [searchValue, setSearchValue] = useState('')
       const [filteredProducts, setFilteredProducts] = useState(products1)
-      const [selectedButton, setSelectedButton] = useState("numero");
+      const [selectedButton, setSelectedButton] = useState("Numero");
       const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
       const [selectedOption, setSelectedOption] = useState("Todos");
       const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
@@ -42,11 +42,11 @@ const FacturaTable = () => {
       const handleChangestatus = (event) => {
         let productCopia = null
         if (searchValue.length >= 2) {
-          if (selectedButton == "numero") {
-            productCopia = products.filter(product => product.numero.includes(searchValue))
+          if (selectedButton == "Numero") {
+            productCopia = products.filter(product => product.id.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.cedula.includes(searchValue))
+            productCopia = products.filter(product => product.clientDocument.includes(searchValue))
           }
     
           setSelectedOptionstatus(event.target.value);
@@ -87,11 +87,11 @@ const FacturaTable = () => {
       const handleChange = (event) => {
         let productCopia;
         if (searchValue.length >= 2) {
-          if (selectedButton == "numero") {
-            productCopia = products.filter(product => product.numero.includes(searchValue))
+          if (selectedButton == "Numero") {
+            productCopia = products.filter(product => product.id.includes(searchValue))
           }
           else {
-            productCopia = products.filter(product => product.cedula.includes(searchValue))
+            productCopia = products.filter(product => product.clientDocument.includes(searchValue))
           }
     
           setSelectedOption(event.target.value);
@@ -154,14 +154,14 @@ const FacturaTable = () => {
             productosCopia = prod.filter(product => product.fecha.includes(selectedOption))
           }
         }
-        if (selectedButton === "numero") {
+        if (selectedButton === "Numero") {
           setSearchValue(e.target.value)
           console.log(searchValue.length)
           console.log(searchValue)
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.numero.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.id.includes(searchValue)))
     
           }
         }
@@ -172,7 +172,7 @@ const FacturaTable = () => {
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {
-            setFilteredProducts(productosCopia.filter(product => product.cedula.includes(searchValue)))
+            setFilteredProducts(productosCopia.filter(product => product.clientDocument.includes(searchValue)))
     
           }
         }
@@ -196,7 +196,7 @@ const FacturaTable = () => {
                         <input
                           className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                           type="text"
-                          placeholder="numero o cedula"
+                          placeholder="Numero o cedula"
                           value={searchValue}
                           onChange={handleSearch}
                         />
@@ -204,11 +204,11 @@ const FacturaTable = () => {
                       <div className='flex'>
                       <div className='sm:pl-5 pr-3'>
                         <button
-                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'numero' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
+                          className={`pl-3 pr-3 rounded-lg ${selectedButton === 'Numero' ? 'bg-green-100 text-white' : 'bg-gray-50'} shadow-inner`}
                           onClick={handleButtonClick}
                         >
                           <strong>
-                            numero
+                            Numero
                           </strong>
                         </button>
                       </div>
