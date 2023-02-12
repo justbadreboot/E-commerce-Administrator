@@ -2,10 +2,12 @@ import React from 'react'
 import BarChart from '../statisctics/BarChart';
 
 const BarCard = (props) => {
+  const Monthlich=props.Monthlich
   const Ecli={
     Pcli:``,
     Pday:``,
-    Pmonth:``
+    Pmonth:``,
+    Prep:``,
   }
   if(props.clients>=300){
     Ecli.Pcli=`32`
@@ -28,7 +30,14 @@ const BarCard = (props) => {
     const EcliTemp=(props.month*12)/1000
    Ecli.Pmonth=`${Math.floor(EcliTemp)}/12`
   }
-  console.log(Ecli.Pmonth)
+  if(props.todayInvoice>=15){
+    Ecli.Prep=`32`
+  }
+  else{
+    const EcliTemp=(props.todayInvoice*12)/15
+   Ecli.Prep=`${Math.floor(EcliTemp)}/12`
+  }
+  console.log(Ecli.Prep)
   return (
     <div className="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-5/12 lg:flex-none drop-shadow-lg">
     <div className="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
@@ -36,7 +45,7 @@ const BarCard = (props) => {
         <div className="py-4 pr-1 mb-4 bg-gradient-to-tl from-gray-900 to-slate-800 rounded-xl">
 
           <div>
-            <BarChart/>
+            <BarChart Monthlich={Monthlich}/>
           </div>
         </div>
         <h6 className="mt-6 mb-0 ml-2">Active Users</h6>
@@ -133,11 +142,11 @@ const BarCard = (props) => {
                       </g>
                     </g>
                 </div>
-                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Items</p>
+                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Entregas</p>
               </div>
-              <h4 className="font-bold">43</h4>
+              <h4 className="font-bold">15</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-                <div className="duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-1/2 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Prep} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>
