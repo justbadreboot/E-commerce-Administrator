@@ -9,12 +9,21 @@ const DetallesOrd = () => {
     const dispatch = useDispatch();
 
     const { id } = useParams();
-    const products = (useSelector(state => state.ordenRep.data)).find(object => object.id === parseInt(id))
-    const client = (useSelector(state => state.direccionRep.clients)).find(object => object.id === products.idClient)
-    const direction = (useSelector(state => state.direccionRep.data)).find(object => object.id === products.idAddress)
-    console.log(direction)
-    console.log(products)
 
+    const products = (useSelector(state => state.ordenRep.data)).find(object => object.id === parseInt(id))
+    let client = (useSelector(state => state.direccionRep.clients)).find(object => object.id === products.idClient)
+
+    if(products.clientDocument){
+        console.log("Toma datos de la orden")
+        client={
+            document:products.clientDocument,
+            firstName:products.clientName,
+            lastName:products.clientLastName,
+            phone:products.clientPhone
+        }
+    }
+    const direction = (useSelector(state => state.direccionRep.data)).find(object => object.id === products.idAddress)
+    console.log(client)
     const [date,setDate]=useState(products.date)
     const [total,setTotal]=useState(products.total)
     const [subtotal,setSubtotal]=useState(products.subtotal)

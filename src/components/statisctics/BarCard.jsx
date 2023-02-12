@@ -1,43 +1,52 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import BarChart from '../statisctics/BarChart';
+import { useSelector } from 'react-redux';
 
 const BarCard = (props) => {
   const Monthlich=props.Monthlich
-  const Ecli={
-    Pcli:``,
-    Pday:``,
-    Pmonth:``,
-    Prep:``,
+  let temp=useSelector(state=>state.statistics.Weeks)
+  let date=new Date();
+  const mesActual=date.getMonth();
+  console.log(mesActual)
+  let weekNumber=date.getWeek();
+  const secondWeek=temp.filter(item=>item.weekNumber===weekNumber)
+  const fistWeek=temp.filter(item=>item.weekNumber===(weekNumber-1))
+
+  let sum2 = 0;
+for (let i = 0; i < secondWeek.length; i++) {
+  sum2 += secondWeek[i].total;
+}
+let sum1 = 0;
+for (let i = 0; i < fistWeek.length; i++) {
+  sum1 += fistWeek[i].total;
+}
+let percentaje=0
+let tantoPorciento=''
+if(sum2===0 || sum1===0){
+  if(sum2===0 && sum1!=0){
+    tantoPorciento='(-100.00%)'
   }
-  if(props.clients>=300){
-    Ecli.Pcli=`32`
+  if(sum1===0 && sum2!=0){
+    tantoPorciento='(+100.00%)'
+  }
+  if(sum1===0 && sum2===0){
+    tantoPorciento='(+0.00%)'
+  }
+}
+else{
+  if(sum2>sum1){
+    percentaje=Math.min(100, 100 * (sum2 / sum1 - 1))
+    const Ptemp=percentaje.toFixed(2)
+    tantoPorciento=`(+${Ptemp}%)`
   }
   else{
-    const EcliTemp=(props.clients*12)/300
-   Ecli.Pcli=`${Math.floor(EcliTemp)}/12`
+    percentaje=Math.min(100,100 * (sum2 / sum1-1))
+    const Ptemp=percentaje.toFixed(2)
+    tantoPorciento=`(${Ptemp}%)`
   }
-  if(props.day>=500){
-    Ecli.Pday=`32`
-  }
-  else{
-    const EcliTemp=(props.day*12)/500
-   Ecli.Pday=`${Math.floor(EcliTemp)}/12`
-  }
-  if(props.month>=1000){
-    Ecli.Pmonth=`32`
-  }
-  else{
-    const EcliTemp=(props.month*12)/1000
-   Ecli.Pmonth=`${Math.floor(EcliTemp)}/12`
-  }
-  if(props.todayInvoice>=15){
-    Ecli.Prep=`32`
-  }
-  else{
-    const EcliTemp=(props.todayInvoice*12)/15
-   Ecli.Prep=`${Math.floor(EcliTemp)}/12`
-  }
-  console.log(Ecli.Prep)
+}
+
+
   return (
     <div className="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-5/12 lg:flex-none drop-shadow-lg">
     <div className="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
@@ -48,8 +57,8 @@ const BarCard = (props) => {
             <BarChart Monthlich={Monthlich}/>
           </div>
         </div>
-        <h6 className="mt-6 mb-0 ml-2">Active Users</h6>
-        <p className="ml-2 leading-normal text-sm">(<span className="font-bold">+23%</span>) than last week</p>
+        <h6 className="mt-6 mb-0 ml-2">Ganancias</h6>
+        <p className="ml-2 leading-normal text-sm"><span className="font-bold">{tantoPorciento}</span> que la última semana</p>
         <div className="w-full px-6 mx-auto max-w-screen-2xl rounded-xl">
           <div className="flex flex-wrap mt-0 -mx-3">
             <div className="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
@@ -72,7 +81,7 @@ const BarCard = (props) => {
               </div>
               <h4 className="font-bold">300</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-                <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Pcli} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                
               </div>
             </div>
             <div className="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
@@ -99,7 +108,6 @@ const BarCard = (props) => {
               </div>
               <h4 className="font-bold">500$</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-              <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Pday} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div className="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
@@ -121,7 +129,6 @@ const BarCard = (props) => {
               </div>
               <h4 className="font-bold">1000$</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-              <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Pmonth} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               
               </div>
             </div>
@@ -146,7 +153,6 @@ const BarCard = (props) => {
               </div>
               <h4 className="font-bold">15</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-              <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Prep} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>

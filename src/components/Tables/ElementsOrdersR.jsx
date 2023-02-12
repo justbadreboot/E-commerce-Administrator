@@ -118,7 +118,14 @@ const ElementsOrdersR = (props) => {
                                     </div>
                                 </>
                             )
-                        ) : (<Loader />)}
+                        ) : (
+                            <>
+                        <Loader />
+                        <div className="modal-action pr-3">
+                        <label htmlFor={props.products.total} className="btn bg-error-100 text-white border-none">Cerrar</label>
+                    </div>
+                    </>
+                        )}
 
                     </div>
                 </div>

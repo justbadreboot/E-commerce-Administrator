@@ -7,6 +7,7 @@ const initialState = {
     FcountT:0,
     Month:[
     ],
+    Weeks:[],
     error:null,
   }
 
@@ -32,6 +33,10 @@ export const StatisticsSlice= createSlice({
             state.Ftoday = action.payload;
             state.error = null;
           },
+          WeekSuccess: (state, action) => {
+            state.Weeks = action.payload;
+            state.error = null;
+          },
           MonthlichSuccess: (state, action) => {
             state.Month = action.payload;
             state.error = null;
@@ -39,6 +44,6 @@ export const StatisticsSlice= createSlice({
     }
 })
 
-export const {ClientNSuccess, StatisticsFailure, MonthSuccess, TodaySuccess, MonthlichSuccess}=StatisticsSlice.actions
+export const {ClientNSuccess, WeekSuccess, StatisticsFailure, MonthSuccess, TodaySuccess, MonthlichSuccess}=StatisticsSlice.actions
 
 export default StatisticsSlice.reducer
