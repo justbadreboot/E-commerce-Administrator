@@ -5,6 +5,7 @@ import { productPostSuccess, productPostFailure } from '../../features/services/
 import { CategoryPostSuccess, CategoryPostFailure } from '../../features/services/CategorySlice';
 import { servicePostSuccess, servicePostFailure } from '../../features/services/ServiceSlice';
 import { EspecialidadPostSuccess, EspecialidadPostFailure } from '../../features/services/EspecialidadSlice';
+import { promotionPostSuccess, promotionFailure } from '../../features/services/PromotionSlice';
 import Swal from "sweetalert2";
 
 export const postDataToApi = data => async dispatch => {
@@ -112,6 +113,24 @@ export const postBillApi=data=>async dispatch=>{
       text: 'Especialidad añadida correctamente'
   });
 } catch (error) {
+  Swal.fire({
+    title: 'Error!',
+    icon: 'error',
+    text: "Porfavor, intenta de nuevo en unos momentos"
+});
+}
+}
+export const postPromotionApi=data=>async dispatch=>{
+  try{
+    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/promotion`, data);
+    dispatch(promotionPostSuccess(response.data));
+    Swal.fire({
+      title: 'Excelente!',
+      icon: 'success',
+      text: 'Especialidad añadida correctamente'
+  });
+} catch (error) {
+  dispatch(promotionFailure(error.message));
   Swal.fire({
     title: 'Error!',
     icon: 'error',

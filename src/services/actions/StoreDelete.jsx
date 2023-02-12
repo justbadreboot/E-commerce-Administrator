@@ -6,6 +6,7 @@ import { CategoryDeleteSuccess, CategoryDeleteFailure } from "../../features/ser
 import { productDeleteSuccess, productDeleteFailure } from "../../features/services/ProductSlice";
 import { serviceDeleteSuccess, serviceDeleteFailure } from "../../features/services/ServiceSlice";
 import { DoctorDeleteFailure, DoctorDeleteSuccess } from "../../features/services/DoctorSlice";
+import { promotionDeleteSuccess, promotionDeleteFailure } from "../../features/services/PromotionSlice";
 
 
 export const deleteProductApi = id => async dispatch=>{
@@ -78,6 +79,25 @@ export const deleteProductApi = id => async dispatch=>{
     });
     } catch (error) {
       dispatch(DoctorDeleteFailure(error.message));
+      Swal.fire({
+        title: 'Error!',
+        icon: 'error',
+        text: "Porfavor, intenta de nuevo en unos momentos"
+    });
+    }
+  
+  }
+  export const deletePromotionApi = id => async dispatch=>{
+    try {
+      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/promotion/${id}`);
+      dispatch(promotionDeleteSuccess(id));
+      Swal.fire({
+        title: 'Excelente!',
+        icon: 'success',
+        text: 'Servicio eliminado correctamente'
+    });
+    } catch (error) {
+      dispatch(promotionDeleteFailure(error.message));
       Swal.fire({
         title: 'Error!',
         icon: 'error',

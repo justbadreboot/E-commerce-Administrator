@@ -1,7 +1,34 @@
 import React from 'react'
 import BarChart from '../statisctics/BarChart';
 
-const BarCard = () => {
+const BarCard = (props) => {
+  const Ecli={
+    Pcli:``,
+    Pday:``,
+    Pmonth:``
+  }
+  if(props.clients>=300){
+    Ecli.Pcli=`32`
+  }
+  else{
+    const EcliTemp=(props.clients*12)/300
+   Ecli.Pcli=`${Math.floor(EcliTemp)}/12`
+  }
+  if(props.day>=500){
+    Ecli.Pday=`32`
+  }
+  else{
+    const EcliTemp=(props.day*12)/500
+   Ecli.Pday=`${Math.floor(EcliTemp)}/12`
+  }
+  if(props.month>=1000){
+    Ecli.Pmonth=`32`
+  }
+  else{
+    const EcliTemp=(props.month*12)/1000
+   Ecli.Pmonth=`${Math.floor(EcliTemp)}/12`
+  }
+  console.log(Ecli.Pmonth)
   return (
     <div className="w-full max-w-full px-3 mt-0 mb-6 lg:mb-0 lg:w-5/12 lg:flex-none drop-shadow-lg">
     <div className="border-black/12.5 shadow-soft-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
@@ -32,11 +59,11 @@ const BarCard = () => {
                       </g>
                     </g>
                 </div>
-                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Users</p>
+                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Clientes</p>
               </div>
-              <h4 className="font-bold">36K</h4>
+              <h4 className="font-bold">300</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-                <div className="duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-3/5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Pcli} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div className="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
@@ -59,11 +86,11 @@ const BarCard = () => {
                       </g>
                     </g>
                 </div>
-                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Clicks</p>
+                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Diario</p>
               </div>
-              <h4 className="font-bold">2m</h4>
+              <h4 className="font-bold">500$</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-                <div className="duration-600 ease-soft -mt-0.38 w-9/10 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Pday} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <div className="flex-none w-1/4 max-w-full py-4 pl-0 pr-3 mt-0">
@@ -81,11 +108,11 @@ const BarCard = () => {
                       </g>
                     </g>
                 </div>
-                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Sales</p>
+                <p className="mt-1 mb-0 font-semibold leading-tight text-xs">Mensual</p>
               </div>
-              <h4 className="font-bold">435$</h4>
+              <h4 className="font-bold">1000$</h4>
               <div className="text-xs h-0.75 flex w-3/4 overflow-visible rounded-lg bg-gray-200">
-                <div className="duration-600 ease-soft -mt-0.38 w-3/10 -ml-px flex h-1.5 flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+              <div className={`duration-600 ease-soft -mt-0.38 -ml-px flex h-1.5 w-${Ecli.Pmonth} flex-col justify-center overflow-hidden whitespace-nowrap rounded-lg bg-slate-700 text-center text-white transition-all`} role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
               
               </div>
             </div>

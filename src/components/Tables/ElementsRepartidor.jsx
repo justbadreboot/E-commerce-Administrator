@@ -54,7 +54,7 @@ const ElementsRepartidor = (props) => {
             <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                 <div className="flex px-2 py-1">
                     <div className="flex flex-col justify-center">
-                        <h6 className="mb-0 leading-normal text-sm">{props.products.name}</h6>
+                        <h6 className="mb-0 leading-normal text-sm">{props.products.name}{props.products.productName}</h6>
                     </div>
                 </div>
             </td>

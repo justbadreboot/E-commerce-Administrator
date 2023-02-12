@@ -9,7 +9,8 @@ import { OrdenSuccess, OrdenFailure } from "../../features/services/OrdenSlice";
 import { OrdenRepSuccess, OrdenRepFailure } from "../../features/services/OrderRepSlice";
 import { DireccionRepSuccess, DireccionRepFailure, ClientRepSuccess, ClientRepFailure } from "../../features/services/DireccionRepSlice";
 import { FacturaSuccess,FacturaFailure } from "../../features/services/FacturaSlice";
-import { ClientNSuccess, StatisticsFailure } from "../../features/services/StatisticsSlice";
+import { ClientNSuccess, StatisticsFailure, MonthSuccess, TodaySuccess } from "../../features/services/StatisticsSlice";
+import { promotionSuccess, promotionFailure } from "../../features/services/PromotionSlice";
 
 export const StoreData = () => {
     return async (dispatch) => {
@@ -131,6 +132,24 @@ export const CategoryData = () => {
         dispatch( ClientNSuccess(response1.data));
       } catch (error) {
         dispatch(StatisticsFailure(error.message));
+      }
+      try {
+        const response2 = await axios.get(`https://invoice-production-ea9a.up.railway.app/api/invoice/sales/today`);
+        dispatch( MonthSuccess(response2.data.week));
+        dispatch( TodaySuccess(response2.data.today));
+      } catch (error) {
+        dispatch(StatisticsFailure(error.message));
+      }
+    };
+    
+  }
+  export const PromotionData=()=>{
+    return async (dispatch) => {
+      try {
+        const response1 = await axios.get(`https://product-production-cf12.up.railway.app/api/promotion/all`);
+        dispatch( promotionSuccess(response1.data));
+      } catch (error) {
+        dispatch(promotionFailure(error.message));
       }
     };
   }

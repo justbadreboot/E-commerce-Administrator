@@ -1,15 +1,25 @@
 import React,{useState} from 'react'
 import Modal from '../shared/Modal';
+import { deletePromotionApi } from '../../services/actions/StoreDelete';
+import { PromotionData } from '../../services/actions/StoreData';
+import { useDispatch } from 'react-redux';
 
 const ElementsPromotions = (props) => {
+    const dispatch = useDispatch();
+
     /*const [isSame, setIsSame] = useState(false);
 
     const dateFromAPI = new Date(props.dateFromAPI);
     const currentDate = new Date();
     const datosProductos=useSelector(state=>state.products)
     console.log(datosProductos)*/
+
     let colorClass = '';
     const producto=props.products
+    const handleDelete=()=>{
+        dispatch(deletePromotionApi(producto.id))
+        dispatch(PromotionData())
+    }
     const categorias=props.categorias
     switch (producto.expiracion) {
         case 'Ingerible':
@@ -24,6 +34,21 @@ const ElementsPromotions = (props) => {
         default:
             colorClass = '';
     }
+    const dates = new Date(producto.startDate);
+
+    const year = dates.getFullYear();
+    const month = (dates.getMonth() + 1).toString().padStart(2, "0");
+    const day = dates.getDate().toString().padStart(2, "0");
+
+    const dateString = `${year}-${month}-${day}`;
+    const dates1 = new Date(producto.endDate);
+
+    const year1 = dates1.getFullYear();
+    const month1 = (dates1.getMonth() + 1).toString().padStart(2, "0");
+    const day1 = dates1.getDate().toString().padStart(2, "0");
+
+    const dateString1 = `${year1}-${month1}-${day1}`;
+
     return (
 
         <tr>
@@ -34,22 +59,19 @@ const ElementsPromotions = (props) => {
                     </div>
                     <div className="flex flex-col justify-center">
                         <h6 className="mb-0 leading-normal text-sm">{producto.name}</h6>
-                        <p className="mb-0 leading-tight text-xs text-slate-400">{producto.name}</p>
+                        <p className="mb-0 leading-tight text-xs text-slate-400">{producto.promotionTypes.name}</p>
                     </div>
                 </div>
             </td>
             <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <p className="mb-0 font-semibold leading-tight text-xs">{producto.stock}</p>
+        <p className="mb-0 font-semibold leading-tight text-xs">{dateString}</p>
         <p className="mb-0 leading-tight text-xs text-slate-400">{producto.brand}</p>
       </td>
       <td className="p-2 leading-normal text-center align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
-        <span className={`bg-gradient-to-tl ${colorClass} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{producto.expiracion}</span>
+      <p className="mb-0 font-semibold leading-tight text-xs">{dateString1}</p>
       </td>
       <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-      <Modal producto={producto} categorias={categorias}/>
-      </td>
-      <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <a href="javascript:;" className="font-semibold leading-tight text-xs text-slate-400"> Eliminar </a>
+        <a href="javascript:;" className="font-semibold leading-tight text-xs text-slate-400" onClick={handleDelete}> Eliminar </a>
       </td>
         </tr>
 
