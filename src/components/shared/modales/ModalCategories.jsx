@@ -41,7 +41,7 @@ const ModalCategories = (props) => {
             const result= await uploadProductFile(image);
             setImage(`${result}`)
         }
-        axios.put(`https://product-production-cf12.up.railway.app/api/category/${id}`, {
+        axios.put(`https://product-production-cf12.up.railway.app/api/admin/category/${id}`, {
             description,
             image,
             name

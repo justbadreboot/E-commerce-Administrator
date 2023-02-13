@@ -30,7 +30,15 @@ export const postDataToApi = data => async dispatch => {
 
 export const postProductApi =data=> async dispatch=>{
   try {
-    const response = await axios.post('https://product-production-cf12.up.railway.app/api/product', data);
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const response = await api.post('/admin/product', data);
     dispatch(productPostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',

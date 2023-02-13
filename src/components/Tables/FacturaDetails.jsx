@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ElementsDetFactura from './ElementsDetFactura';
 import ElementsRepartidor from './ElementsRepartidor';
 
 const FacturaDetails = (props) => {
@@ -55,7 +56,7 @@ const FacturaDetails = (props) => {
                       </table>
                       <tbody className=''>
                         {products.details.map(product => (
-                          <ElementsRepartidor
+                          <ElementsDetFactura
                             products={product}
 
                           />

@@ -14,16 +14,24 @@ import { promotionSuccess, promotionFailure } from "../../features/services/Prom
 
 export const StoreData = () => {
     return async (dispatch) => {
-        try {
-          const response = await axios.get('https://api-gateway-production-d841.up.railway.app/api/landing/');
-          dispatch(fetchDataSuccess(response.data));
-        } catch (error) {
-          dispatch(fetchDataFailure(error.message));
-        }
+      try {
+        const token=localStorage.getItem("token")
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          /*headers: {
+            Authorization: `Bearer ${token}`,
+          },*/
+        });
+        const response = await api.get('/landing');
+        dispatch(fetchDataSuccess(response.data));
+      } catch (error) {
+        dispatch(fetchDataFailure(error.message));
+      }
       };
 }
 export const CategoryData = () => {
     return async (dispatch) => {
+      
       try {
         const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/public/category/all');
         dispatch(CategorySuccess(response1.data));
@@ -37,13 +45,14 @@ export const CategoryData = () => {
     return async (dispatch) => {
       try {
         const token=localStorage.getItem("token")
-        const config = {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        };
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/public/product/all');
-        dispatch(productSuccess(response1.data));
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          /*headers: {
+            Authorization: `Bearer ${token}`,
+          },*/
+        });
+        const response = await api.get('/public/product/all');
+        dispatch(productSuccess(response.data));
       } catch (error) {
         dispatch(productFailure(error.message));
       }

@@ -63,6 +63,7 @@ const Login = () => {
             })
             .catch(err => {
                 console.error(err);
+                setMessage('Correo o contraseña incorrectos');
   });
 
         /*if (email === usuario1.email && password === usuario1.password) {

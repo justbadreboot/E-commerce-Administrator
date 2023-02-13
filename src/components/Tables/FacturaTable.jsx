@@ -10,7 +10,6 @@ import Loader from '../../Loader'
 const FacturaTable = () => {
   const dispatch = useDispatch();
   let products1=useSelector(state=>state.factura.data)
-
   useEffect(() => {
     dispatch(FacturaData());
     setFilteredProducts(products1);
