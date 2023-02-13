@@ -64,28 +64,28 @@ const ElementsOrders = (props) => {
                 </div>
             </td>
             <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <p className="mb-0 font-semibold leading-tight text-xs">{dateString}</p>
+                <p className="mb-0 font-semibold leading-tight text-xs">{dateString}</p>
 
 
-      </td>
-      <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-      <p className="mb-0 leading-tight text-xs ">{props.products.total} $</p>
-      </td>
-      <td className="p-0 leading-normal text-center align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
-        <span className={`bg-gradient-to-tl ${colorClass} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.orderState.state}</span>
-      </td>
-      <td className="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <span className={`bg-gradient-to-tl ${colorClass1} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.deliveryState.state}</span>
-      </td>
-      <td className="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-        <span className={`bg-gradient-to-tl ${colorClass2} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.paymentState.state}</span>
-      </td>
-      <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-      <ModalOrders producto={producto}/>
-      </td>
+            </td>
+            <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                <p className="mb-0 leading-tight text-xs ">{props.products.total} $</p>
+            </td>
+            <td className="p-0 leading-normal text-center align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
+                <span className={`bg-gradient-to-tl ${colorClass} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.orderState.state}</span>
+            </td>
+            <td className="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                <span className={`bg-gradient-to-tl ${colorClass1} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.deliveryState.state}</span>
+            </td>
+            <td className="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                <span className={`bg-gradient-to-tl ${colorClass2} px-3.6 text-xs rounded-1.8 py-2.2 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white`}>{props.products.paymentState.state}</span>
+            </td>
+            {/*<td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                <ModalOrders producto={producto} />
+    </td>*/}
         </tr>
 
-  )
+    )
 }
 
 export default ElementsOrders

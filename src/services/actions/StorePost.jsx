@@ -5,6 +5,7 @@ import { productPostSuccess, productPostFailure } from '../../features/services/
 import { CategoryPostSuccess, CategoryPostFailure } from '../../features/services/CategorySlice';
 import { servicePostSuccess, servicePostFailure } from '../../features/services/ServiceSlice';
 import { EspecialidadPostSuccess, EspecialidadPostFailure } from '../../features/services/EspecialidadSlice';
+import { promotionPostSuccess, promotionFailure } from '../../features/services/PromotionSlice';
 import Swal from "sweetalert2";
 
 export const postDataToApi = data => async dispatch => {
@@ -118,4 +119,30 @@ export const postBillApi=data=>async dispatch=>{
     text: "Porfavor, intenta de nuevo en unos momentos"
 });
 }
+}
+export const postPromotionApi=data=>async dispatch=>{
+  try{
+    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/admin/promotion`, data);
+    dispatch(promotionPostSuccess(response.data));
+    Swal.fire({
+      title: 'Excelente!',
+      icon: 'success',
+      text: 'Promoción añadida correctamente'
+  });
+} catch (error) {
+  dispatch(promotionFailure(error.message));
+  Swal.fire({
+    title: 'Error!',
+    icon: 'error',
+    text: "Este producto ya tiene otra promoción"
+});
+}
+}
+export const reduceProductApi = data => async dispatch => {
+  try {
+    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/admin/product/reduce/stock`, data);
+    console.log(response.data)
+  } catch (error) {
+    console.log(error.data)
+  }
 }

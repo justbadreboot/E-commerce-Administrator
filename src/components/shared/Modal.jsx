@@ -73,7 +73,7 @@ const Modal = (props) => {
             setImage(`${result}`)
         }
         console.log(category)
-        axios.put(`https://product-production-cf12.up.railway.app/api/product/${id}`, {
+        axios.put(`https://product-production-cf12.up.railway.app/api/admin/product/${id}`, {
             description,
             stock,
             pvd,

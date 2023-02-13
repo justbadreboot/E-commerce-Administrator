@@ -2,54 +2,79 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { CategoryData } from '../../services/actions/StoreData';
-import { uploadProductFile } from '../../firebaseConfig';
+import { CategoryData, PromotionData } from '../../services/actions/StoreData';
 import { postProductApi } from '../../services/actions/StorePost';
 import Swal from "sweetalert2";
 import { ProductsData } from '../../services/actions/StoreData';
+import { uploadPromotionFile } from '../../firebaseConfig';
+import { postPromotionApi } from '../../services/actions/StorePost';
 
 const ModalAñadirPromocion = () => {
+    const optionPromotions = [{id:1,name:"2x1"}, {id:2,name:"3x2"}];
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(CategoryData());
-    }, [dispatch]);
+        dispatch(ProductsData());
+      }, [dispatch]);
+  
+      const products1=useSelector(state=>state.products.data)
+      console.log(products1)
+      const productDes = products1.filter(product => product.porcentajeDescuento !== 0)
+      console.log(productDes)
+      const productDes1 = productDes.filter(product => product.porcentajeDescuento ===null)
+      console.log(productDes1)
+      const prod=productDes1.filter(product => product.promotion !==0)
+      console.log(prod)
+      const prod1=prod.filter(product => product.promotion !==null)
+      console.log(prod1)
+      const [producto, setProducto]=useState({
+        id: 0,
+        name: "",
+        description: "",
+        stock: 0,
+        pvp: 0,
+        pvd: 0,
+        image: "",
+        brand: "",
+        weight: 0,
+        size: 0,
+        porcentajeDescuento: 0,
+        expiration: "",
+        rating: null,
+        promotion: 0,
+        category: {
+          id: 0,
+          name: "",
+          description: "",
+          image: ""
+        }
+      })
 
-    const category=useSelector(state=>state.category.data)
-    const [isOpen, setIsOpen] = useState(false);
+
+
+      const [isOpen, setIsOpen] = useState(false);
     const [error, setError] = useState("");
     const [foto,setphoto]=useState(null);
-    const [categoria,setCategoria]=useState({
-        description:"",
+    const [promocion,setPromocion]=useState({
+        name:"",
         id:"",
-        image:"",
-        name:""
     })
 
     const [formData, setFormData] = useState({
         name: "",
         description: "",
-        stock: "",
-        pvd: "",
-        pvp: "",
-        brand: "",
-        weight: "",
-        category: "",
-        expiration:"",
-        size:""
+        endDate: "",
+        startDate: "",
+        promotionTypes:"",
+        product:""
     });
 
     const [errors, setErrors] = useState({
         name: "",
         description: "",
-        stock: "",
-        pvd: "",
-        pvp: "",
-        brand: "",
-        weight: "",
-        category: "",
-        expiration:"",
-        size:""
+        endDate: "",
+        startDate: "",
+        promotionTypes: "",
     });
 
     const handleChange = event => {
@@ -57,6 +82,8 @@ const ModalAñadirPromocion = () => {
             ...formData,
             [event.target.name]: event.target.value,
         });
+        setPromocion(optionPromotions.find((objeto)=>objeto.name===formData.promotionTypes))
+        setProducto(prod1.find((objeto)=>objeto.id=== parseInt(formData.product)))
     };
 
     const validateForm = () => {
@@ -67,59 +94,34 @@ const ModalAñadirPromocion = () => {
             }
         });
         setErrors(newErrors);
+
         return Object.values(newErrors).every(error => error === "");
+
     };
 
     const handleSubmit = async event => {
         event.preventDefault();
         if (validateForm()) {
             if(foto!=null){
-                setCategoria(category.find((objeto)=>objeto.name===formData.category))
-                console.log(categoria)
-                const result= await uploadProductFile(foto);
+                console.log(formData.promotionTypes)
+
+
+                console.log(promocion)
+                console.log(producto)
+
+                const result= await uploadPromotionFile(foto);
                 const data = {
                     name: formData.name,
                     description: formData.description,
                     image: `${result}`,
-                    stock: formData.stock,
-                    pvd: formData.pvd,
-                    pvp: formData.pvp,
-                    brand: formData.brand,
-                    weight: formData.weight,
-                    category: categoria,
-                    expiration:formData.expiration,
-                    size:formData.size
+                    startDate: formData.startDate,
+                    endDate: formData.endDate,
+                    promotionTypes: promocion,
+                    product:producto
                 }
                 console.log(data)
-                try {
-                    dispatch(postProductApi(data))
-                    Swal.fire({
-                        title: 'Excelente!',
-                        icon: 'success',
-                        text: 'Producto añadida correctamente'
-                    });
-                    dispatch(ProductsData());
-                    /*setFormData({
-                        name: "",
-                        description: "",
-                        stock: "",
-                        pvd: "",
-                        pvp: "",
-                        brand: "",
-                        weight: "",
-                        category: "",
-                        expiration:"",
-                        size:""
-                    })
-                    setphoto(null)*/
-                }
-                catch (error) {
-                    Swal.fire({
-                        title: 'Error!',
-                        icon: 'error',
-                        text: "Porfavor, intenta de nuevo en unos momentos"
-                    });
-                }
+                dispatch(postPromotionApi(data))
+                dispatch(PromotionData())
             }
             else{
                 setError("Debe tener una foto")
@@ -143,13 +145,12 @@ const ModalAñadirPromocion = () => {
                     </button>
                 </NavLink>
                 <h1 className='text-center pb-2'><strong>Ingreso de Promociones</strong></h1>
-                <div className='flex'>
-                    <div className='pr-10'>
+                    <div className=''>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
                             Nombre
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
                             type="text"
                             name="name"
                             value={formData.name}
@@ -157,136 +158,86 @@ const ModalAñadirPromocion = () => {
                         />
                         <div className="text-red-500">{errors.name}</div>
                     </div>
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Cantidad
-                        </label>
-                        <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
-                            name="stock"
-                            value={formData.stock}
-                            onChange={handleChange}
-                        />
-                        <div className="text-red-500">{errors.stock}</div>
-                    </div>
-                </div>
-                <div className='flex'>
-                    <div className='pr-10'>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            PVP
-                        </label>
-                        <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
-                            name="pvp"
-                            value={formData.pvp}
-                            onChange={handleChange}
-                        />
-                        <div className="text-red-500">{errors.pvp}</div>
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            PVD
-                        </label>
-                        <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
-                            name="pvd"
-                            value={formData.pvd}
-                            onChange={handleChange}
-                        />
-                        <div className="text-red-500">{errors.pvd}</div>
-                    </div>
-                </div>
+                
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Foto
                 </label>
                 <input
-                    className="w-full border border-gray-400 p-2 rounded-md"
+                    className="w-full border bg-white border-gray-400 p-2 rounded-md"
                     type="file"
                     name="photo"
                     onChange={e=>setphoto(e.target.files[0])}
                 />
                 <div className="text-red-500">{error}</div>
-                <div className='flex'>
-                    <div className='pr-10'>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Marca
-                        </label>
-                        <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
-                            type="text"
-                            name="brand"
-                            value={formData.brand}
-                            onChange={handleChange}
-                        />
-                        <div className="text-red-500">{errors.brand}</div>
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Peso
-                        </label>
-                        <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
-                            name="weight"
-                            value={formData.weight}
-                            onChange={handleChange}
-                        />
-                        <div className="text-red-500">{errors.weight}</div>
-                    </div>
-                </div>
+                
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
-                    Categoría
+                    Tipo de Promoción
                 </label>
                 <select
                     className="w-full border border-gray-400 bg-white p-2 rounded-md"
-                    name="category"
-                    value={formData.category}
+                    name="promotionTypes"
+                    value={formData.promotionTypes}
                     onChange={handleChange}
                 >
                     <option value="" disabled>Seleccione una categoría</option>
-                    {category.map((item) => (
+                    {optionPromotions.map((item) => (
                         <option key={item.id} value={item.name}>
                             {item.name}
                         </option>
                     ))}
                 </select>
-                <div className="text-red-500">{errors.category}</div>
+                <div className="text-red-500">{errors.promotionTypes}</div>
+                <label className="block text-gray-700 font-medium mb-2 mt-4">
+                    Producto
+                </label>
+                <select
+                    className="w-full border border-gray-400 bg-white p-2 rounded-md"
+                    name="product"
+                    value={formData.product}
+                    onChange={handleChange}
+                >
+                    <option value="" disabled>Seleccione una categoría</option>
+                    {prod1.map((item) => (
+                        <option key={item.id} value={item.id}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
+                <div className="text-red-500">{errors.promotionTypes}</div>
                 <div className='flex'>
                     <div className='pr-10'>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Expiración
+                        <label className="block bg-white text-gray-700 font-medium mb-2 mt-4">
+                            Fecha de incio
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
                             type="date"
-                            name="expiration"
-                            value={formData.expiration}
+                            name="startDate"
+                            value={formData.startDate}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.expiration}</div>
+                        <div className="text-red-500">{errors.startDate}</div>
                     </div>
-                    <div>
-                        <label className="block text-gray-700 font-medium mb-2 mt-4">
-                            Tamaño
+                    <div className='pr-10'>
+                        <label className="block bg-white text-gray-700 font-medium mb-2 mt-4">
+                            Fecha de finalisación
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
-                            type="number"
-                            name="size"
-                            value={formData.size}
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
+                            type="date"
+                            name="endDate"
+                            value={formData.endDate}
                             onChange={handleChange}
                         />
-                        <div className="text-red-500">{errors.size}</div>
+                        <div className="text-red-500">{errors.endDate}</div>
                     </div>
+                   
                 </div>
                 <label className="block text-gray-700 font-medium mb-2 mt-4">
                     Descripción
                 </label>
                 <textarea
-                    className="w-full resize-none border border-gray-400 p-2 rounded-md"
+                    className="w-full resize-none border bg-white border-gray-400 p-2 rounded-md"
                     name="description"
                     rows="4"
                     value={formData.description}

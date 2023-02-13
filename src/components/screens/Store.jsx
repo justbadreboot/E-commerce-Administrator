@@ -32,7 +32,7 @@ const Store = () => {
   const handleEdit = () => {
     setEditing(false);
     setEditstore(false)
-      axios.put('https://landing-production-11fd.up.railway.app/api/landing/{id}?id=1', {
+      axios.put('https://landing-production-11fd.up.railway.app/api/admin/landing/{id}?id=1', {
         mission,
         vision,
         description,
@@ -60,8 +60,8 @@ const Store = () => {
           <strong>Información de la tienda</strong>
         </div>
         <div className="w-full p-6 mx-auto flex bg-gray-50 z-0">
-          <div className="flex flex-wrap -mx-3">
-            <div className="w-full max-w-full px-3 xl:w-4/12 p-2 drop-shadow-lg">
+          <div className="flex  mx-auto">
+            <div className="w-full max-w-full px-3 xl:w-6/12 p-2 drop-shadow-lg">
               <div className="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div className="flex flex-wrap -mx-0 pt-4 pb-1">
                   <div className="flex items-center w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-none">
@@ -79,7 +79,7 @@ const Store = () => {
                   <div>
                     {editing ? (
                       <textarea
-                        className="border w-full p-2 rounded-lg resize-none"
+                        className="border w-full bg-white p-2 rounded-lg resize-none"
                         rows="5"
                         value={mission}
                         onChange={e => setMission(e.target.value)}
@@ -92,7 +92,7 @@ const Store = () => {
                   <div>
                     {editing ? (
                       <textarea
-                        className="border w-full p-2 rounded-lg resize-none"
+                        className="border w-full bg-white p-2 rounded-lg resize-none"
                         rows="5"
                         value={vision}
                         onChange={e => setVision(e.target.value)}
@@ -113,7 +113,7 @@ const Store = () => {
               </div>
             </div>
 
-            <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12 p-2 drop-shadow-lg ">
+            <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-6/12 p-2 drop-shadow-lg ">
               <div className="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div className="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
                   <div className="flex flex-wrap -mx-3">
@@ -141,7 +141,7 @@ const Store = () => {
                     
                   {editstore ? (
                       <textarea
-                        className="border w-full p-2 rounded-lg resize-none"
+                        className="border w-full bg-white p-2 rounded-lg resize-none"
                         rows="4"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
@@ -155,7 +155,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong className="text-slate-700">Nombre:</strong> &nbsp; 
                     {editstore ? (
                       <input
-                        className="border p-2 rounded-lg resize-none"
+                        className="border p-2 bg-white rounded-lg resize-none"
                         value={name}
                         onChange={e => setName(e.target.value)}
                       />
@@ -166,7 +166,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Telefono:</strong> &nbsp;
                     {editstore ? (
                       <input
-                        className="border  p-2 rounded-lg resize-none"
+                        className="border  p-2 bg-white rounded-lg resize-none"
                         value={phone}
                         onChange={e => setPhone(e.target.value)}
                       />
@@ -177,7 +177,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Correo:</strong> &nbsp;
                     {editstore ? (
                       <input
-                        className="border  p-2 rounded-lg resize-none"
+                        className="border  p-2 bg-white rounded-lg resize-none"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                       />
@@ -188,7 +188,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Dirección:</strong> &nbsp;
                     {editstore ? (
                       <input
-                        className="border  p-2 rounded-lg resize-none"
+                        className="border  p-2 bg-white rounded-lg resize-none"
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                       />
@@ -212,23 +212,7 @@ const Store = () => {
 
               </div>
             </div>
-            <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12 p-2 drop-shadow-lg ">
-              <div className=" min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
-                <div className="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
-                  <h6 className="mb-0 text-slate-700"><strong>Proveedores</strong></h6>
-                </div>
-                <div className=" p-4">
-                  <ul className="  pl-0 mb-0 rounded-lg">
-                    <Empleados nombre="medictin" venta="Medicinas" foto="./logo192.png" />
-                    <Empleados nombre="Guantesino" venta="Guantes" foto="./logo192.png" />
-                    <Empleados nombre="Mascaril" venta="Mascarillas" foto="./logo192.png" />
-                    <Empleados nombre="Jeringuin" venta="Jeringas" foto="./logo192.png" />
-                    <Empleados nombre="Suplentor" venta="Batas" foto="./logo192.png" />
-                    <Empleados nombre="Suplentor" venta="Batas" foto="./logo192.png" />
-                  </ul>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>

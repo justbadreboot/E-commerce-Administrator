@@ -41,6 +41,12 @@ export async function uploadServicesFile(file){
   const url=await getDownloadURL(storageRef)
   return url
 }
+export async function uploadPromotionFile(file){
+  const storageRef = ref(storage, `promotions/${v4()}`)
+  await uploadBytes(storageRef, file)
+  const url=await getDownloadURL(storageRef)
+  return url
+}
 
 export function deleteProductFile(file){
   const storageRef=ref(storage, `Products/${file}`)

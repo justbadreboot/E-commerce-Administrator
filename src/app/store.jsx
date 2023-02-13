@@ -15,6 +15,7 @@ import OrdenRepReducer from '../features/services/OrderRepSlice';
 import DireccionRepReducer from '../features/services/DireccionRepSlice';
 import FacturaReducer from '../features/services/FacturaSlice';
 import StatisticsReducer from '../features/services/StatisticsSlice';
+import PromotionReducer from '../features/services/PromotionSlice';
 
 
 export const store = configureStore({
@@ -32,7 +33,8 @@ export const store = configureStore({
     ordenRep:OrdenRepReducer,
     direccionRep:DireccionRepReducer,
     factura:FacturaReducer,
-    statistics:StatisticsReducer
+    statistics:StatisticsReducer,
+    promotions:PromotionReducer,
   },
 });
 

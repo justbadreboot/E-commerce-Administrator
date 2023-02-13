@@ -10,6 +10,7 @@ module.exports = {
         // => @media (min-height: 800px) { ... }
       },
       spacing:{
+        
         '3gl': '85vh',
         '2.5gl':'75vh',
         '2gl':'65vh',
@@ -117,4 +118,14 @@ module.exports = {
     },
   },
   plugins: [require("daisyui")],
+  daisyui: {
+    styled: true,
+    themes: true,
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+    darkTheme: "white",
+  },
 }
