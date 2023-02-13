@@ -18,10 +18,15 @@ const ModalAñadirPromocion = () => {
       }, [dispatch]);
   
       const products1=useSelector(state=>state.products.data)
+      console.log(products1)
       const productDes = products1.filter(product => product.porcentajeDescuento !== 0)
+      console.log(productDes)
       const productDes1 = productDes.filter(product => product.porcentajeDescuento ===null)
+      console.log(productDes1)
       const prod=productDes1.filter(product => product.promotion !==0)
-      const prod1=prod.filter(product => product.promotion ===null)
+      console.log(prod)
+      const prod1=prod.filter(product => product.promotion !==null)
+      console.log(prod1)
       const [producto, setProducto]=useState({
         id: 0,
         name: "",
@@ -115,8 +120,8 @@ const ModalAñadirPromocion = () => {
                     product:producto
                 }
                 console.log(data)
-                /*dispatch(postPromotionApi(data))
-                dispatch(PromotionData())*/
+                dispatch(postPromotionApi(data))
+                dispatch(PromotionData())
             }
             else{
                 setError("Debe tener una foto")

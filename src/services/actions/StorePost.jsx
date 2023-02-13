@@ -127,14 +127,14 @@ export const postPromotionApi=data=>async dispatch=>{
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
-      text: 'Especialidad añadida correctamente'
+      text: 'Promoción añadida correctamente'
   });
 } catch (error) {
   dispatch(promotionFailure(error.message));
   Swal.fire({
     title: 'Error!',
     icon: 'error',
-    text: "Porfavor, intenta de nuevo en unos momentos"
+    text: "Este producto ya tiene otra promoción"
 });
 }
 }
