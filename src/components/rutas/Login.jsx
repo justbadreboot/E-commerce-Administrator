@@ -98,17 +98,17 @@ const Login = () => {
 
 
                             <div class="mb-3 drop-shadow-lg">
-                                <input class="border w-full p-3" name="email" type="text" placeholder="E-Mail" value={email}
+                                <input class="border bg-white w-full p-3 text-black-100" name="email" type="text" placeholder="E-Mail" value={email}
                                     onChange={(event) => setEmail(event.target.value)} />
                             </div>
                             {errorEmail && <span className="text-red-500">El campo correo es requerido</span>}
                             <div class="mb-6 drop-shadow-lg">
-                                <input class="border w-full p-3" name="password" type="password" placeholder="**************" value={password}
+                                <input class="border bg-white w-full p-3 text-black-100" name="password" type="password" placeholder="**************" value={password}
                                     onChange={(event) => setPassword(event.target.value)} />
                             </div>
                             {errorPassword && <span className="text-red-500">El campo contraseña es requerido</span>}
                             <div class="flex">
-                                <button class="bg-primary bg-green-100 w-full p-4 text-sm text-white uppercase font-bold tracking-wider">
+                                <button class=" bg-green-100 w-full p-4 text-sm text-white uppercase font-bold tracking-wider">
                                     Login
                                 </button>
                             </div>

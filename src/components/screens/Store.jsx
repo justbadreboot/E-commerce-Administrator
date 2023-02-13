@@ -32,7 +32,7 @@ const Store = () => {
   const handleEdit = () => {
     setEditing(false);
     setEditstore(false)
-      axios.put('https://landing-production-11fd.up.railway.app/api/landing/{id}?id=1', {
+      axios.put('https://landing-production-11fd.up.railway.app/api/admin/landing/{id}?id=1', {
         mission,
         vision,
         description,
@@ -79,7 +79,7 @@ const Store = () => {
                   <div>
                     {editing ? (
                       <textarea
-                        className="border w-full p-2 rounded-lg resize-none"
+                        className="border w-full bg-white p-2 rounded-lg resize-none"
                         rows="5"
                         value={mission}
                         onChange={e => setMission(e.target.value)}
@@ -92,7 +92,7 @@ const Store = () => {
                   <div>
                     {editing ? (
                       <textarea
-                        className="border w-full p-2 rounded-lg resize-none"
+                        className="border w-full bg-white p-2 rounded-lg resize-none"
                         rows="5"
                         value={vision}
                         onChange={e => setVision(e.target.value)}
@@ -141,7 +141,7 @@ const Store = () => {
                     
                   {editstore ? (
                       <textarea
-                        className="border w-full p-2 rounded-lg resize-none"
+                        className="border w-full bg-white p-2 rounded-lg resize-none"
                         rows="4"
                         value={description}
                         onChange={e => setDescription(e.target.value)}
@@ -155,7 +155,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong className="text-slate-700">Nombre:</strong> &nbsp; 
                     {editstore ? (
                       <input
-                        className="border p-2 rounded-lg resize-none"
+                        className="border p-2 bg-white rounded-lg resize-none"
                         value={name}
                         onChange={e => setName(e.target.value)}
                       />
@@ -166,7 +166,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Telefono:</strong> &nbsp;
                     {editstore ? (
                       <input
-                        className="border  p-2 rounded-lg resize-none"
+                        className="border  p-2 bg-white rounded-lg resize-none"
                         value={phone}
                         onChange={e => setPhone(e.target.value)}
                       />
@@ -177,7 +177,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Correo:</strong> &nbsp;
                     {editstore ? (
                       <input
-                        className="border  p-2 rounded-lg resize-none"
+                        className="border  p-2 bg-white rounded-lg resize-none"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                       />
@@ -188,7 +188,7 @@ const Store = () => {
                     <li className="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong className="text-slate-700">Dirección:</strong> &nbsp;
                     {editstore ? (
                       <input
-                        className="border  p-2 rounded-lg resize-none"
+                        className="border  p-2 bg-white rounded-lg resize-none"
                         value={address}
                         onChange={e => setAddress(e.target.value)}
                       />

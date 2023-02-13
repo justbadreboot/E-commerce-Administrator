@@ -90,7 +90,7 @@ export const CategoryData = () => {
         }
       };
       try {
-        const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/order/all');
+        const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/admin/order/all');
         dispatch(OrdenSuccess(response1.data));
       } catch (error) {
         dispatch(OrdenFailure(error.message));

@@ -101,7 +101,7 @@ const ModalCrearProducto = () => {
         }
     };
     return (
-        <div className='mx-auto my-10 z-20 '>
+        <div className='mx-auto my-10 z-50 '>
             <div className="inset-0 transition-opacity rounded-2xl">
                 <div className="absolute inset-0 bg-gray-500 opacity-75 "></div>
             </div>
@@ -122,7 +122,7 @@ const ModalCrearProducto = () => {
                             Nombre
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white  border-gray-400 p-2 rounded-md"
                             type="text"
                             name="name"
                             value={formData.name}
@@ -135,7 +135,7 @@ const ModalCrearProducto = () => {
                             Cantidad
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white appearance-none border-gray-400 p-2 rounded-md"
                             type="number"
                             name="stock"
                             value={formData.stock}
@@ -150,7 +150,7 @@ const ModalCrearProducto = () => {
                             PVP
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white appearance-none border-gray-400 p-2 rounded-md"
                             type="number"
                             name="pvp"
                             value={formData.pvp}
@@ -163,7 +163,7 @@ const ModalCrearProducto = () => {
                             PVD
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
                             type="number"
                             name="pvd"
                             value={formData.pvd}
@@ -176,7 +176,7 @@ const ModalCrearProducto = () => {
                     Foto
                 </label>
                 <input
-                    className="w-full border border-gray-400 p-2 rounded-md"
+                    className="w-full border bg-white border-gray-400 p-2 rounded-md"
                     type="file"
                     name="photo"
                     onChange={e=>setphoto(e.target.files[0])}
@@ -188,7 +188,7 @@ const ModalCrearProducto = () => {
                             Marca
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
                             type="text"
                             name="brand"
                             value={formData.brand}
@@ -201,7 +201,7 @@ const ModalCrearProducto = () => {
                             Peso
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
                             type="number"
                             name="weight"
                             value={formData.weight}
@@ -214,7 +214,7 @@ const ModalCrearProducto = () => {
                     Categoría
                 </label>
                 <select
-                    className="w-full border border-gray-400 bg-white p-2 rounded-md"
+                    className="w-full border bg-white border-gray-400 bg-white p-2 rounded-md"
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
@@ -233,7 +233,7 @@ const ModalCrearProducto = () => {
                             Expiración
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
                             type="date"
                             name="expiration"
                             value={formData.expiration}
@@ -246,7 +246,7 @@ const ModalCrearProducto = () => {
                             Tamaño
                         </label>
                         <input
-                            className="w-full border border-gray-400 p-2 rounded-md"
+                            className="w-full border bg-white border-gray-400 p-2 rounded-md"
                             type="number"
                             name="size"
                             value={formData.size}
@@ -259,7 +259,7 @@ const ModalCrearProducto = () => {
                     Descripción
                 </label>
                 <textarea
-                    className="w-full resize-none border border-gray-400 p-2 rounded-md"
+                    className="w-full resize-none border bg-white border-gray-400 p-2 rounded-md"
                     name="description"
                     rows="4"
                     value={formData.description}
