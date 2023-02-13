@@ -122,7 +122,7 @@ export const postBillApi=data=>async dispatch=>{
 }
 export const postPromotionApi=data=>async dispatch=>{
   try{
-    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/promotion`, data);
+    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/admin/promotion`, data);
     dispatch(promotionPostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',

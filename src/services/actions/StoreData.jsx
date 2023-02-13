@@ -15,7 +15,7 @@ import { promotionSuccess, promotionFailure } from "../../features/services/Prom
 export const StoreData = () => {
     return async (dispatch) => {
         try {
-          const response = await axios.get('https://landing-production-11fd.up.railway.app/api/landing');
+          const response = await axios.get('https://api-gateway-production-d841.up.railway.app/api/landing/');
           dispatch(fetchDataSuccess(response.data));
         } catch (error) {
           dispatch(fetchDataFailure(error.message));
@@ -25,7 +25,7 @@ export const StoreData = () => {
 export const CategoryData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://product-production-cf12.up.railway.app/api/category/all');
+        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/public/category/all');
         dispatch(CategorySuccess(response1.data));
       } catch (error) {
         dispatch(CategoryFailure(error.message));
@@ -36,7 +36,13 @@ export const CategoryData = () => {
   export const ProductsData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://product-production-cf12.up.railway.app/api/product/all');
+        const token=localStorage.getItem("token")
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        };
+        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/public/product/all');
         dispatch(productSuccess(response1.data));
       } catch (error) {
         dispatch(productFailure(error.message));
@@ -47,7 +53,7 @@ export const CategoryData = () => {
   export const ServiceData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/service');
+        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/service');
         dispatch(serviceSuccess(response1.data));
       } catch (error) {
         dispatch(serviceFailure(error.message));
@@ -58,7 +64,7 @@ export const CategoryData = () => {
   export const DoctorData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/doctor');
+        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/doctor');
         dispatch(DoctorSuccess(response1.data));
       } catch (error) {
         dispatch(DoctorFailure(error.message));
@@ -68,7 +74,7 @@ export const CategoryData = () => {
   export const EspecialidadData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/specialty');
+        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/specialty');
         dispatch(EspecialidadSuccess(response1.data));
       } catch (error) {
         dispatch(EspecialidadFailure(error.message));
@@ -77,6 +83,12 @@ export const CategoryData = () => {
   };
   export const OrdenesData=()=>{
     return async (dispatch) => {
+      const token=localStorage.getItem("token")
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
       try {
         const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/order/all');
         dispatch(OrdenSuccess(response1.data));
@@ -157,8 +169,8 @@ export const CategoryData = () => {
   export const PromotionData=()=>{
     return async (dispatch) => {
       try {
-        const response1 = await axios.get(`https://product-production-cf12.up.railway.app/api/promotion/all`);
-        dispatch( WeekSuccess(response1.data));
+        const response1 = await axios.get(`https://product-production-cf12.up.railway.app/api/public/promotion/all`);
+        dispatch( promotionSuccess(response1.data));
       } catch (error) {
         dispatch(promotionFailure(error.message));
       }

@@ -1,4 +1,10 @@
 import React, { useState } from 'react'
+import axios from 'axios';
+function decodeJWT(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    return JSON.parse(window.atob(base64));
+}
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -8,8 +14,8 @@ const Login = () => {
     const [errorPassword, setErrorPassword] = useState(false);
 
     const usuario1 = {
-        email: 'usuario1@correo.com',
-        password: 'contraseña1'
+        email: 'admin@gmail.com',
+        password: 'password'
     };
 
     const usuario2 = {
@@ -33,8 +39,33 @@ const Login = () => {
         if (errorEmail || errorPassword) {
             return;
         }
+        axios.post('https://authserve-production.up.railway.app/auth/login', { email, password })
+            .then(res => {
+                // Aquí puedes manejar la respuesta del servidor
+                console.log(res.data);
+                const decoded = decodeJWT(res.data.token)
+                console.log(decoded)
 
-        if (email === usuario1.email && password === usuario1.password) {
+                if (decoded.role === 'ADMIN') {
+                    localStorage.setItem('rol', 'Admin');
+                    localStorage.setItem('token', res.data.token);
+                    window.location.reload();
+
+                } else if (decoded.role === 'REPARTIDOR') {
+                    localStorage.setItem('rol', 'Repartidor');
+                    localStorage.setItem('token', res.data.token);
+
+                    window.location.reload();
+
+                } else {
+                    setMessage('Correo o contraseña incorrectos');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+  });
+
+        /*if (email === usuario1.email && password === usuario1.password) {
             localStorage.setItem('rol', 'Admin')
             // Recargar la página
             window.location.reload();
@@ -44,7 +75,7 @@ const Login = () => {
             window.location.reload();
         } else {
             setMessage('Correo o contraseña incorrectos');
-        }
+        }*/
 
     };
 

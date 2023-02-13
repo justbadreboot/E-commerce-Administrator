@@ -12,6 +12,7 @@ const Promotions = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
   const products1=useSelector(state=>state.promotions.data)
+  console.log(products1)
 
 
   useEffect(() => {

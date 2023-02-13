@@ -89,7 +89,7 @@ export const deleteProductApi = id => async dispatch=>{
   }
   export const deletePromotionApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/promotion/${id}`);
+      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/promotion/${id}`);
       dispatch(promotionDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
