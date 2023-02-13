@@ -57,6 +57,7 @@ const ModalCrearProducto = () => {
             ...formData,
             [event.target.name]: event.target.value,
         });
+        setCategoria(category.find((objeto)=>objeto.name===formData.category))
     };
 
     const validateForm = () => {
@@ -74,7 +75,6 @@ const ModalCrearProducto = () => {
         event.preventDefault();
         if (validateForm()) {
             if(foto!=null){
-                setCategoria(category.find((objeto)=>objeto.name===formData.category))
                 console.log(categoria)
                 const result= await uploadProductFile(foto);
                 const data = {

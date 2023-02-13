@@ -4,6 +4,7 @@ import ElementsRepartidor from '../Tables/ElementsRepartidor'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { postBillApi } from '../../services/actions/StorePost'
+import { reduceProductApi } from '../../services/actions/StorePost'
 
 const DetallesOrd = () => {
     const dispatch = useDispatch();
@@ -55,7 +56,7 @@ const DetallesOrd = () => {
         deliveryState.id=3
         orderState.id=2
         paymentState.id=1
-        axios.put(`https://order-production-bfbc.up.railway.app/api/order/${products.id}`, {
+        axios.put(`https://order-production-bfbc.up.railway.app/api/private/order/${products.id}`, {
             id,
             date,
             total,
@@ -96,11 +97,12 @@ const DetallesOrd = () => {
                 total:total
               }
               dispatch(postBillApi(data))
+              dispatch(reduceProductApi(data.orderDetails))
 
               
     }
 
-    axios.put(`https://order-production-bfbc.up.railway.app/api/order/${products.id}`, {
+    axios.put(`https://order-production-bfbc.up.railway.app/api/private/order/${products.id}`, {
         id,
         date,
         total,

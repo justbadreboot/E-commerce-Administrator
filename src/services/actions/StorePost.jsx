@@ -138,3 +138,11 @@ export const postPromotionApi=data=>async dispatch=>{
 });
 }
 }
+export const reduceProductApi = data => async dispatch => {
+  try {
+    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/admin/product/reduce/stock`, data);
+    console.log(response.data)
+  } catch (error) {
+    console.log(error.data)
+  }
+}

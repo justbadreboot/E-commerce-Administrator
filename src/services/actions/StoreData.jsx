@@ -100,7 +100,7 @@ export const CategoryData = () => {
   export const OrdenesRepartidorData=()=>{
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/order/delivery/1');
+        const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/repartidor/order/delivery/1');
         dispatch(OrdenRepSuccess(response1.data));
       } catch (error) {
         dispatch(OrdenRepFailure(error.message));

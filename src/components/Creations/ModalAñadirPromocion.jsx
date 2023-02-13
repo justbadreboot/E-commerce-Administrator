@@ -12,7 +12,42 @@ import { postPromotionApi } from '../../services/actions/StorePost';
 const ModalAñadirPromocion = () => {
     const optionPromotions = [{id:1,name:"2x1"}, {id:2,name:"3x2"}];
     const dispatch = useDispatch();
-    const [isOpen, setIsOpen] = useState(false);
+
+    useEffect(() => {
+        dispatch(ProductsData());
+      }, [dispatch]);
+  
+      const products1=useSelector(state=>state.products.data)
+      const productDes = products1.filter(product => product.porcentajeDescuento !== 0)
+      const productDes1 = productDes.filter(product => product.porcentajeDescuento ===null)
+      const prod=productDes1.filter(product => product.promotion !==0)
+      const prod1=prod.filter(product => product.promotion ===null)
+      const [producto, setProducto]=useState({
+        id: 0,
+        name: "",
+        description: "",
+        stock: 0,
+        pvp: 0,
+        pvd: 0,
+        image: "",
+        brand: "",
+        weight: 0,
+        size: 0,
+        porcentajeDescuento: 0,
+        expiration: "",
+        rating: null,
+        promotion: 0,
+        category: {
+          id: 0,
+          name: "",
+          description: "",
+          image: ""
+        }
+      })
+
+
+
+      const [isOpen, setIsOpen] = useState(false);
     const [error, setError] = useState("");
     const [foto,setphoto]=useState(null);
     const [promocion,setPromocion]=useState({
@@ -26,6 +61,7 @@ const ModalAñadirPromocion = () => {
         endDate: "",
         startDate: "",
         promotionTypes:"",
+        product:""
     });
 
     const [errors, setErrors] = useState({
@@ -41,6 +77,8 @@ const ModalAñadirPromocion = () => {
             ...formData,
             [event.target.name]: event.target.value,
         });
+        setPromocion(optionPromotions.find((objeto)=>objeto.name===formData.promotionTypes))
+        setProducto(prod1.find((objeto)=>objeto.id=== parseInt(formData.product)))
     };
 
     const validateForm = () => {
@@ -51,7 +89,9 @@ const ModalAñadirPromocion = () => {
             }
         });
         setErrors(newErrors);
+
         return Object.values(newErrors).every(error => error === "");
+
     };
 
     const handleSubmit = async event => {
@@ -59,8 +99,11 @@ const ModalAñadirPromocion = () => {
         if (validateForm()) {
             if(foto!=null){
                 console.log(formData.promotionTypes)
-                setPromocion(optionPromotions.find((objeto)=>objeto.name===formData.promotionTypes))
+
+
                 console.log(promocion)
+                console.log(producto)
+
                 const result= await uploadPromotionFile(foto);
                 const data = {
                     name: formData.name,
@@ -69,11 +112,11 @@ const ModalAñadirPromocion = () => {
                     startDate: formData.startDate,
                     endDate: formData.endDate,
                     promotionTypes: promocion,
-
+                    product:producto
                 }
                 console.log(data)
-                dispatch(postPromotionApi(data))
-                dispatch(PromotionData())
+                /*dispatch(postPromotionApi(data))
+                dispatch(PromotionData())*/
             }
             else{
                 setError("Debe tener una foto")
@@ -134,6 +177,23 @@ const ModalAñadirPromocion = () => {
                     <option value="" disabled>Seleccione una categoría</option>
                     {optionPromotions.map((item) => (
                         <option key={item.id} value={item.name}>
+                            {item.name}
+                        </option>
+                    ))}
+                </select>
+                <div className="text-red-500">{errors.promotionTypes}</div>
+                <label className="block text-gray-700 font-medium mb-2 mt-4">
+                    Producto
+                </label>
+                <select
+                    className="w-full border border-gray-400 bg-white p-2 rounded-md"
+                    name="product"
+                    value={formData.product}
+                    onChange={handleChange}
+                >
+                    <option value="" disabled>Seleccione una categoría</option>
+                    {prod1.map((item) => (
+                        <option key={item.id} value={item.id}>
                             {item.name}
                         </option>
                     ))}
