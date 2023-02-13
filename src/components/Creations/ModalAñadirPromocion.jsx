@@ -72,30 +72,8 @@ const ModalAñadirPromocion = () => {
 
                 }
                 console.log(data)
-                try {
-                    dispatch(postPromotionApi(data))
-                    dispatch(PromotionData())
-                    /*setFormData({
-                        name: "",
-                        description: "",
-                        stock: "",
-                        pvd: "",
-                        pvp: "",
-                        brand: "",
-                        weight: "",
-                        category: "",
-                        expiration:"",
-                        size:""
-                    })
-                    setphoto(null)*/
-                }
-                catch (error) {
-                    Swal.fire({
-                        title: 'Error!',
-                        icon: 'error',
-                        text: "Porfavor, intenta de nuevo en unos momentos"
-                    });
-                }
+                dispatch(postPromotionApi(data))
+                dispatch(PromotionData())
             }
             else{
                 setError("Debe tener una foto")

@@ -9,7 +9,8 @@ import Loader from '../../Loader'
 
 const FacturaTable = () => {
   const dispatch = useDispatch();
-  const products1=useSelector(state=>state.factura.data)
+  let products1=useSelector(state=>state.factura.data)
+
   useEffect(() => {
     dispatch(FacturaData());
     setFilteredProducts(products1);
@@ -28,7 +29,6 @@ const FacturaTable = () => {
       setIsLoading(true)
     }
   }, [products1.length != 0])
-  console.log(products1)
     const products = products1
     
       const [searchValue, setSearchValue] = useState('')
@@ -54,7 +54,6 @@ const FacturaTable = () => {
           if (selectedOption !== "Todos") {
             productCopia = productCopia.filter(product => product.fecha.includes(selectedOption))
           }
-          console.log(productCopia)
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
@@ -72,7 +71,6 @@ const FacturaTable = () => {
           else {
             productCopia = products.filter(product => product.fecha.includes(selectedOption))
           }
-          console.log(productCopia)
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
@@ -156,8 +154,6 @@ const FacturaTable = () => {
         }
         if (selectedButton === "Numero") {
           setSearchValue(e.target.value)
-          console.log(searchValue.length)
-          console.log(searchValue)
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {
@@ -167,8 +163,6 @@ const FacturaTable = () => {
         }
         else {
           setSearchValue(e.target.value)
-          console.log(searchValue.length)
-          console.log(searchValue)
           if (searchValue.length === 1 || searchValue.length === 0) {
             setFilteredProducts(productosCopia)
           } else {

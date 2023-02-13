@@ -60,8 +60,8 @@ const Store = () => {
           <strong>Información de la tienda</strong>
         </div>
         <div className="w-full p-6 mx-auto flex bg-gray-50 z-0">
-          <div className="flex flex-wrap -mx-3">
-            <div className="w-full max-w-full px-3 xl:w-4/12 p-2 drop-shadow-lg">
+          <div className="flex  mx-auto">
+            <div className="w-full max-w-full px-3 xl:w-6/12 p-2 drop-shadow-lg">
               <div className="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div className="flex flex-wrap -mx-0 pt-4 pb-1">
                   <div className="flex items-center w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-none">
@@ -113,7 +113,7 @@ const Store = () => {
               </div>
             </div>
 
-            <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12 p-2 drop-shadow-lg ">
+            <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-6/12 p-2 drop-shadow-lg ">
               <div className="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div className="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
                   <div className="flex flex-wrap -mx-3">
@@ -212,23 +212,7 @@ const Store = () => {
 
               </div>
             </div>
-            <div className="w-full max-w-full px-3 lg-max:mt-6 xl:w-4/12 p-2 drop-shadow-lg ">
-              <div className=" min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
-                <div className="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
-                  <h6 className="mb-0 text-slate-700"><strong>Proveedores</strong></h6>
-                </div>
-                <div className=" p-4">
-                  <ul className="  pl-0 mb-0 rounded-lg">
-                    <Empleados nombre="medictin" venta="Medicinas" foto="./logo192.png" />
-                    <Empleados nombre="Guantesino" venta="Guantes" foto="./logo192.png" />
-                    <Empleados nombre="Mascaril" venta="Mascarillas" foto="./logo192.png" />
-                    <Empleados nombre="Jeringuin" venta="Jeringas" foto="./logo192.png" />
-                    <Empleados nombre="Suplentor" venta="Batas" foto="./logo192.png" />
-                    <Empleados nombre="Suplentor" venta="Batas" foto="./logo192.png" />
-                  </ul>
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </div>
