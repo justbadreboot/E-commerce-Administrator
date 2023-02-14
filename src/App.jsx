@@ -9,7 +9,7 @@ function App() {
   const rol = localStorage.getItem('rol');
 
   return (
-    <div className='bg-gray-50'>
+    <div className='bg-gray-50 h-screen w-screen'>
       {rol=="Admin" ||rol=="Repartidor" ? (
         <>
           {localStorage.getItem('rol') === "Admin" ? (

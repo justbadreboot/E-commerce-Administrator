@@ -21,14 +21,15 @@ const ElementsProducts = (props) => {
     console.log(datosProductos)*/
     let colorClass = '';
     const categorias=props.categorias
+    console.log(producto.expiracion)
     switch (producto.expiracion) {
-        case 'Ingerible':
+        case 'Vigente':
             colorClass = 'from-success-100 to-success-60 broder rounded-lg p-1';
             break;
         case 'Expirado':
             colorClass = 'from-error-100 to-error-80 broder rounded-lg p-1';
             break;
-        case 'Por Expirar':
+        case 'Por expirar':
             colorClass = 'from-warning-100 to-warning-80 broder rounded-lg p-1';
             break;
         default:

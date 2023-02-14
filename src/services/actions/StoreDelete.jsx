@@ -11,7 +11,7 @@ import { promotionDeleteSuccess, promotionDeleteFailure } from "../../features/s
 
 export const deleteProductApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/product/id?id=${id}`);
+      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/product/id?id=${id}`);
       dispatch(productDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',

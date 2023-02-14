@@ -33,7 +33,7 @@ export const CategoryData = () => {
     return async (dispatch) => {
       
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/public/category/all');
+        const response1 = await axios.get('https://product-production-cf12.up.railway.app/api/public/category/all');
         dispatch(CategorySuccess(response1.data));
       } catch (error) {
         dispatch(CategoryFailure(error.message));
@@ -46,11 +46,12 @@ export const CategoryData = () => {
       try {
         const token=localStorage.getItem("token")
         const api = axios.create({
-          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api'/*'https://product-production-cf12.up.railway.app/api'*/,
           /*headers: {
-            Authorization: `Bearer ${token}`,
+            'Authorization': `Bearer ${token}`,
           },*/
         });
+        console.log(api)
         const response = await api.get('/public/product/all');
         dispatch(productSuccess(response.data));
       } catch (error) {

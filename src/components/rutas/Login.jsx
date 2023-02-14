@@ -49,12 +49,13 @@ const Login = () => {
                 if (decoded.role === 'ADMIN') {
                     localStorage.setItem('rol', 'Admin');
                     localStorage.setItem('token', res.data.token);
+                    console.log(res.data.token)
                     window.location.reload();
 
                 } else if (decoded.role === 'REPARTIDOR') {
                     localStorage.setItem('rol', 'Repartidor');
                     localStorage.setItem('token', res.data.token);
-
+                    console.log(res.data.token)
                     window.location.reload();
 
                 } else {
