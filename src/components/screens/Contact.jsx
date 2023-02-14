@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Swal from "sweetalert2";
 import emailjs from "@emailjs/browser";
+import Rectangulo from '../../app/Rectangulo';
 
 
 const Contact = () => {
@@ -47,6 +48,7 @@ const Contact = () => {
 
     return (
         <div className='lg:ml-52 my-auto pt-5 lg:w-4/5 w-11/12 mx-10 bg-gray-50 h-screen'>
+            <Rectangulo/>
             <div className="flex flex-col justify-center items-center">
                 <h1 className="text-3xl xl:text-4xl font-semibold leading-7 xl:leading-5 text-gray-800">Contáctanos</h1>
             </div>

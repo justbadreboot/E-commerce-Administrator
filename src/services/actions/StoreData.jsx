@@ -47,7 +47,7 @@ export const CategoryData = () => {
         const token=localStorage.getItem("token")
         const api = axios.create({
           baseURL: 'https://api-gateway-production-d841.up.railway.app/api'/*'https://product-production-cf12.up.railway.app/api'*/,
-          /*headers: {
+         /* headers: {
             'Authorization': `Bearer ${token}`,
           },*/
         });

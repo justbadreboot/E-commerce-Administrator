@@ -22,10 +22,18 @@ const Modal = (props) => {
     const [pvp, setPrice1] = useState(props.producto.pvp);
     const [pvd, setPrice2] = useState(props.producto.pvd);
     const [porcentajeDescuento, setPorcentajeDescuento]=useState(props.producto.porcentajeDescuento)
-    if(porcentajeDescuento===null){
-        setPorcentajeDescuento(0)
-    }
-    
+    const [porcentajeDescuento1, setPorcentajeDescuento1]=useState(props.producto.porcentajeDescuento)
+    console.log(porcentajeDescuento)
+
+    const handleDiscount = (e) => {
+        setPorcentajeDescuento1(e.target.value);
+        if (e.target.value === "0") {
+          setPorcentajeDescuento("");
+        } else {
+          setPorcentajeDescuento(e.target.value);
+        }
+        console.log(porcentajeDescuento);
+      }
 
     const dispatch = useDispatch();
     const handleEdit = () => {
@@ -51,7 +59,7 @@ const Modal = (props) => {
 
     const handleSave =async event => {
         setEditing(false);
-        console.log(category)
+setPorcentajeDescuento("")
         let enviada=categorias.filter(product => product.name.includes(category))
         let categoriaTemp=enviada[0]
         /*const [data,setData]=useState({
@@ -72,7 +80,6 @@ const Modal = (props) => {
             const result= await uploadProductFile(image);
             setImage(`${result}`)
         }
-        console.log(category)
         axios.put(`https://product-production-cf12.up.railway.app/api/admin/product/${id}`, {
             description,
             stock,
@@ -88,7 +95,7 @@ const Modal = (props) => {
             porcentajeDescuento
           })
           .then(res => {
-            console.log(res);
+            console.log(res.data);
           })
           .catch(err => {
             console.error(err);
@@ -198,12 +205,13 @@ const Modal = (props) => {
                                         <input
                                             type="text"
                                             className={`form-input w-1/3 bg-white ${borderclass}`}
-                                            value={porcentajeDescuento}
+                                            value={porcentajeDescuento1}
                                             disabled={!editing}
-                                            onChange={(e) => setPorcentajeDescuento(e.target.value)}
+                                            onChange={handleDiscount}
                                         />
                                         %
                                     </div>
+
                                 </div>
                                 <div className="w-9/12 mx-auto">
 
