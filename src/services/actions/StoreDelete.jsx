@@ -51,7 +51,7 @@ export const deleteProductApi = id => async dispatch=>{
 
   export const deleteCategoryApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/category/${id}`);
+      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/category/${id}`);
       dispatch(CategoryDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
