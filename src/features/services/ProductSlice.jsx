@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     data: [
-    ]
+    ],
+    error:null,
   }
 
   const handleDelete = (id, data) => {

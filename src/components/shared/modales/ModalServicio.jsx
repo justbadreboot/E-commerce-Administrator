@@ -42,16 +42,27 @@ const ModalServicio = (props) => {
             const result= await uploadServicesFile(imagen);
             image=result
         }
+        else{
+            image=imagen
+        }
         setImagen(image)
-        axios.put(`https://service-production-bb52.up.railway.app/api/admin/specialty/${specialty.id}/service`, {
+
+        const token = localStorage.getItem('token');
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        api.put(`/admin/specialty/${specialty.id}/service`, {
             description,
             name,
             price,
             image,
             id,
-          })
-          .then(res => {
-            console.log(res);
+        })
+        .then(res => {
+            console.log(res.data);
           })
           .catch(err => {
             console.error(err);

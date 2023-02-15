@@ -11,98 +11,140 @@ import { promotionDeleteSuccess, promotionDeleteFailure } from "../../features/s
 
 export const deleteProductApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/product/id?id=${id}`);
+      const token = localStorage.getItem('token');
+      console.log(token)
+      const api = axios.create({
+        baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response = await api.delete(`/admin/product/id?id=${id}`);
       dispatch(productDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
         icon: 'success',
         text: 'Producto eliminado correctamente'
     });
-    } catch (error) {
-      dispatch(productDeleteFailure(id));
-      Swal.fire({
-        title: 'Error!',
-        icon: 'error',
-        text: "Porfavor, intenta de nuevo en unos momentos"
-    });
+  } catch (error) {
+    dispatch(productDeleteFailure(id));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
     }
   
   }
 
   export const deleteServicesApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://service-production-bb52.up.railway.app/api/admin/service/${id}`);
+      const token = localStorage.getItem('token');
+      console.log(token)
+      const api = axios.create({
+        baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response = await api.delete(`/admin/service/${id}`);
       dispatch(serviceDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
         icon: 'success',
         text: 'Servicio eliminado correctamente'
     });
-    } catch (error) {
-      dispatch(serviceDeleteFailure(error.message));
-      Swal.fire({
-        title: 'Error!',
-        icon: 'error',
-        text: "Porfavor, intenta de nuevo en unos momentos"
-    });
+  } catch (error) {
+    dispatch(serviceDeleteFailure(error.message));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
     }
   
   }
 
   export const deleteCategoryApi = id => async dispatch=>{
-    try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/category/${id}`);
-      dispatch(CategoryDeleteSuccess(id));
-      Swal.fire({
-        title: 'Excelente!',
-        icon: 'success',
-        text: 'Servicio eliminado correctamente'
+try{
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
-    } catch (error) {
-      dispatch(CategoryDeleteFailure(error.message));
-      Swal.fire({
-        title: 'Error!',
-        icon: 'error',
-        text: "Porfavor, intenta de nuevo en unos momentos"
-    });
-    }
-  
+    const response = await api.delete(`/admin/category/${id}`);
+    dispatch(CategoryDeleteSuccess(id));
+    Swal.fire({
+      title: 'Excelente!',
+      icon: 'success',
+      text: 'Categoría eliminado correctamente'
+  });
+} catch (error) {
+  dispatch(CategoryDeleteFailure(error.message));
+  Swal.fire({
+    title: 'Error!',
+    icon: 'error',
+    text: "Porfavor, intenta de nuevo en unos momentos"
+});
   }
+}
+  
   export const deleteDoctorApi = id => async dispatch=>{
+
     try {
-      const response = await axios.delete(`https://service-production-bb52.up.railway.app/api/doctor/${id}`);
+      const token = localStorage.getItem('token');
+      console.log(token)
+      const api = axios.create({
+        baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response = await api.delete(`/admin/doctor/${id}`);
       dispatch(DoctorDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
         icon: 'success',
-        text: 'Servicio eliminado correctamente'
+        text: 'Doctor eliminado correctamente'
     });
-    } catch (error) {
-      dispatch(DoctorDeleteFailure(error.message));
-      Swal.fire({
-        title: 'Error!',
-        icon: 'error',
-        text: "Porfavor, intenta de nuevo en unos momentos"
-    });
+  } catch (error) {
+    dispatch(DoctorDeleteFailure(error.message));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
     }
   
   }
   export const deletePromotionApi = id => async dispatch=>{
+
     try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/promotion/${id}`);
+      const token = localStorage.getItem('token');
+      console.log(token)
+      const api = axios.create({
+        baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response = await api.delete(`/admin/promotion/${id}`);
       dispatch(promotionDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
         icon: 'success',
-        text: 'Servicio eliminado correctamente'
+        text: 'Promoción eliminada correctamente'
     });
-    } catch (error) {
-      dispatch(promotionDeleteFailure(error.message));
-      Swal.fire({
-        title: 'Error!',
-        icon: 'error',
-        text: "Porfavor, intenta de nuevo en unos momentos"
-    });
+  } catch (error) {
+    dispatch(promotionDeleteFailure(error.message));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
     }
   
   }

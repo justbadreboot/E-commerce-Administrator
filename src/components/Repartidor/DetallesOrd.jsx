@@ -10,6 +10,8 @@ const DetallesOrd = () => {
     const dispatch = useDispatch();
 
     const { id } = useParams();
+    const token = localStorage.getItem('token');
+
 
     const products = (useSelector(state => state.ordenRep.data)).find(object => object.id === parseInt(id))
     let client = (useSelector(state => state.direccionRep.clients)).find(object => object.id === products.idClient)
@@ -56,7 +58,13 @@ const DetallesOrd = () => {
         deliveryState.id=3
         orderState.id=2
         paymentState.id=1
-        axios.put(`https://order-production-bfbc.up.railway.app/api/private/order/${products.id}`, {
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        api.put(`/private/order/${products.id}`, {
             id,
             date,
             total,
@@ -71,13 +79,13 @@ const DetallesOrd = () => {
             orderState,
             paymentState,
             orderDetails
-              })
-              .then(res => {
-                console.log(res);
-              })
-              .catch(err => {
-                console.error(err);
-              });
+        })
+        .then(res => {
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.error(err);
+          });
               const direccion=direction.state+", "+direction.sector+","+direction.mainStreet+", "+direction.secondStreet+", "+direction.houseNumber
               const data={
                 address:direccion,
@@ -102,7 +110,13 @@ const DetallesOrd = () => {
               
     }
 
-    axios.put(`https://order-production-bfbc.up.railway.app/api/private/order/${products.id}`, {
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    api.put(`/private/order/${products.id}`, {
         id,
         date,
         total,
@@ -117,13 +131,13 @@ const DetallesOrd = () => {
         orderState,
         paymentState,
         orderDetails
-          })
-          .then(res => {
-            console.log(res);
-          })
-          .catch(err => {
-            console.error(err);
-          });
+    })
+    .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
 
 
 

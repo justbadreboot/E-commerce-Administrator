@@ -28,6 +28,9 @@ const ModalAñadirEspecialidad = () => {
             if (!formData[key]) {
                 newErrors = { ...newErrors, [key]: "Este campo es requerido" };
             }
+            else{
+                newErrors={ ...newErrors,[key]:""}
+            }
         });
         setErrors(newErrors);
         return Object.values(newErrors).every(error => error === "");

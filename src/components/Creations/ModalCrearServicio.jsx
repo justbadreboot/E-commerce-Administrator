@@ -83,6 +83,7 @@ const ModalCrearServicio = () => {
                     price: "",
                     speciality:""
                 })
+                setFotoError("")
                 // Enviar datos del formulario a la API
             }
         }
