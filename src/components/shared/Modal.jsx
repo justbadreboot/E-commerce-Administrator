@@ -81,7 +81,14 @@ let image=``
             image=result
         }
         setImage(image)
-        axios.put(`https://product-production-cf12.up.railway.app/api/admin/product/${id}`, {
+        const token = localStorage.getItem('token');
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        api.put(`/admin/product/${id}`, {
             description,
             stock,
             pvd,
@@ -92,15 +99,16 @@ let image=``
             category,
             expiration,
             size,
-            imagen,
+            image,
             porcentajeDescuento
-          })
-          .then(res => {
+        })
+        .then(res => {
             console.log(res.data);
           })
           .catch(err => {
             console.error(err);
           });
+
     };
     return (
         <div>
