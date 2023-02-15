@@ -52,7 +52,14 @@ const ModalDoctors = (props) => {
         }
         setImage(image)
 
-        axios.put(`https://service-production-bb52.up.railway.app/api/admin/specialty/${props.producto.specialty.id}/doctor`, {
+        const token = localStorage.getItem('token');
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        api.put(`/admin/specialty/${props.producto.specialty.id}/doctor`, {
             image,
             id,
             name,
@@ -61,9 +68,9 @@ const ModalDoctors = (props) => {
             document,
             lastName,
             phone
-          })
-          .then(res => {
-            console.log(res);
+        })
+        .then(res => {
+            console.log(res.data);
           })
           .catch(err => {
             console.error(err);
