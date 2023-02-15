@@ -50,6 +50,9 @@ const ModalDoctors = (props) => {
             image=result
 
         }
+        else{
+            image=imageTemp
+        }
         setImage(image)
 
         const token = localStorage.getItem('token');

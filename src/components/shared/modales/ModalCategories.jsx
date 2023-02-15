@@ -42,8 +42,10 @@ const ModalCategories = (props) => {
             const result= await uploadProductFile(imagen);
             image=result
         }
+        else{
+            image=imagen
+        }
         setImage(image)
-
         const token = localStorage.getItem('token');
         const api = axios.create({
           baseURL: 'https://api-gateway-production-d841.up.railway.app/api',

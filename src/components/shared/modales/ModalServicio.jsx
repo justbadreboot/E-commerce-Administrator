@@ -42,6 +42,9 @@ const ModalServicio = (props) => {
             const result= await uploadServicesFile(imagen);
             image=result
         }
+        else{
+            image=imagen
+        }
         setImagen(image)
 
         const token = localStorage.getItem('token');
