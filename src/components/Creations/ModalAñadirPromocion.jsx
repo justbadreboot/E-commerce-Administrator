@@ -92,6 +92,9 @@ const ModalAñadirPromocion = () => {
             if (!formData[key]) {
                 newErrors = { ...newErrors, [key]: "Este campo es requerido" };
             }
+            else{
+                newErrors={ ...newErrors,[key]:""}
+            }
         });
         setErrors(newErrors);
 
@@ -122,6 +125,7 @@ const ModalAñadirPromocion = () => {
                 console.log(data)
                 dispatch(postPromotionApi(data))
                 dispatch(PromotionData())
+                setError("")
             }
             else{
                 setError("Debe tener una foto")

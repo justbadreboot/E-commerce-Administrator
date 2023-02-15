@@ -41,6 +41,9 @@ const ModalAñadirCategoria = () => {
             if (!formData[key]) {
                 newErrors = { ...newErrors, [key]: "Este campo es requerido" };
             }
+            else{
+                newErrors={ ...newErrors,[key]:""}
+            }
         });
         setErrors(newErrors);
         return Object.values(newErrors).every(error => error === "");
@@ -60,6 +63,7 @@ const ModalAñadirCategoria = () => {
                 try {
                     console.log(data)
                     dispatch(postDataToApi(data))
+                    setError("")
                     /*setFormData({
                         name:"",
                         description:""

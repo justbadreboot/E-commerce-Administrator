@@ -31,10 +31,10 @@ const ModalAñadirDoctor = () => {
         lastName:"",
         phone: "",
         email: "",
-        image: "",
         address: "",
         speciality: ""
     });
+    const [errorf,setErrorf]=useState("")
 
     const handleChange = event => {
         setFormData({
@@ -48,6 +48,9 @@ const ModalAñadirDoctor = () => {
         Object.keys(formData).forEach(key => {
             if (!formData[key]) {
                 newErrors = { ...newErrors, [key]: "Este campo es requerido" };
+            }
+            else{
+                newErrors={ ...newErrors,[key]:""}
             }
         });
         setErrors(newErrors);
@@ -75,6 +78,7 @@ const ModalAñadirDoctor = () => {
                     document: formData.document,
                 }
                 dispatch(postDoctorApi(formData.speciality,data))
+                setErrorf("")
                 // Enviar datos del formulario a la API
             }
         }
@@ -162,7 +166,7 @@ const ModalAñadirDoctor = () => {
                     name="image"
                     onChange={e=>setPhoto(e.target.files[0])}
                 />
-                <div className="text-red-500">{errors.image}
+                <div className="text-red-500">{errorf}
                 <div className=''>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
                             Dirección:
