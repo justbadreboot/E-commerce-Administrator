@@ -53,7 +53,7 @@ const ModalAñadirEspecialidad = () => {
 
     };
     return (
-        <div className='mx-auto my-20 z-50 '>
+        <div className='mx-auto w-1/4 my-20 z-50 '>
             <div className="inset-0 transition-opacity rounded-2xl">
                 <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>

@@ -14,18 +14,26 @@ import { promotionSuccess, promotionFailure } from "../../features/services/Prom
 
 export const StoreData = () => {
     return async (dispatch) => {
-        try {
-          const response = await axios.get('https://api-gateway-production-d841.up.railway.app/api/landing/');
-          dispatch(fetchDataSuccess(response.data));
-        } catch (error) {
-          dispatch(fetchDataFailure(error.message));
-        }
+      try {
+        const token=localStorage.getItem("token")
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+          /*headers: {
+            Authorization: `Bearer ${token}`,
+          },*/
+        });
+        const response = await api.get('/landing');
+        dispatch(fetchDataSuccess(response.data));
+      } catch (error) {
+        dispatch(fetchDataFailure(error.message));
+      }
       };
 }
 export const CategoryData = () => {
     return async (dispatch) => {
+      
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/public/category/all');
+        const response1 = await axios.get('https://product-production-cf12.up.railway.app/api/public/category/all');
         dispatch(CategorySuccess(response1.data));
       } catch (error) {
         dispatch(CategoryFailure(error.message));
@@ -37,13 +45,15 @@ export const CategoryData = () => {
     return async (dispatch) => {
       try {
         const token=localStorage.getItem("token")
-        const config = {
+        const api = axios.create({
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api'/*'https://product-production-cf12.up.railway.app/api'*/,
           headers: {
-            Authorization: `Bearer ${token}`
-          }
-        };
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/public/product/all');
-        dispatch(productSuccess(response1.data));
+            'Authorization': `Bearer ${token}`,
+          },
+        });
+        console.log(api)
+        const response = await api.get('/public/product/all');
+        dispatch(productSuccess(response.data));
       } catch (error) {
         dispatch(productFailure(error.message));
       }
@@ -53,7 +63,7 @@ export const CategoryData = () => {
   export const ServiceData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/service');
+        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/public/service');
         dispatch(serviceSuccess(response1.data));
       } catch (error) {
         dispatch(serviceFailure(error.message));
@@ -64,7 +74,7 @@ export const CategoryData = () => {
   export const DoctorData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/doctor');
+        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/public/doctor');
         dispatch(DoctorSuccess(response1.data));
       } catch (error) {
         dispatch(DoctorFailure(error.message));
@@ -74,7 +84,7 @@ export const CategoryData = () => {
   export const EspecialidadData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/specialty');
+        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/public/specialty');
         dispatch(EspecialidadSuccess(response1.data));
       } catch (error) {
         dispatch(EspecialidadFailure(error.message));

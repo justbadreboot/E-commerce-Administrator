@@ -44,7 +44,7 @@ const Products = () => {
     } else if (expiration <= twoWeeksLater && expiration>today) {
       expiracion = "Por expirar";
     } else if (expiration >= twoWeeksLater) {
-      expiracion = "Ingerible";
+      expiracion = "Vigente";
     } else {
       expiracion = "";
     }
@@ -52,7 +52,6 @@ const Products = () => {
     return { ...object, expiracion };
   });
 
-console.log(producto2)
 
   const category=useSelector(state=>state.category.data)
   const products = producto2
@@ -69,7 +68,7 @@ console.log(producto2)
   const options=category.map(categorie=>(categorie.name));
   options.unshift("Todos");
   const [selectedOption, setSelectedOption] = useState("Todos");
-  const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
+  const optionsstatus = ["Todos", "Vigente", "Por expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
 
   const handleChangestatus = (event) => {
@@ -87,7 +86,6 @@ console.log(producto2)
       if (selectedOption !== "Todos") {
         productCopia = productCopia.filter(product => product.category.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -105,7 +103,6 @@ console.log(producto2)
       else {
         productCopia = products.filter(product => product.category.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -154,8 +151,6 @@ console.log(producto2)
       }
       else {
         const elementos = event.target.value;
-        console.log(elementos)
-        console.log(productCopia)
         setFilteredProducts(productCopia.filter(product => product.category.name.includes(elementos)))
       }
     }
@@ -191,8 +186,6 @@ console.log(producto2)
     }
     if (selectedButton === "Nombre") {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -202,8 +195,6 @@ console.log(producto2)
     }
     else {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {

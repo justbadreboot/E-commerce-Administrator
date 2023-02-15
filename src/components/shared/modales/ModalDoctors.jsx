@@ -6,8 +6,8 @@ const ModalDoctors = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.name);
-    const [imageTemp, setImage] = useState(props.producto.imageTemp);
-    const [image, setImagen]=useState(null)
+    const [imageTemp, setImage] = useState(props.producto.image);
+    const [imagen, setImagen]=useState(null)
     const [document, setDocument] = useState(props.producto.document);
     const [id, setId]=useState(props.producto.id)
     const [lastName,setLastName]=useState(props.producto.lastName)
@@ -44,14 +44,15 @@ const ModalDoctors = (props) => {
     const handleSave =async event => {
         setEditing(false);
         console.log(foto)
+        let image=''
         if(foto===true){
             const result= await uploadDoctorFile(imageTemp);
-            console.log(result)
-            setImagen(`${result}`)
-            console.log(image)
-        }
+            image=result
 
-        axios.put(`https://service-production-bb52.up.railway.app/api/specialty/${props.producto.specialty.id}/doctor`, {
+        }
+        setImage(image)
+
+        axios.put(`https://service-production-bb52.up.railway.app/api/admin/specialty/${props.producto.specialty.id}/doctor`, {
             image,
             id,
             name,
@@ -79,7 +80,7 @@ const ModalDoctors = (props) => {
                     <div className="inset-0 transition-opacity">
                         <div className="absolute inset-0 bg-gray-500 opacity-75 rounded-lg"></div>
                     </div>
-                    <div className='mx-auto my-auto'>
+                    <div className='mx-auto w-2/3 my-auto'>
                         <div className="relative pb-5 bg-white  rounded-lg pt-5">
                             <button className="absolute top-0 right-0 p-1 text-black bg-white rounded-full hover:bg-gray-100 focus:outline-none focus:bg-gray-100" onClick={() => setIsOpen(false)}>
                                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

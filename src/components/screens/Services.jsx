@@ -11,14 +11,14 @@ import Loader from '../../Loader'
 const Services = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
-  const products1=useSelector(state=>state.service.data)
-
   useEffect(() => {
     dispatch(ServiceData());
   }, [dispatch]);
   useEffect(() => {
     dispatch(EspecialidadData());
   }, [dispatch]);
+  const products1=useSelector(state=>state.service.data)
+
   const especialidad=useSelector(state=>state.especialidad.data)
 
   console.log(products1)
@@ -61,7 +61,6 @@ const Services = () => {
       if (selectedOption !== "Todos") {
         productCopia = productCopia.filter(product => product.specialty.name.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -79,7 +78,6 @@ const Services = () => {
       else {
         productCopia = products.filter(product => product.specialty.name.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -163,8 +161,6 @@ const Services = () => {
     }
     if (selectedButton === "Nombre") {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -174,8 +170,6 @@ const Services = () => {
     }
     else {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -204,7 +198,7 @@ const Services = () => {
                     <input
                       className='pl-8 text-sm focus:shadow-soft-primary-outline ease-soft leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 bg-white py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-green-100 focus:outline-none focus:transition-shadow'
                       type="text"
-                      placeholder="Nombre o Doctor"
+                      placeholder="Nombre"
                       value={searchValue}
                       onChange={handleSearch}
                     />

@@ -23,7 +23,7 @@ import FacturaDetails from '../Tables/FacturaDetails';
 
 const RutasAdministrador = () => {
   return (
-    <div className="m-0 flex font-sans antialiased font-normal text-base leading-default  text-slate-500 ">
+    <div className="m-0 flex font-sans antialiased font-normal text-base leading-default bg-gray-50  text-slate-500 ">
     <Navbar/>
       <Routes>
         <Route path="/" element={<Home/>}/>

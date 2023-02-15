@@ -11,7 +11,7 @@ import { promotionDeleteSuccess, promotionDeleteFailure } from "../../features/s
 
 export const deleteProductApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/product/id?id=${id}`);
+      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/product/id?id=${id}`);
       dispatch(productDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
@@ -31,7 +31,7 @@ export const deleteProductApi = id => async dispatch=>{
 
   export const deleteServicesApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://service-production-bb52.up.railway.app/api/service/${id}`);
+      const response = await axios.delete(`https://service-production-bb52.up.railway.app/api/admin/service/${id}`);
       dispatch(serviceDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
@@ -51,7 +51,7 @@ export const deleteProductApi = id => async dispatch=>{
 
   export const deleteCategoryApi = id => async dispatch=>{
     try {
-      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/category/${id}`);
+      const response = await axios.delete(`https://product-production-cf12.up.railway.app/api/admin/category/${id}`);
       dispatch(CategoryDeleteSuccess(id));
       Swal.fire({
         title: 'Excelente!',
