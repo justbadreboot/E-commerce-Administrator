@@ -24,7 +24,7 @@ export const postDataToApi = data => async dispatch => {
       title: 'Excelente!',
       icon: 'success',
       text: 'Categoria añadida correctamente'
-  });
+    });
   } catch (error) {
     dispatch(CategoryPostFailure(error.message));
     console.log(error.message)
@@ -32,11 +32,11 @@ export const postDataToApi = data => async dispatch => {
       title: 'Error!',
       icon: 'error',
       text: "Porfavor, intenta de nuevo en unos momentos"
-  });
+    });
   }
 };
 
-export const postProductApi =data=> async dispatch=>{
+export const postProductApi = data => async dispatch => {
   try {
     const token = localStorage.getItem('token');
     console.log(token)
@@ -52,20 +52,20 @@ export const postProductApi =data=> async dispatch=>{
       title: 'Excelente!',
       icon: 'success',
       text: 'Producto añadido correctamente'
-  });
+    });
   } catch (error) {
     dispatch(productPostFailure(error.message));
     Swal.fire({
       title: 'Error!',
       icon: 'error',
       text: "Porfavor, intenta de nuevo en unos momentos"
-  });
+    });
   }
 
 }
 
-export const postDoctorApi=(id, data)=>async dispatch=>{
-  try{
+export const postDoctorApi = (id, data) => async dispatch => {
+  try {
     const token = localStorage.getItem('token');
     console.log(token)
     const api = axios.create({
@@ -81,18 +81,18 @@ export const postDoctorApi=(id, data)=>async dispatch=>{
       title: 'Excelente!',
       icon: 'success',
       text: 'Doctor añadido correctamente'
-  });
+    });
   } catch (error) {
     dispatch(DoctorPostFailure(error.message));
     Swal.fire({
       title: 'Error!',
       icon: 'error',
       text: "Porfavor, intenta de nuevo en unos momentos"
-  });
+    });
+  }
 }
-}
-export const postServicesApi=(id, data)=>async dispatch=>{
-  try{
+export const postServicesApi = (id, data) => async dispatch => {
+  try {
     const token = localStorage.getItem('token');
     console.log(token)
     const api = axios.create({
@@ -107,20 +107,20 @@ export const postServicesApi=(id, data)=>async dispatch=>{
       title: 'Excelente!',
       icon: 'success',
       text: 'Servicio añadido correctamente'
-  });
+    });
   } catch (error) {
     dispatch(servicePostFailure(error.message));
     Swal.fire({
       title: 'Error!',
       icon: 'error',
       text: "Porfavor, intenta de nuevo en unos momentos"
-  });
+    });
 
-}
+  }
 }
 
-export const postSpecialityApi=data=>async dispatch=>{
-  try{
+export const postSpecialityApi = data => async dispatch => {
+  try {
     const token = localStorage.getItem('token');
     console.log(token)
     const api = axios.create({
@@ -135,19 +135,19 @@ export const postSpecialityApi=data=>async dispatch=>{
       title: 'Excelente!',
       icon: 'success',
       text: 'Especialidad añadida correctamente'
-  });
+    });
   } catch (error) {
     dispatch(EspecialidadPostFailure(error.message));
     Swal.fire({
       title: 'Error!',
       icon: 'error',
       text: "Porfavor, intenta de nuevo en unos momentos"
-  });
+    });
 
+  }
 }
-}
-export const postBillApi=data=>async dispatch=>{
-  try{
+export const postBillApi = data => async dispatch => {
+  try {
     const token = localStorage.getItem('token');
     console.log(token)
     const api = axios.create({
@@ -161,17 +161,17 @@ export const postBillApi=data=>async dispatch=>{
       title: 'Excelente!',
       icon: 'success',
       text: 'Orden entregada correctamente'
-  });
+    });
   } catch (error) {
     Swal.fire({
       title: 'Error!',
       icon: 'error',
       text: "Porfavor, intenta de nuevo en unos momentos"
-  });
+    });
+  }
 }
-}
-export const postPromotionApi=data=>async dispatch=>{
-  try{
+export const postPromotionApi = data => async dispatch => {
+  try {
     const token = localStorage.getItem('token');
     console.log(token)
     const api = axios.create({
@@ -186,16 +186,16 @@ export const postPromotionApi=data=>async dispatch=>{
       title: 'Excelente!',
       icon: 'success',
       text: 'Promoción añadida correctamente'
-  });
+    });
   } catch (error) {
     dispatch(promotionFailure(error.message));
     Swal.fire({
       title: 'Error!',
       icon: 'error',
       text: "Este producto ya tiene otra promoción"
-  });
+    });
 
-}
+  }
 }
 export const reduceProductApi = data => async dispatch => {
   try {
