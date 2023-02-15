@@ -42,7 +42,7 @@ const ModalServicio = (props) => {
             const result= await uploadServicesFile(image);
             setImage(`${result}`)
         }
-        axios.put(`https://service-production-bb52.up.railway.app/api/specialty/${specialty.id}/service`, {
+        axios.put(`https://service-production-bb52.up.railway.app/api/admin/specialty/${specialty.id}/service`, {
             description,
             name,
             price,

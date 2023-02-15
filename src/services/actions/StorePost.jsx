@@ -77,7 +77,7 @@ export const postDoctorApi=(id, data)=>async dispatch=>{
 }
 export const postServicesApi=(id, data)=>async dispatch=>{
   try{
-    const response = await axios.post(`https://service-production-bb52.up.railway.app/api/specialty/${id}/service`, data);
+    const response = await axios.post(`https://service-production-bb52.up.railway.app/api/public/specialty/${id}/service`, data);
     dispatch(servicePostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',

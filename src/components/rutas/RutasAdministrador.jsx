@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
-import Rectangulo from '../../app/Rectangulo';
 import ModalAñadirCategoria from '../Creations/ModalAñadirCategoria';
 import ModalAñadirDoctor from '../Creations/ModalAñadirDoctor';
 import ModalAñadirEspecialidad from '../Creations/ModalAñadirEspecialidad';

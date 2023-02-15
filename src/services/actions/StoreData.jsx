@@ -46,8 +46,8 @@ export const CategoryData = () => {
       try {
         const token=localStorage.getItem("token")
         const api = axios.create({
-          baseURL: 'https://api-gateway-production-d841.up.railway.app/api'/*'https://product-production-cf12.up.railway.app/api'*/,
-         /* headers: {
+          baseURL: /*'https://api-gateway-production-d841.up.railway.app/api'*/'http://localhost:9095/api',
+          /*headers: {
             'Authorization': `Bearer ${token}`,
           },*/
         });
@@ -63,7 +63,7 @@ export const CategoryData = () => {
   export const ServiceData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/service');
+        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/public/service');
         dispatch(serviceSuccess(response1.data));
       } catch (error) {
         dispatch(serviceFailure(error.message));
@@ -84,7 +84,7 @@ export const CategoryData = () => {
   export const EspecialidadData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/specialty');
+        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/public/specialty');
         dispatch(EspecialidadSuccess(response1.data));
       } catch (error) {
         dispatch(EspecialidadFailure(error.message));

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Rectangulo from './app/Rectangulo';
 
 
 import Login from './components/rutas/Login';
