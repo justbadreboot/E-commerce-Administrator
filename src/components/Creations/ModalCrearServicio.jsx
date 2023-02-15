@@ -139,7 +139,6 @@ const ModalCrearServicio = () => {
                     className="w-full border border-gray-400 p-2 rounded-md"
                     type="file"
                     name="photo"
-                    value={photo}
                     onChange={e=>setPhoto(e.target.files[0])}
                 />
                 <div className="text-red-500">{fotoError}</div>

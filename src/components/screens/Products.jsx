@@ -68,7 +68,7 @@ const Products = () => {
   const options=category.map(categorie=>(categorie.name));
   options.unshift("Todos");
   const [selectedOption, setSelectedOption] = useState("Todos");
-  const optionsstatus = ["Todos", "Vigente", "Por Expirar", "Expirado"];
+  const optionsstatus = ["Todos", "Vigente", "Por expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
 
   const handleChangestatus = (event) => {

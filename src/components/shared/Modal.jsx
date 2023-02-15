@@ -104,11 +104,11 @@ let image=``
     };
     return (
         <div>
-            <button className="font-semibold leading-tight  text-xs text-slate-400" onClick={() => setIsOpen(true)}>
+            <button htmlFor={props.producto.id} className="font-semibold leading-tight  text-xs text-slate-400" onClick={() => setIsOpen(true)}>
                 Detalles
             </button>
             {isOpen && (
-                <div className="fixed bottom-0 inset-x-0  pb-6 sm:inset-3 sm:p-0 sm:flex z-50">
+                <div id={props.producto.id} className="fixed bottom-0 inset-x-0  pb-6 sm:inset-3 sm:p-0 sm:flex z-50">
                     <div className="inset-0 transition-opacity">
                         <div className="absolute inset-0 bg-gray-500 opacity-75 rounded-lg"></div>
                     </div>
