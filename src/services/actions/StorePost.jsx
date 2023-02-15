@@ -80,7 +80,7 @@ export const postDoctorApi=(id, data)=>async dispatch=>{
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
-      text: 'Producto añadido correctamente'
+      text: 'Doctor añadido correctamente'
   });
   } catch (error) {
     dispatch(DoctorPostFailure(error.message));
@@ -93,80 +93,122 @@ export const postDoctorApi=(id, data)=>async dispatch=>{
 }
 export const postServicesApi=(id, data)=>async dispatch=>{
   try{
-    const response = await axios.post(`https://service-production-bb52.up.railway.app/api/admin/specialty/${id}/service`, data);
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const response = await api.post(`/admin/specialty/${id}/service`, data);
     dispatch(servicePostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
       text: 'Servicio añadido correctamente'
   });
-} catch (error) {
-  dispatch(servicePostFailure(error.message));
-  Swal.fire({
-    title: 'Error!',
-    icon: 'error',
-    text: "Porfavor, intenta de nuevo en unos momentos"
-});
+  } catch (error) {
+    dispatch(servicePostFailure(error.message));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
+
 }
 }
 
 export const postSpecialityApi=data=>async dispatch=>{
   try{
-    const response = await axios.post(`https://service-production-bb52.up.railway.app/api/admin/specialty`, data);
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const response = await api.post(`/admin/specialty`, data);
     dispatch(EspecialidadPostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
       text: 'Especialidad añadida correctamente'
   });
-} catch (error) {
-  dispatch(EspecialidadPostFailure(error.message));
-  Swal.fire({
-    title: 'Error!',
-    icon: 'error',
-    text: "Porfavor, intenta de nuevo en unos momentos"
-});
+  } catch (error) {
+    dispatch(EspecialidadPostFailure(error.message));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
+
 }
 }
 export const postBillApi=data=>async dispatch=>{
   try{
-    const response = await axios.post(`https://invoice-production-ea9a.up.railway.app/api/invoice/order`, data);
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const response = await api.post(`/repartidor/invoice/order`, data);
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
-      text: 'Especialidad añadida correctamente'
+      text: 'Orden entregada correctamente'
   });
-} catch (error) {
-  Swal.fire({
-    title: 'Error!',
-    icon: 'error',
-    text: "Porfavor, intenta de nuevo en unos momentos"
-});
+  } catch (error) {
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Porfavor, intenta de nuevo en unos momentos"
+  });
 }
 }
 export const postPromotionApi=data=>async dispatch=>{
   try{
-    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/admin/promotion`, data);
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const response = await api.post(`/admin/promotion`, data);
     dispatch(promotionPostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
       text: 'Promoción añadida correctamente'
   });
-} catch (error) {
-  dispatch(promotionFailure(error.message));
-  Swal.fire({
-    title: 'Error!',
-    icon: 'error',
-    text: "Este producto ya tiene otra promoción"
-});
+  } catch (error) {
+    dispatch(promotionFailure(error.message));
+    Swal.fire({
+      title: 'Error!',
+      icon: 'error',
+      text: "Este producto ya tiene otra promoción"
+  });
+
 }
 }
 export const reduceProductApi = data => async dispatch => {
   try {
-    const response = await axios.post(`https://product-production-cf12.up.railway.app/api/admin/product/reduce/stock`, data);
-    console.log(response.data)
+    const token = localStorage.getItem('token');
+    console.log(token)
+    const api = axios.create({
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const response = await api.post(`/admin/product/reduce/stock`, data);
+
   } catch (error) {
-    console.log(error.data)
   }
 }
