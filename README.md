@@ -19,9 +19,7 @@
   <p align="center">
     Manage your clinic e-commerce
     <br />
-    <a href="https://github.com/joseandresgavilanes/spotify/issues">View Demo</a>
-    ·
-    <a href="https://github.com/joseandresgavilanes/spotify/issues">Request Feature</a>
+    <a href="https://e-commerce-administrator.vercel.app/">View Demo</a>
   </p>
 </div>
 
@@ -91,14 +89,14 @@ It's necessary to have git 😺 and node in your computer!
 
 ```bash
 # EMAIL ADMINISTRADOR
-$ usuario1@correo.com
+$ admin@gmail.com
 # PASSWORD ADMINISTRADOR
-$ contraseña1
+$ 1234
 
 # EMAIL REPARTIDOR
-$ usuario2@correo.com
+$ repartidor@gmail.com
 # PASSWORD REPARTIDOR
-$ contraseña2
+$ 1234
 ```
 
 
@@ -139,7 +137,7 @@ $ npm start
 
 
 ###	🚧 Status: Building 🚀  🚧
-###  [Deploy](https://vermillion-biscochitos-56a61b.netlify.app)
+###  [Deploy](https://e-commerce-administrator.vercel.app/)
 
 
 <br/>
