@@ -11,7 +11,7 @@ const Modal = (props) => {
     console.log(props.producto.category)
     const [name, setName] = useState(props.producto.name);
     const [foto,setFoto]=useState(false);
-    const [imagen, setImage] = useState(props.producto.imagen);
+    const [imagen, setImage] = useState(props.producto.image);
     const [size, setSize] = useState(props.producto.size);
     const [expiration, setExpiration] = useState(props.producto.expiration);
     const [weight, setWeight] = useState(props.producto.weight);
@@ -104,7 +104,7 @@ let image=``
     };
     return (
         <div>
-            <button className="font-semibold leading-tight text-xs text-slate-400" onClick={() => setIsOpen(true)}>
+            <button className="font-semibold leading-tight  text-xs text-slate-400" onClick={() => setIsOpen(true)}>
                 Detalles
             </button>
             {isOpen && (
@@ -113,7 +113,7 @@ let image=``
                         <div className="absolute inset-0 bg-gray-500 opacity-75 rounded-lg"></div>
                     </div>
                     <div className='mx-auto my-auto'>
-                        <div className="relative pb-5 bg-white  rounded-lg pt-5">
+                        <div className="relative pb-5 w-3/5 bg-white my-auto mx-auto  rounded-lg pt-5">
                             <button className="absolute top-0 right-0 p-1 text-black bg-white rounded-full hover:bg-gray-100 focus:outline-none focus:bg-gray-100" onClick={() => setIsOpen(false)}>
                                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>

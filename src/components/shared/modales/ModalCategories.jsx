@@ -8,7 +8,7 @@ const ModalCategories = (props) => {
     const [name, setName] = useState(props.producto.name);
     const [id, setId]=useState(props.producto.id)
     const [foto,setFoto]=useState(false)
-    const [imagen, setImage] = useState(props.producto.imagen);
+    const [imagen, setImage] = useState(props.producto.image);
     const [weight, setWeight] = useState(props.producto.peso);
     const [category, setCategory] = useState(props.producto.categoria);
     const [stock, setStock] = useState(props.producto.stock);
@@ -67,8 +67,8 @@ const ModalCategories = (props) => {
                     <div className="inset-0 transition-opacity">
                         <div className="absolute inset-0 bg-gray-500 opacity-75 rounded-lg"></div>
                     </div>
-                    <div className='mx-auto my-auto'>
-                        <div className="relative pb-5 bg-white  rounded-lg pt-5">
+                    <div className='mx-auto w-3/5 my-auto'>
+                        <div className="relative pb-5 bg-white  mx-auto my-auto  rounded-lg pt-5">
                             <button className="absolute top-0 right-0 p-1 text-black bg-white rounded-full hover:bg-gray-100 focus:outline-none focus:bg-gray-100" onClick={() => setIsOpen(false)}>
                                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -87,7 +87,7 @@ const ModalCategories = (props) => {
                                     </div>
                                     <div className="w-1/3 mx-auto">
                                         <img src={`${imagen}`} className='w-2/3' />
-                                        <label className={`flex items-center justify-center cursor-pointer w-2/3 ${imagen}`}>
+                                        <label className={`flex items-center justify-center cursor-pointer w-2/3 ${editImage}`}>
                                             <i className="fa-solid fa-pen-to-square text-gray-500 text-xl"></i>
                                             <input
                                                 type="file"

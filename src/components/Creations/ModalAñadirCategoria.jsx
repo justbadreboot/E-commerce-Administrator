@@ -82,7 +82,7 @@ const ModalAñadirCategoria = () => {
         }
     };
     return (
-        <div className='mx-auto my-10 z-50 '>
+        <div className='mx-auto my-10 w-2/6 z-50 '>
             <div className="inset-0 transition-opacity rounded-2xl">
                 <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>

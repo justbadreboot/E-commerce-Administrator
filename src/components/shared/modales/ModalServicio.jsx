@@ -9,7 +9,7 @@ const ModalServicio = (props) => {
     const [name, setName] = useState(props.producto.name);
     const [id, setId]=useState(props.producto.id)
     const [foto,setFoto]=useState(false)
-    const [imagen, setImagen] = useState(props.producto.imagen);
+    const [imagen, setImagen] = useState(props.producto.image);
     const [price, setPrice] = useState(props.producto.price);
     const [specialty, setSpecialty] = useState(props.producto.specialty);
     const [stock, setStock] = useState(props.producto.doctor);
@@ -68,7 +68,7 @@ const ModalServicio = (props) => {
                     <div className="inset-0 transition-opacity">
                         <div className="absolute inset-0 bg-gray-500 opacity-75 rounded-lg"></div>
                     </div>
-                    <div className='mx-auto my-auto'>
+                    <div className='mx-auto w-2/4 my-auto'>
                         <div className="relative pb-5 bg-white  rounded-lg pt-5">
                             <button className="absolute top-0 right-0 p-1 text-black bg-white rounded-full hover:bg-gray-100 focus:outline-none focus:bg-gray-100" onClick={() => setIsOpen(false)}>
                                 <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
