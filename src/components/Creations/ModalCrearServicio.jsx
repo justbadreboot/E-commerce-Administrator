@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { EspecialidadData } from '../../services/actions/StoreData';
+import { EspecialidadData, ServiceData } from '../../services/actions/StoreData';
 import { uploadServicesFile } from '../../firebaseConfig';
 import { postServicesApi } from '../../services/actions/StorePost';
 
@@ -9,6 +9,7 @@ const ModalCrearServicio = () => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
     const [photo,setPhoto]=useState(null)
+    const [error,setError]=useState(false)
 
     useEffect(() => {
         dispatch(EspecialidadData());
@@ -26,9 +27,9 @@ const ModalCrearServicio = () => {
         name: "",
         description: "",
         price: "",
-        image:"",
         speciality:""
     });
+    const [fotoError,setFotoError]=useState("")
 
     const handleChange = event => {
         setFormData({
@@ -38,25 +39,33 @@ const ModalCrearServicio = () => {
     };
 
     const validateForm = () => {
+        console.log(formData.description)
         let newErrors = { ...errors };
         Object.keys(formData).forEach(key => {
             if (!formData[key]) {
                 newErrors = { ...newErrors, [key]: "Este campo es requerido" };
             }
+            else{
+                newErrors={ ...newErrors,[key]:""}
+            }
         });
         setErrors(newErrors);
+        console.log(  Object.values(newErrors))
         return Object.values(newErrors).every(error => error === "");
     };
 
     const handleSubmit= async event => {
         event.preventDefault();
+        validateForm()
+        console.log(photo)
         if(photo == null){
-            setErrors({
-                image:"Necesita una foto"
-            })
+            setFotoError("Necesita una imagen")
         }
         else{
-            if (validateForm()) {
+            setFotoError("")
+            console.log(formData.description)
+
+            if ( validateForm()) {
                 const result= await uploadServicesFile(photo);
                 const data={
                     name: formData.name,
@@ -66,14 +75,21 @@ const ModalCrearServicio = () => {
                     speciality:formData.speciality
                 }
                 dispatch(postServicesApi(formData.speciality,data))
-
+                dispatch(ServiceData());
+                setPhoto(null)
+                setFormData({
+                    name: "",
+                    description: "",
+                    price: "",
+                    speciality:""
+                })
                 // Enviar datos del formulario a la API
             }
         }
 
     };
     return (
-        <div className='mx-auto my-10 z-50'>
+        <div className='mx-auto my-10 w-2/5 z-50'>
             <div className="inset-0 transition-opacity rounded-2xl">
                 <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
             </div>
@@ -123,9 +139,10 @@ const ModalCrearServicio = () => {
                     className="w-full border border-gray-400 p-2 rounded-md"
                     type="file"
                     name="photo"
+                    value={photo}
                     onChange={e=>setPhoto(e.target.files[0])}
                 />
-                <div className="text-red-500">{errors.photo}</div>
+                <div className="text-red-500">{fotoError}</div>
                 <div className=''>
                     <div>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
@@ -144,7 +161,7 @@ const ModalCrearServicio = () => {
                                 </option>
                             ))}
                         </select>
-                        <div className="text-red-500">{errors.category}</div>
+                        <div className="text-red-500">{errors.speciality}</div>
                     </div>
                 </div>
 

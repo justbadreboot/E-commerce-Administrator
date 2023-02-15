@@ -3,15 +3,13 @@ import axios from 'axios'
 import { uploadServicesFile } from '../../../firebaseConfig'
 
 const ModalServicio = (props) => {
-    console.log(props.producto)
     const especialidad=props.especialidad
-    console.log(especialidad)
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.name);
     const [id, setId]=useState(props.producto.id)
     const [foto,setFoto]=useState(false)
-    const [image, setImage] = useState(props.producto.image);
+    const [imagen, setImagen] = useState(props.producto.imagen);
     const [price, setPrice] = useState(props.producto.price);
     const [specialty, setSpecialty] = useState(props.producto.specialty);
     const [stock, setStock] = useState(props.producto.doctor);
@@ -20,7 +18,7 @@ const ModalServicio = (props) => {
         setEditing(true);
     };
     const handlePhoto=(e)=>{
-        setImage(e.target.files[0])
+        setImagen(e.target.files[0])
         setFoto(true)
     }
 
@@ -38,10 +36,13 @@ const ModalServicio = (props) => {
 
     const handleSave = async event  => {
         setEditing(false);
+        let image=``
         if(foto===true){
-            const result= await uploadServicesFile(image);
-            setImage(`${result}`)
+            console.log("Entraste")
+            const result= await uploadServicesFile(imagen);
+            image=result
         }
+        setImagen(image)
         axios.put(`https://service-production-bb52.up.railway.app/api/admin/specialty/${specialty.id}/service`, {
             description,
             name,
@@ -55,7 +56,7 @@ const ModalServicio = (props) => {
           .catch(err => {
             console.error(err);
           });
-        //onSave({ image, price, specialty, stock, description, brand, price1, price2 });
+        //onSave({ imagen, price, specialty, stock, description, brand, price1, price2 });
     };
     return (
         <div>
@@ -86,12 +87,12 @@ const ModalServicio = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3 mx-auto">
-                                        <img src={`${image}`} className='w-2/3' />
+                                        <img src={`${imagen}`} className='w-2/3' />
                                         <label className={`flex items-center justify-center cursor-pointer w-2/3 ${editImage}`}>
                                             <i className="fa-solid fa-pen-to-square text-gray-500 text-xl"></i>
                                             <input
                                                 type="file"
-                                                accept="image/*"
+                                                accept="imagen/*"
                                                 className="hidden"
                                                 disabled={!editing}
                                                 onChange={handlePhoto}

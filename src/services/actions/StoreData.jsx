@@ -46,10 +46,10 @@ export const CategoryData = () => {
       try {
         const token=localStorage.getItem("token")
         const api = axios.create({
-          baseURL: /*'https://api-gateway-production-d841.up.railway.app/api'*/'http://localhost:9095/api',
-          /*headers: {
+          baseURL: 'https://api-gateway-production-d841.up.railway.app/api'/*'https://product-production-cf12.up.railway.app/api'*/,
+          headers: {
             'Authorization': `Bearer ${token}`,
-          },*/
+          },
         });
         console.log(api)
         const response = await api.get('/public/product/all');
@@ -74,7 +74,7 @@ export const CategoryData = () => {
   export const DoctorData = () => {
     return async (dispatch) => {
       try {
-        const response1 = await axios.get('https://api-gateway-production-d841.up.railway.app/api/doctor');
+        const response1 = await axios.get('https://service-production-bb52.up.railway.app/api/public/doctor');
         dispatch(DoctorSuccess(response1.data));
       } catch (error) {
         dispatch(DoctorFailure(error.message));

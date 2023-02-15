@@ -7,7 +7,7 @@ const ModalDoctors = (props) => {
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.name);
     const [imageTemp, setImage] = useState(props.producto.imageTemp);
-    const [image, setImagen]=useState(null)
+    const [imagen, setImagen]=useState(null)
     const [document, setDocument] = useState(props.producto.document);
     const [id, setId]=useState(props.producto.id)
     const [lastName,setLastName]=useState(props.producto.lastName)
@@ -44,13 +44,12 @@ const ModalDoctors = (props) => {
     const handleSave =async event => {
         setEditing(false);
         console.log(foto)
+        let image=''
         if(foto===true){
             const result= await uploadDoctorFile(imageTemp);
-            console.log(result)
-            setImagen(`${result}`)
-            console.log(image)
+            image=result
         }
-
+        setImagen(image)
         axios.put(`https://service-production-bb52.up.railway.app/api/specialty/${props.producto.specialty.id}/doctor`, {
             image,
             id,

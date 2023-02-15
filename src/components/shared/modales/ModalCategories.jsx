@@ -8,7 +8,7 @@ const ModalCategories = (props) => {
     const [name, setName] = useState(props.producto.name);
     const [id, setId]=useState(props.producto.id)
     const [foto,setFoto]=useState(false)
-    const [image, setImage] = useState(props.producto.image);
+    const [imagen, setImage] = useState(props.producto.imagen);
     const [weight, setWeight] = useState(props.producto.peso);
     const [category, setCategory] = useState(props.producto.categoria);
     const [stock, setStock] = useState(props.producto.stock);
@@ -37,10 +37,13 @@ const ModalCategories = (props) => {
 
     const handleSave = async event => {
         setEditing(false);
+        let image
         if(foto===true){
-            const result= await uploadProductFile(image);
-            setImage(`${result}`)
+            const result= await uploadProductFile(imagen);
+            image=result
         }
+        setImage(image)
+
         axios.put(`https://product-production-cf12.up.railway.app/api/admin/category/${id}`, {
             description,
             image,
@@ -52,7 +55,7 @@ const ModalCategories = (props) => {
           .catch(err => {
             console.error(err);
           });
-        //onSave({ image, weight, category, stock, description, brand, price1, price2 });
+        //onSave({ imagen, weight, category, stock, description, brand, price1, price2 });
     };
     return (
         <div>
@@ -83,12 +86,12 @@ const ModalCategories = (props) => {
                                         />
                                     </div>
                                     <div className="w-1/3 mx-auto">
-                                        <img src={`${image}`} className='w-2/3' />
-                                        <label className={`flex items-center justify-center cursor-pointer w-2/3 ${editImage}`}>
+                                        <img src={`${imagen}`} className='w-2/3' />
+                                        <label className={`flex items-center justify-center cursor-pointer w-2/3 ${imagen}`}>
                                             <i className="fa-solid fa-pen-to-square text-gray-500 text-xl"></i>
                                             <input
                                                 type="file"
-                                                accept="image/*"
+                                                accept="imagen/*"
                                                 className="hidden"
                                                 disabled={!editing}
                                                 onChange={handlePhoto}

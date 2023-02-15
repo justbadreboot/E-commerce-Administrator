@@ -61,7 +61,6 @@ const Services = () => {
       if (selectedOption !== "Todos") {
         productCopia = productCopia.filter(product => product.specialty.name.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -79,7 +78,6 @@ const Services = () => {
       else {
         productCopia = products.filter(product => product.specialty.name.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -163,8 +161,6 @@ const Services = () => {
     }
     if (selectedButton === "Nombre") {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -174,8 +170,6 @@ const Services = () => {
     }
     else {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {

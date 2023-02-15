@@ -33,10 +33,10 @@ export const postProductApi =data=> async dispatch=>{
     const token = localStorage.getItem('token');
     console.log(token)
     const api = axios.create({
-      baseURL: /*'https://api-gateway-production-d841.up.railway.app/api'*/'https://product-production-cf12.up.railway.app/api',
-      /*headers: {
+      baseURL: 'https://api-gateway-production-d841.up.railway.app/api'/*'https://product-production-cf12.up.railway.app/api'*/,
+      headers: {
         Authorization: `Bearer ${token}`,
-      },*/
+      },
     });
     const response = await api.post('/admin/product', data);
     dispatch(productPostSuccess(response.data));
@@ -77,7 +77,7 @@ export const postDoctorApi=(id, data)=>async dispatch=>{
 }
 export const postServicesApi=(id, data)=>async dispatch=>{
   try{
-    const response = await axios.post(`https://service-production-bb52.up.railway.app/api/public/specialty/${id}/service`, data);
+    const response = await axios.post(`https://service-production-bb52.up.railway.app/api/admin/specialty/${id}/service`, data);
     dispatch(servicePostSuccess(response.data));
     Swal.fire({
       title: 'Excelente!',

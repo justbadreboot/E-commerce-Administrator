@@ -11,7 +11,7 @@ const Modal = (props) => {
     console.log(props.producto.category)
     const [name, setName] = useState(props.producto.name);
     const [foto,setFoto]=useState(false);
-    const [image, setImage] = useState(props.producto.image);
+    const [imagen, setImage] = useState(props.producto.imagen);
     const [size, setSize] = useState(props.producto.size);
     const [expiration, setExpiration] = useState(props.producto.expiration);
     const [weight, setWeight] = useState(props.producto.weight);
@@ -60,11 +60,12 @@ const Modal = (props) => {
     const handleSave =async event => {
         setEditing(false);
 setPorcentajeDescuento("")
+let image=``
         let enviada=categorias.filter(product => product.name.includes(category))
         let categoriaTemp=enviada[0]
         /*const [data,setData]=useState({
             description: description,
-            image:"",
+            imagen:"",
             stock:stock,
             pvd: pvd,
             pvp:pvp,
@@ -75,11 +76,11 @@ setPorcentajeDescuento("")
             expiration:props.producto.expiration,
             size:props.producto.size
         })
-
         */if(foto===true){
-            const result= await uploadProductFile(image);
-            setImage(`${result}`)
+            const result= await uploadProductFile(imagen);
+            image=result
         }
+        setImage(image)
         axios.put(`https://product-production-cf12.up.railway.app/api/admin/product/${id}`, {
             description,
             stock,
@@ -91,7 +92,7 @@ setPorcentajeDescuento("")
             category,
             expiration,
             size,
-            image,
+            imagen,
             porcentajeDescuento
           })
           .then(res => {
@@ -130,12 +131,12 @@ setPorcentajeDescuento("")
                                         />
                                     </div>
                                     <div className="w-1/3 mx-auto">
-                                        <img src={`${image}`} className='w-2/3' />
+                                        <img src={`${imagen}`} className='w-2/3' />
                                         <label className={`flex items-center justify-center cursor-pointer w-2/3  ${editImage}`}>
                                             <i className="fa-solid fa-pen-to-square text-gray-500 text-xl"></i>
                                             <input
                                                 type="file"
-                                                accept="image/*"
+                                                accept="imagen/*"
                                                 className="hidden"
                                                 disabled={!editing}
                                                 onChange={handlePhoto}
