@@ -63,7 +63,7 @@ const Store = () => {
           <strong>Información de la tienda</strong>
         </div>
         <div className="w-full p-6 mx-auto flex bg-gray-50 z-0">
-          <div className="flex  mx-auto">
+          <div className="lg:flex  mx-auto">
             <div className="w-full max-w-full px-3 xl:w-6/12 p-2 drop-shadow-lg">
               <div className="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
                 <div className="flex flex-wrap -mx-0 pt-4 pb-1">
