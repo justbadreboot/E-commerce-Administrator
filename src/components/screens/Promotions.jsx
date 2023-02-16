@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { ProductsData } from '../../services/actions/StoreData'
 import { CategoryData } from '../../services/actions/StoreData'
 import Loader from '../../Loader'
 import ElementsPromotions from '../Tables/ElementsPromotions'

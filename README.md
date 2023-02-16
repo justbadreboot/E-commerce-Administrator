@@ -19,7 +19,7 @@
   <p align="center">
     Manage your clinic e-commerce
     <br />
-    <a href="https://e-commerce-administrator.vercel.app/">View Demo</a>
+    <a href="https://kruger-med-administrator.vercel.app/">View Demo</a>
   </p>
 </div>
 
@@ -137,7 +137,7 @@ $ npm start
 
 
 ###	🚧 Status: Building 🚀  🚧
-###  [Deploy](https://e-commerce-administrator.vercel.app/)
+###  [Deploy](https://kruger-med-administrator.vercel.app/)
 
 
 <br/>
