@@ -1,23 +1,23 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { shallow } from 'enzyme';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import { store } from './app/store';
-import App from './App';
-import Navbar from './components/shared/Navbar/Navbar';
-import ReactDOM from 'react-dom';
-
-
-test('renders learn react link', () => {
-  const { getByText } = render(
-    <Provider store={store}>
-            <BrowserRouter>
-      <App />
-      </BrowserRouter>
-    </Provider>
-  );
-  
-  expect(getByText(/learn/i)).toBeInTheDocument();
+import { render,screen } from "@testing-library/react";
+import Contact from "./components/screens/Contact";
+import Navbar from "./components/shared/Navbar/Navbar";
+import { Router } from "react-router-dom";
+describe("Test Suit Med",()=>{
+  it("Render information",()=>{
+    <Router>
+    const component=render(<Navbar/>);
+    </Router>
+  });
+});
+describe("Test Suit Med",()=>{
+  it("Render information",()=>{
+    const component=render(<Contact/>);
+  });
 });
 
+describe("Test Suit Med",()=>{
+  it("Render information",()=>{
+    const component=render(<Contact/>);
+    component.getByText("Lorem lorem lorem lorem lorem lorem lroe loremrrrrrrrm")
+  });
+});

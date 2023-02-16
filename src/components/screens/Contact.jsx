@@ -81,8 +81,8 @@ const Contact = () => {
                         <div className=' relative z-10 bg-white rounded-xl shadow-lg p-8 md:w-96'>
                             <form action='' className='flex flex-col space-y-4' onSubmit={formik.handleSubmit}>
                                 <div>
-                                    <label for="" className='label-text text-sm text-black-100'>Nombre</label>
-                                    <input type="text" name="nombre" placeholder='Tu nombre' className='input input-bordered mt-2 w-full rounded-md px-4 py-2 outline-none focus:ring-2 border border-slate-900 focus:ring-teal-300 text-gray-600'  onChange={formik.handleChange}  value={formik.values.nombre} />
+                                    <label className='label-text text-sm text-black-100'>Nombre</label>
+                                    <input  type="text" name="nombre" placeholder='Tu nombre' className='input input-bordered mt-2 w-full rounded-md px-4 py-2 outline-none focus:ring-2 border border-slate-900 focus:ring-teal-300 text-gray-600'  onChange={formik.handleChange}  value={formik.values.nombre} />
                                     {formik.touched.nombre && formik.errors.nombre && (
                                         <span className="text-red-400 flex text-xs">
                                             {formik.errors.nombre}
@@ -90,8 +90,8 @@ const Contact = () => {
                                     )}
                                 </div>
                                 <div>
-                                    <label for="" className='label-text text-sm text-black-100'>Correo</label>
-                                    <input type="email" name="email" placeholder='Tu correo' className='input input-bordered mt-2 w-full rounded-md px-4 py-2 outline-none focus:ring-2 border border-slate-900 focus:ring-teal-300  text-gray-600'  onChange={formik.handleChange}  value={formik.values.email} />
+                                    <label  className='label-text text-sm text-black-100'>Correo</label>
+                                    <input  type="email" name="email" placeholder='Tu correo' className='input input-bordered mt-2 w-full rounded-md px-4 py-2 outline-none focus:ring-2 border border-slate-900 focus:ring-teal-300  text-gray-600'  onChange={formik.handleChange}  value={formik.values.email} />
                                     {formik.touched.email && formik.errors.email && (
                                         <span className="text-red-400 flex text-xs">
                                             {formik.errors.email}
@@ -99,8 +99,8 @@ const Contact = () => {
                                     )}
                                 </div>
                                 <div>
-                                    <label for="" className='label-text text-sm text-black-100'>Mensaje</label>
-                                    <textarea type="text" name='mensaje' placeholder='Tu mensaje' className='textarea textarea-bordered mt-2 w-full rounded-md px-4 py-2 outline-none focus:ring-2 border border-slate-900 resize-none focus:ring-teal-300  text-gray-600'  onChange={formik.handleChange} rows="4" value={formik.values.mensaje} />
+                                    <label for="mensaje" className='label-text text-sm text-black-100'>Mensaje</label>
+                                    <textarea id="mensaje" type="text" name='mensaje' placeholder='Tu mensaje' className='textarea textarea-bordered mt-2 w-full rounded-md px-4 py-2 outline-none focus:ring-2 border border-slate-900 resize-none focus:ring-teal-300  text-gray-600'  onChange={formik.handleChange} rows="4" value={formik.values.mensaje} />
                                     {formik.touched.mensaje && formik.errors.mensaje && (
                                         <span className="text-red-400 flex text-xs">
                                             {formik.errors.mensaje}

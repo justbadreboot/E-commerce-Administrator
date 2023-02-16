@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
 <div className='flex'>
 
-        <div className={`z-50 lg:h-5/6 w-52 fixed border-none inset-y-0 my-4 lg:bg-white lg:w-52 ${navclass} flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-100 lg:left-0 lg:translate-x-0`}>
+        <div className={`z-50 overflow-x-hidden  lg:h-5/6 w-52 fixed border-none inset-y-0 my-4 lg:bg-white lg:w-52 ${navclass} flex-wrap items-center justify-between overflow-y-auto rounded-2xl border-0 bg-white p-0 antialiased shadow-none transition-transform duration-100 lg:left-0 lg:translate-x-0`}>
             <div className='flex'>
                 <div>
                     <img src="./images/logo-template.png" className='inline w-40 transition-all duration-200 h-full mx-5 ' />

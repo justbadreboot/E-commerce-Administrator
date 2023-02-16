@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 import { fetchDataSuccess, fetchDataFailure } from "../../features/services/StoreSlice";
 import { CategorySuccess, CategoryFailure } from "../../features/services/CategorySlice";
 import { productSuccess, productFailure } from "../../features/services/ProductSlice";
