@@ -133,7 +133,7 @@ const Services = () => {
 
         <div className="flex-none w-full h-full max-w-full px-3 table-container">
           <div className=" min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border ">
-            <div className="p-6  mb-0 bg-white border-b-0 border-b-solid rounded-2xl h-5gl">
+            <div className="p-6  mb-0 bg-white border-b-0 border-b-solid rounded-2xl h-5gl lg:h-3gl">
 
               <div className=' overflow-x-auto sm:flex grid grid-cols-1 pb-3' >
                 <h6 className='pr-8'><strong>Servicios</strong></h6>
