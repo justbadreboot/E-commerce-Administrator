@@ -26,19 +26,19 @@ const Home = () => {
     <div className=" w-full h-full py-6 mx-auto bg-gray-50 ">
       <div className="flex flex-wrap justify-center -mx-3 bg-gray-50">
         <CardDataU
-          titulo="Ganancias de Hoy"
+          titulo="Rentabilidad Diaria"
           cantidad={`${dia}`}
           porcentaje=" $"
           icono="fa-solid fa-sack-dollar text-lg relative top-3.5 text-white ni leading-none"
         />
         <CardDataU
-          titulo="Clientes Actuales"
+          titulo="Clientes"
           cantidad={`${clients}`}
           porcentaje=" Clientes"
           icono="fa-solid fa-solid fa-users text-lg relative top-3.5 text-white ni leading-none"
         />
         <CardDataU
-          titulo="Ganancias Mensuales"
+          titulo="Rentabilidad Mensual"
           cantidad={`${mes}`}
           porcentaje=" $"
           icono="fa-solid fa-regular fa-money-bill-trend-up text-lg relative top-3.5 text-white ni leading-none"

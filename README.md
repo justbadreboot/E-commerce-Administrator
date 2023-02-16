@@ -57,7 +57,7 @@
 
 Esta es una aplicacion pensada para administrar el e-commerce de Kruger-med.
 <br>
-<img src="./public/images/logo-template.png" alt="Screen devices">
+<img src="./public/images/mockup.png" alt="Screen devices">
 
 
 ### What can you do?
