@@ -5,6 +5,14 @@ import { EspecialidadData, ServiceData } from '../../services/actions/StoreData'
 import { uploadServicesFile } from '../../firebaseConfig';
 import { postServicesApi } from '../../services/actions/StorePost';
 
+function validateNumber(value) {
+    if (!/^\d+$/.test(value)) {
+      return 'Solo números';
+    }
+    else{
+        return "";
+    }
+  }
 const ModalCrearServicio = () => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +30,15 @@ const ModalCrearServicio = () => {
         price: "",
         speciality:""
     });
+
+    function numeroChange(event){
+        const { name, value } = event.target;
+        const newFormData = { ...formData, [name]: value };
+        setFormData(newFormData);
+    
+        const newErrors = { ...errors, [name]: validateNumber(value) };
+        setErrors(newErrors);
+    }
 
     const [errors, setErrors] = useState({
         name: "",
@@ -128,7 +145,7 @@ const ModalCrearServicio = () => {
                             type="number"
                             name="price"
                             value={formData.price}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.price}</div>
                     </div>

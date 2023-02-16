@@ -5,6 +5,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { postDoctorApi } from '../../services/actions/StorePost';
 import { uploadDoctorFile } from '../../firebaseConfig';
 
+function validateNumber(value) {
+    if (!/^\d+$/.test(value)) {
+      return 'Solo números';
+    }
+    else{
+        return "";
+    }
+  }
+
 const ModalAñadirDoctor = () => {
     const dispatch = useDispatch();
     const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +44,15 @@ const ModalAñadirDoctor = () => {
         speciality: ""
     });
     const [errorf,setErrorf]=useState("")
+
+    function numeroChange(event){
+        const { name, value } = event.target;
+        const newFormData = { ...formData, [name]: value };
+        setFormData(newFormData);
+    
+        const newErrors = { ...errors, [name]: validateNumber(value) };
+        setErrors(newErrors);
+    }
 
     const handleChange = event => {
         setFormData({
@@ -139,7 +157,7 @@ const ModalAñadirDoctor = () => {
                             type="text"
                             name="phone"
                             value={formData.phone}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.phone}</div>
                     </div>
@@ -192,7 +210,7 @@ const ModalAñadirDoctor = () => {
                             type="text"
                             name="document"
                             value={formData.document}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.document}</div>
                     </div>

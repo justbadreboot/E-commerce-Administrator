@@ -138,11 +138,24 @@ export const OrdenesData = () => {
 export const OrdenesRepartidorData = () => {
   return async (dispatch) => {
     try {
-      const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/repartidor/order/delivery/1');
-      dispatch(OrdenRepSuccess(response1.data));
+      const token = localStorage.getItem("token")
+      const api = axios.create({
+        baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const response = await api.get('/repartidor/order/delivery/1');
+      dispatch(OrdenRepSuccess(response.data));
     } catch (error) {
       dispatch(OrdenRepFailure(error.message));
     }
+
+      /*const response1 = await axios.get('https://order-production-bfbc.up.railway.app/api/repartidor/order/delivery/1');
+      dispatch(OrdenRepSuccess(response1.data));
+    } catch (error) {
+      dispatch(OrdenRepFailure(error.message));
+    }*/
   };
 }
 export const DireccionesData = (id) => {
@@ -155,7 +168,7 @@ export const DireccionesData = (id) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const response = await api.get(`/direction/${id}`);
+      const response = await api.get(`/repartidor/direction/${id}`);
       dispatch(DireccionRepSuccess(response.data));
     } catch (error) {
       dispatch(DireccionRepFailure(error.message));
@@ -172,7 +185,7 @@ export const ClientData = (id) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const response = await api.get(`/client/${id}`);
+      const response = await api.get(`/repartidor/client/${id}`);
       dispatch(ClientRepSuccess(response.data));
     } catch (error) {
       dispatch(ClientRepFailure(error.message));

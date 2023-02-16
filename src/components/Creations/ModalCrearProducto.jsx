@@ -7,7 +7,14 @@ import { uploadProductFile } from '../../firebaseConfig';
 import { postProductApi } from '../../services/actions/StorePost';
 import Swal from "sweetalert2";
 import { ProductsData } from '../../services/actions/StoreData';
-
+function validateNumber(value) {
+    if (!/^\d+$/.test(value)) {
+      return 'Solo números';
+    }
+    else{
+        return "";
+    }
+  }
 const ModalCrearProducto = () => {
     const dispatch = useDispatch();
 
@@ -25,6 +32,14 @@ const ModalCrearProducto = () => {
         image:"",
         name:""
     })
+    function numeroChange(event){
+        const { name, value } = event.target;
+        const newFormData = { ...formData, [name]: value };
+        setFormData(newFormData);
+    
+        const newErrors = { ...errors, [name]: validateNumber(value) };
+        setErrors(newErrors);
+    }
 
     const [formData, setFormData] = useState({
         name: "",
@@ -139,7 +154,7 @@ const ModalCrearProducto = () => {
                             type="number"
                             name="stock"
                             value={formData.stock}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.stock}</div>
                     </div>
@@ -154,7 +169,7 @@ const ModalCrearProducto = () => {
                             type="number"
                             name="pvp"
                             value={formData.pvp}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.pvp}</div>
                     </div>
@@ -167,7 +182,7 @@ const ModalCrearProducto = () => {
                             type="number"
                             name="pvd"
                             value={formData.pvd}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.pvd}</div>
                     </div>
@@ -205,7 +220,7 @@ const ModalCrearProducto = () => {
                             type="number"
                             name="weight"
                             value={formData.weight}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.weight}</div>
                     </div>
@@ -228,7 +243,7 @@ const ModalCrearProducto = () => {
                 </select>
                 <div className="text-red-500">{errors.category}</div>
                 <div className='flex'>
-                    <div className='pr-10'>
+                    <div className='pr-28'>
                         <label className="block text-gray-700 font-medium mb-2 mt-4">
                             Expiración
                         </label>
@@ -250,7 +265,7 @@ const ModalCrearProducto = () => {
                             type="number"
                             name="size"
                             value={formData.size}
-                            onChange={handleChange}
+                            onChange={numeroChange}
                         />
                         <div className="text-red-500">{errors.size}</div>
                     </div>

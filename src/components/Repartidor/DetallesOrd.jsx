@@ -64,7 +64,7 @@ const DetallesOrd = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        api.put(`/private/order/${products.id}`, {
+        api.put(`/repartidor/order/${products.id}`, {
             id,
             date,
             total,
@@ -116,7 +116,7 @@ const DetallesOrd = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    api.put(`/private/order/${products.id}`, {
+    api.put(`/repartidor/order/${products.id}`, {
         id,
         date,
         total,

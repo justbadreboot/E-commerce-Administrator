@@ -207,7 +207,7 @@ export const reduceProductApi = data => async dispatch => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const response = await api.post(`/admin/product/reduce/stock`, data);
+    const response = await api.post(`/repartidor/product/reduce/stock`, data);
 
   } catch (error) {
   }
