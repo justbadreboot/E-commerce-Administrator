@@ -1,7 +1,5 @@
 import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
-import ModalCrearProducto from '../Creations/ModalCrearProducto'
-import ElementsProducts from '../Tables/ElementsProducts'
 import ElementsServices from '../Tables/ElementsServices'
 import { useDispatch, useSelector } from 'react-redux'
 import { ServiceData } from '../../services/actions/StoreData'
@@ -41,51 +39,8 @@ const Services = () => {
   const options =especialidad.map(categorie=>(categorie.name));
   options.unshift("Todos");
   const [selectedOption, setSelectedOption] = useState("Todos");
-  const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
 
-  const handleChangestatus = (event) => {
-    let productCopia = null
-    if (searchValue.length >= 2) {
-      if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.name.includes(searchValue))
-      }
-      else {
-        productCopia = products.filter(product => product.doctor.includes(searchValue))
-      }
-
-      setSelectedOptionstatus(event.target.value);
-
-      if (selectedOption !== "Todos") {
-        productCopia = productCopia.filter(product => product.specialty.name.includes(selectedOption))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const estado = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.caducidad.includes(estado)))
-      }
-    }
-    else {
-      setSelectedOptionstatus(event.target.value);
-
-      if (selectedOption === "Todos") {
-        productCopia = products
-      }
-      else {
-        productCopia = products.filter(product => product.specialty.name.includes(selectedOption))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const estado = event.target.value;
-        setFilteredProducts(products.filter(product => product.caducidad.includes(estado)))
-      }
-    }
-
-  }
 
   const handleChange = (event) => {
     let productCopia;
@@ -127,12 +82,6 @@ const Services = () => {
         setFilteredProducts(productCopia.filter(product => product.specialty.name.includes(elementos)))
       }
     }
-
-  }
-
-  const handleButtonClick = (e) => {
-    const buttonName = e.target.innerText;
-    setSelectedButton(buttonName);
 
   }
 

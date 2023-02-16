@@ -1,10 +1,8 @@
 import React from 'react'
-import Modal from '../shared/Modal';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ModalServicio from '../shared/modales/ModalServicio';
 import { deleteServicesApi } from '../../services/actions/StoreDelete';
 import { ServiceData } from '../../services/actions/StoreData';
-import { NavLink } from 'react-router-dom';
 
 const ElementsServices = (props) => {
   const producto = props.services

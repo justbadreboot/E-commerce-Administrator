@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { CategoryData, PromotionData } from '../../services/actions/StoreData';
-import { postProductApi } from '../../services/actions/StorePost';
-import Swal from "sweetalert2";
+import { PromotionData } from '../../services/actions/StoreData';
 import { ProductsData } from '../../services/actions/StoreData';
 import { uploadPromotionFile } from '../../firebaseConfig';
 import { postPromotionApi } from '../../services/actions/StorePost';
@@ -47,7 +44,6 @@ const ModalAñadirPromocion = () => {
 
 
 
-      const [isOpen, setIsOpen] = useState(false);
     const [error, setError] = useState("");
     const [foto,setphoto]=useState(null);
     const [promocion,setPromocion]=useState({

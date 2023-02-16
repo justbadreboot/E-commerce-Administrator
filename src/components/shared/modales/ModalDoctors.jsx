@@ -7,16 +7,12 @@ const ModalDoctors = (props) => {
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.name);
     const [imageTemp, setImage] = useState(props.producto.image);
-    const [imagen, setImagen]=useState(null)
     const [document, setDocument] = useState(props.producto.document);
     const [id, setId]=useState(props.producto.id)
     const [lastName,setLastName]=useState(props.producto.lastName)
     const [email, setEmail] = useState(props.producto.email);
-    const [stock, setStock] = useState(props.producto.stock);
-    const [description, setDescription] = useState(props.producto.descripcion);
     const [phone, setPhone] = useState(props.producto.phone);
     const [address, setAddress] = useState(props.producto.address);
-    const [price2, setPrice2] = useState(props.producto.precio2);
     const [foto, setFoto]=useState(false)
     const handleEdit = () => {
         setEditing(true);

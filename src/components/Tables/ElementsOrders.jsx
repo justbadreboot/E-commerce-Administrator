@@ -1,6 +1,5 @@
 import React from 'react'
-import Modal from '../shared/Modal';
-import ModalOrders from '../shared/modales/ModalOrders';
+
 
 const ElementsOrders = (props) => {
     let colorClass = '';
@@ -11,7 +10,6 @@ const ElementsOrders = (props) => {
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const day = date.getDate().toString().padStart(2, "0");
     const dateString = `${year}-${month}-${day}`;
-    const producto=props.products
     switch (props.products.orderState.state) {
         case 'Finalizada':
             colorClass = 'from-success-100 to-success-60 p-1 broder rounded-lg';

@@ -1,11 +1,7 @@
 import React,{useState, useEffect} from 'react'
-import { NavLink } from 'react-router-dom';
-import Modal from '../shared/Modal';
-import ModalFactura from '../shared/modales/ModalFactura';
 import FacturaDetails from './FacturaDetails';
 import { ClientData } from '../../services/actions/StoreData';
 import { useDispatch, useSelector } from 'react-redux';
-import Loader from '../../Loader';
 
 const ElementsFacturas = (props) => {
   const dispatch = useDispatch();

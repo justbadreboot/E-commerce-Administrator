@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
-import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsProducts from '../Tables/ElementsProducts'
 import { useSelector, useDispatch } from 'react-redux'
 import { ProductsData } from '../../services/actions/StoreData'
@@ -32,7 +31,6 @@ const Products = () => {
   }, [products1.length != 0])
 
   const today = Date.now();
-  const oneWeekLater = today + 7 * 24 * 60 * 60 * 1000;
   const twoWeeksLater = today + 14 * 24 * 60 * 60 * 1000;
 
   const producto2 = products1.map(object => {

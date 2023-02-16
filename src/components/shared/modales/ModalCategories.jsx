@@ -9,13 +9,7 @@ const ModalCategories = (props) => {
     const [id, setId]=useState(props.producto.id)
     const [foto,setFoto]=useState(false)
     const [imagen, setImage] = useState(props.producto.image);
-    const [weight, setWeight] = useState(props.producto.peso);
-    const [category, setCategory] = useState(props.producto.categoria);
-    const [stock, setStock] = useState(props.producto.stock);
     const [description, setDescription] = useState(props.producto.description);
-    const [brand, setBrand] = useState(props.producto.marca);
-    const [price1, setPrice1] = useState(props.producto.precio1);
-    const [price2, setPrice2] = useState(props.producto.precio2);
     const handleEdit = () => {
         setEditing(true);
     };

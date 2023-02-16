@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Empleados from '../Empleados';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreData } from '../../services/actions/StoreData';
-import Loader from '../../Loader';
 import axios from 'axios';
-import {uploadFile} from '../../firebaseConfig'
 
 
 const Store = () => {

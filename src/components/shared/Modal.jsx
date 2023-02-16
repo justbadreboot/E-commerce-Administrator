@@ -6,10 +6,10 @@ import { uploadProductFile } from '../../firebaseConfig';
 const Modal = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
-    const id=props.producto.id
-    const categorias=props.categorias
+    const id = props.producto.id
+    const categorias = props.categorias
     const [name, setName] = useState(props.producto.name);
-    const [foto,setFoto]=useState(false);
+    const [foto, setFoto] = useState(false);
     const [imagen, setImage] = useState(props.producto.image);
     const [size, setSize] = useState(props.producto.size);
     const [expiration, setExpiration] = useState(props.producto.expiration);
@@ -20,73 +20,58 @@ const Modal = (props) => {
     const [brand, setBrand] = useState(props.producto.brand);
     const [pvp, setPrice1] = useState(props.producto.pvp);
     const [pvd, setPrice2] = useState(props.producto.pvd);
-    const [porcentajeDescuento, setPorcentajeDescuento]=useState(props.producto.porcentajeDescuento)
-    const [porcentajeDescuento1, setPorcentajeDescuento1]=useState(props.producto.porcentajeDescuento)
+    const [porcentajeDescuento, setPorcentajeDescuento] = useState(props.producto.porcentajeDescuento)
+    const [porcentajeDescuento1, setPorcentajeDescuento1] = useState(props.producto.porcentajeDescuento)
 
     const handleDiscount = (e) => {
         setPorcentajeDescuento1(e.target.value);
         if (e.target.value === "0") {
-          setPorcentajeDescuento("");
+            setPorcentajeDescuento("");
         } else {
-          setPorcentajeDescuento(e.target.value);
+            setPorcentajeDescuento(e.target.value);
         }
-      }
+    }
 
-    const dispatch = useDispatch();
     const handleEdit = () => {
         setEditing(true);
     };
 
-    let borderclass=''
-    let editImage=''
+    let borderclass = ''
+    let editImage = ''
 
-    if(editing){
-        borderclass='border border-black'
-        editImage=''
+    if (editing) {
+        borderclass = 'border border-black'
+        editImage = ''
     }
-    else{
-        borderclass=''
-        editImage='hidden'
+    else {
+        borderclass = ''
+        editImage = 'hidden'
     }
 
-    const handlePhoto=(e)=>{
+    const handlePhoto = (e) => {
         setImage(e.target.files[0])
         setFoto(true)
     }
 
-    const handleSave =async event => {
+    const handleSave = async event => {
         setEditing(false);
-setPorcentajeDescuento("")
-let image=``
-        let enviada=categorias.filter(product => product.name.includes(category))
-        let categoriaTemp=enviada[0]
-        /*const [data,setData]=useState({
-            description: description,
-            imagen:"",
-            stock:stock,
-            pvd: pvd,
-            pvp:pvp,
-            brand: brand,
-            weight: weight,
-            name:name,
-            category: categoriaTemp.id,
-            expiration:props.producto.expiration,
-            size:props.producto.size
-        })
-        */if(foto===true){
-            const result= await uploadProductFile(imagen);
-            image=result
+        setPorcentajeDescuento("")
+        let image = ``
+        let enviada = categorias.filter(product => product.name.includes(category))
+        if (foto === true) {
+            const result = await uploadProductFile(imagen);
+            image = result
         }
-        else{
-            image=imagen
+        else {
+            image = imagen
         }
         setImage(image)
         const token = localStorage.getItem('token');
         const api = axios.create({
-          baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         });
         api.put(`/admin/product/${id}`, {
             description,
@@ -102,10 +87,10 @@ let image=``
             image,
             porcentajeDescuento
         })
-        .then(res => {
-          })
-          .catch(err => {
-          });
+            .then(res => {
+            })
+            .catch(err => {
+            });
 
     };
     return (

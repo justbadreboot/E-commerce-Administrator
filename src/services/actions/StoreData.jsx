@@ -9,7 +9,7 @@ import { OrdenSuccess, OrdenFailure } from "../../features/services/OrdenSlice";
 import { OrdenRepSuccess, OrdenRepFailure } from "../../features/services/OrderRepSlice";
 import { DireccionRepSuccess, DireccionRepFailure, ClientRepSuccess, ClientRepFailure } from "../../features/services/DireccionRepSlice";
 import { FacturaSuccess, FacturaFailure } from "../../features/services/FacturaSlice";
-import { ClientNSuccess, StatisticsFailure, MonthSuccess, TodaySuccess, MonthlichSuccess, WeekSuccess } from "../../features/services/StatisticsSlice";
+import { ClientNSuccess, StatisticsFailure, MonthSuccess, MonthlichSuccess, WeekSuccess } from "../../features/services/StatisticsSlice";
 import { promotionSuccess, promotionFailure } from "../../features/services/PromotionSlice";
 
 export const StoreData = () => {

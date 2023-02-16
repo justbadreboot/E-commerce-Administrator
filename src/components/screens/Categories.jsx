@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import ElementsProducts from '../Tables/ElementsProducts'
 import { useSelector, useDispatch } from 'react-redux'
 import { CategoryData } from '../../services/actions/StoreData'
 import ElementsCategory from '../Tables/ElementsCategory'
@@ -10,11 +9,7 @@ const Categories = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
   const products = useSelector(state => state.category.data)
-  const products1 = products
   const [filteredProducts, setFilteredProducts] = useState(products)
-  const [componente, setComponente] = useState(
-    <Loader />
-  )
 useEffect(()=>{
   setFilteredProducts(products);
 },[products]);
@@ -35,102 +30,9 @@ useEffect(()=>{
 
   const [searchValue, setSearchValue] = useState('')
   const [selectedButton, setSelectedButton] = useState("Nombre");
-  const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
   const [selectedOption, setSelectedOption] = useState("Todos");
-  const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
 
-  const handleChangestatus = (event) => {
-    let productCopia = null
-    if (searchValue.length >= 2) {
-      if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.name.includes(searchValue))
-      }
-      else {
-        productCopia = products.filter(product => product.brand.includes(searchValue))
-      }
-
-      setSelectedOptionstatus(event.target.value);
-
-      if (selectedOption !== "Todos") {
-        productCopia = productCopia.filter(product => product.category.includes(selectedOption))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const estado = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.caducidad.includes(estado)))
-      }
-    }
-    else {
-      setSelectedOptionstatus(event.target.value);
-
-      if (selectedOption === "Todos") {
-        productCopia = products
-      }
-      else {
-        productCopia = products.filter(product => product.category.includes(selectedOption))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const estado = event.target.value;
-        setFilteredProducts(products.filter(product => product.caducidad.includes(estado)))
-      }
-    }
-
-  }
-
-  const handleChange = (event) => {
-    let productCopia;
-    if (searchValue.length >= 2) {
-      if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.name.includes(searchValue))
-      }
-      else {
-        productCopia = products.filter(product => product.brand.includes(searchValue))
-      }
-
-      setSelectedOption(event.target.value);
-
-      if (selectedOptionstatus !== "Todos") {
-        productCopia = productCopia.filter(product => product.caducidad.includes(selectedOptionstatus))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.category.includes(elementos)))
-      }
-    }
-    else {
-      setSelectedOption(event.target.value);
-
-      if (selectedOptionstatus === "Todos") {
-        productCopia = products
-      }
-      else {
-        productCopia = products.filter(product => product.caducidad.includes(selectedOptionstatus))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.category.includes(elementos)))
-      }
-    }
-
-  }
-
-  const handleButtonClick = (e) => {
-    const buttonName = e.target.innerText;
-    setSelectedButton(buttonName);
-
-  }
 
   const handleSearch = (e) => {
     let productosCopia;

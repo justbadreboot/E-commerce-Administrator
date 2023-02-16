@@ -1,9 +1,7 @@
 import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom'
-import { FaUserCircle } from "react-icons/fa";
 import { MdDeliveryDining } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
-import { MdStoreMallDirectory, MdProductionQuantityLimits, MdOutlineMedicalServices, MdLocalOffer } from "react-icons/md";
 
 const NavbarRep = () => {
     const [selectedTab, setSelectedTab] = useState('home');

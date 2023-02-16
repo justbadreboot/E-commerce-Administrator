@@ -4,7 +4,6 @@ const ModalOrders = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [editing, setEditing] = useState(false);
     const [name, setName] = useState(props.producto.Id);
-    const [image, setImage] = useState(props.producto.EstadoPago);
     const [weight, setWeight] = useState(props.producto.EstadoPago);
     const [category, setCategory] = useState(props.producto.Fecha);
     const [stock, setStock] = useState(props.producto.Precio);
@@ -17,7 +16,6 @@ const ModalOrders = (props) => {
     };
 
     let borderclass=''
-    let editImage=''
 
     if(editing){
         borderclass='border border-black'

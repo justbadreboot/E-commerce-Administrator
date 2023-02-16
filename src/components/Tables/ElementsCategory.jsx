@@ -1,9 +1,7 @@
 import React from 'react'
-import Modal from '../shared/Modal';
 import ModalCategories from '../shared/modales/ModalCategories';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteCategoryApi } from '../../services/actions/StoreDelete';
-import { CategoryData } from '../../services/actions/StoreData';
 
 const ElementsCategory = (props) => {
     const dispatch = useDispatch();

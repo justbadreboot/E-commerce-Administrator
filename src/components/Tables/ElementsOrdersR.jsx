@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom';
-import MapvIew from '../shared/Maps/Map';
-import Map from '../shared/Maps/Map';
-import ModalOrders from '../shared/modales/ModalOrders';
-import OrdersR from '../shared/modales/OrdersR';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../Loader';
 import { ClientData, DireccionesData } from '../../services/actions/StoreData';
@@ -11,7 +7,6 @@ import { ClientData, DireccionesData } from '../../services/actions/StoreData';
 const ElementsOrdersR = (props) => {
     const dispatch = useDispatch();
     const direccion = useSelector(state => state.direccionRep.data)
-    const cliente = useSelector(state => state.direccionRep.clients)
     const [modal, setModal] = useState(false)
     const dir = direccion.find(object => object.id === props.products.idAddress)
     const idA = props.products.idAddress
@@ -25,37 +20,7 @@ const ElementsOrdersR = (props) => {
         dispatch(ClientData(cliA))
     }, [dispatch]);
 
-    let colorClass = '';
-    let colorClass1 = '';
     let colorClass2 = '';
-    const producto = props.products
-    switch (props.products.EstadoOrden) {
-        case 'Concluida':
-            colorClass = 'from-success-100 to-success-60 p-1 broder rounded-lg';
-            break;
-        case 'Cancelada':
-            colorClass = 'from-error-100 to-error-80 p-1 broder rounded-lg';
-            break;
-        case 'En Proceso':
-            colorClass = 'from-warning-100 to-warning-80 p-1 broder rounded-lg';
-            break;
-        default:
-            colorClass = '';
-    }
-
-    switch (props.products.EstadoEnvio) {
-        case 'Entregado':
-            colorClass1 = 'from-success-100 to-success-60 p-1 broder rounded-lg';
-            break;
-        case 'Cancelada':
-            colorClass1 = 'from-error-100 to-error-80 p-1 broder rounded-lg';
-            break;
-        case 'Por Entregar':
-            colorClass1 = 'from-warning-100 to-warning-80 p-1 broder rounded-lg';
-            break;
-        default:
-            colorClass1 = '';
-    }
 
     switch (props.products.paymentState.state) {
         case 'Pago efectuado':

@@ -1,42 +1,41 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import BarChart from '../statisctics/BarChart';
 import { useSelector } from 'react-redux';
 
 const BarCard = (props) => {
-  const Monthlich=props.Monthlich
-  let temp=useSelector(state=>state.statistics.Weeks)
-  let date=new Date();
-  const mesActual=date.getMonth();
-  let weekNumber=date.getWeek();
-  const secondWeek=temp.filter(item=>item.weekNumber===weekNumber)
-  const fistWeek=temp.filter(item=>item.weekNumber===(weekNumber-1))
+  const Monthlich = props.Monthlich
+  let temp = useSelector(state => state.statistics.Weeks)
+  let date = new Date();
+  let weekNumber = date.getWeek();
+  const secondWeek = temp.filter(item => item.weekNumber === weekNumber)
+  const fistWeek = temp.filter(item => item.weekNumber === (weekNumber - 1))
 
   let sum2 = 0;
-for (let i = 0; i < secondWeek.length; i++) {
-  sum2 += secondWeek[i].total;
-}
-let sum1 = 0;
-for (let i = 0; i < fistWeek.length; i++) {
-  sum1 += fistWeek[i].total;
-}
-let percentaje=0
-let tantoPorciento=''
-if(sum2===0 || sum1===0){
-  if(sum2===0 && sum1!=0){
-    tantoPorciento='(-100.00%)'
+  for (let i = 0; i < secondWeek.length; i++) {
+    sum2 += secondWeek[i].total;
   }
-  if(sum1===0 && sum2!=0){
-    tantoPorciento='(+100.00%)'
+  let sum1 = 0;
+  for (let i = 0; i < fistWeek.length; i++) {
+    sum1 += fistWeek[i].total;
   }
-  if(sum1===0 && sum2===0){
-    tantoPorciento='(+0.00%)'
+  let percentaje = 0
+  let tantoPorciento = ''
+  if (sum2 === 0 || sum1 === 0) {
+    if (sum2 === 0 && sum1 != 0) {
+      tantoPorciento = '(-100.00%)'
+    }
+    if (sum1 === 0 && sum2 != 0) {
+      tantoPorciento = '(+100.00%)'
+    }
+    if (sum1 === 0 && sum2 === 0) {
+      tantoPorciento = '(+0.00%)'
+    }
   }
-}
-else{
-  if(sum2>sum1){
-    percentaje=Math.min(100, 100 * (sum2 / sum1 - 1))
-    const Ptemp=percentaje.toFixed(2)
-    tantoPorciento=`(+${Ptemp}%)`
+  else {
+    if (sum2 > sum1) {
+      percentaje = Math.min(100, 100 * (sum2 / sum1 - 1))
+      const Ptemp = percentaje.toFixed(2)
+      tantoPorciento = `(+${Ptemp}%)`
   }
   else{
     percentaje=Math.min(100,100 * (sum2 / sum1-1))

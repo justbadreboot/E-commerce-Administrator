@@ -1,7 +1,5 @@
 import Swal from "sweetalert2";
 import axios from "axios";
-import { productSuccess, productFailure } from '../../features/services/ProductSlice';
-import { serviceSuccess, serviceFailure } from "../../features/services/ServiceSlice";
 import { CategoryDeleteSuccess, CategoryDeleteFailure } from "../../features/services/CategorySlice";
 import { productDeleteSuccess, productDeleteFailure } from "../../features/services/ProductSlice";
 import { serviceDeleteSuccess, serviceDeleteFailure } from "../../features/services/ServiceSlice";

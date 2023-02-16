@@ -15,9 +15,7 @@ function validateNumber(value) {
   }
 const ModalCrearServicio = () => {
     const dispatch = useDispatch();
-    const [isOpen, setIsOpen] = useState(false);
     const [photo,setPhoto]=useState(null)
-    const [error,setError]=useState(false)
 
     useEffect(() => {
         dispatch(EspecialidadData());

@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
-import ElementsProducts from '../Tables/ElementsProducts'
 import { useSelector, useDispatch } from 'react-redux'
 import { ProductsData } from '../../services/actions/StoreData'
 import { CategoryData } from '../../services/actions/StoreData'
@@ -33,7 +32,6 @@ const Promotions = () => {
   }, [products1.length != 0])
 
   const today = Date.now();
-  const oneWeekLater = today + 7 * 24 * 60 * 60 * 1000;
   const twoWeeksLater = today + 14 * 24 * 60 * 60 * 1000;
 
   const producto2 = products1.map(object => {
@@ -107,49 +105,6 @@ const Promotions = () => {
       else {
         const estado = event.target.value;
         setFilteredProducts(products.filter(product => product.expiracion.includes(estado)))
-      }
-    }
-
-  }
-
-  const handleChange = (event) => {
-    let productCopia;
-    if (searchValue.length >= 2) {
-      if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.name.includes(searchValue))
-      }
-      else {
-        productCopia = products.filter(product => product.brand.includes(searchValue))
-      }
-
-      setSelectedOption(event.target.value);
-
-      if (selectedOptionstatus !== "Todos") {
-        productCopia = productCopia.filter(product => product.expiracion.includes(selectedOptionstatus))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.promotionTypes.name.includes(elementos)))
-      }
-    }
-    else {
-      setSelectedOption(event.target.value);
-
-      if (selectedOptionstatus === "Todos") {
-        productCopia = products
-      }
-      else {
-        productCopia = products.filter(product => product.expiracion.includes(selectedOptionstatus))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.promotionTypes.name.name.includes(elementos)))
       }
     }
 

@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import Modal from '../shared/Modal';
 import { deletePromotionApi } from '../../services/actions/StoreDelete';
 import { PromotionData } from '../../services/actions/StoreData';
 import { useDispatch } from 'react-redux';

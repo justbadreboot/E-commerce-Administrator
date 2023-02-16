@@ -1,7 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import { NavLink } from 'react-router-dom'
 import ElementsOrders from '../Tables/ElementsOrders'
-import ElementsProducts from '../Tables/ElementsProducts'
 import { useSelector, useDispatch } from 'react-redux'
 import { OrdenesData } from '../../services/actions/StoreData'
 import Loader from '../../Loader'
@@ -20,13 +18,13 @@ const OrdenesTable = () => {
     setFilteredProducts(products1);
   }, [dispatch]);
   useEffect(() => {
-    if (products1.length != 0) {
+    if (products1.length !== 0) {
       setIsLoading(false)
     }
     else{
       setIsLoading(true)
     }
-  }, [products1.length != 0])
+  }, [products1.length !== 0])
 
     const products = products1
       const [searchValue, setSearchValue] = useState('')
@@ -82,7 +80,7 @@ const OrdenesTable = () => {
       const handleChange = (event) => {
         let productCopia;
         if (searchValue.length >= 2) {
-          if (selectedButton == "id") {
+          if (selectedButton === "id") {
             productCopia = products.filter(product => product.id.includes(searchValue))
           }
           else {

@@ -1,6 +1,6 @@
-import React,{useState} from 'react'
+import React from 'react'
 import Modal from '../shared/Modal';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteProductApi } from '../../services/actions/StoreDelete';
 import { ProductsData } from '../../services/actions/StoreData';
 

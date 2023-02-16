@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import Loader from '../../Loader';
 function decodeJWT(token) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -15,15 +14,6 @@ const Login = () => {
     const [errorEmail, setErrorEmail] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
 
-    const usuario1 = {
-        email: 'admin@gmail.com',
-        password: 'password'
-    };
-
-    const usuario2 = {
-        email: 'usuario2@correo.com',
-        password: 'contraseña2'
-    };
 
     const handleSubmit = (event) => {
         event.preventDefault();

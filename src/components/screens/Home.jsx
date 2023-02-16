@@ -3,9 +3,7 @@ import CardDataU from '../CardDataU';
 import BarCard from '../statisctics/BarCard';
 import LineChart from '../statisctics/LineChart';
 import { useSelector, useDispatch } from 'react-redux'
-import { CategoryData } from '../../services/actions/StoreData';
 import { StatisticsData } from '../../services/actions/StoreData';
-import { ProductsData } from '../../services/actions/StoreData';
 
 
 const Home = () => {

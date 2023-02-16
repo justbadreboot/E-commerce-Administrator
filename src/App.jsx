@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 
 import Login from './components/rutas/Login';
@@ -6,7 +6,6 @@ import RutasAdministrador from './components/rutas/RutasAdministrador';
 import RutasReaprtidor from './components/rutas/RutasReaprtidor';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const rol = localStorage.getItem('rol');
 
   return (
@@ -15,7 +14,7 @@ function App() {
 
     <div className='bg-gray-50 h-screen w-screen'>
 
-      {rol=="Admin" ||rol=="Repartidor" ? (
+      {rol==="Admin" ||rol==="Repartidor" ? (
         <>
           {localStorage.getItem('rol') === "Admin" ? (
             <RutasAdministrador />

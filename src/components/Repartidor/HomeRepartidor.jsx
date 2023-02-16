@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from 'react'
-import ElementsOrders from '../Tables/ElementsOrders'
 import ElementsOrdersR from '../Tables/ElementsOrdersR'
 import { useSelector, useDispatch } from 'react-redux'
 import { OrdenesRepartidorData } from '../../services/actions/StoreData'
@@ -48,12 +47,17 @@ const HomeRepartidor = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {products.map(product => (
-                      <ElementsOrdersR
-                      products={product}
-
-                      />
-                    ))}
+                    {isLoading?(
+                      <Loader/>
+                    ):(
+                      products.map(product => (
+                        <ElementsOrdersR
+                        products={product}
+  
+                        />
+                      ))
+                    )}
+   
                   </tbody>
                 </table>
               </div>

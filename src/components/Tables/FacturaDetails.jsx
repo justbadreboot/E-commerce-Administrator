@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import ElementsDetFactura from './ElementsDetFactura';
-import ElementsRepartidor from './ElementsRepartidor';
 
 const FacturaDetails = (props) => {
   const [isOpen, setIsOpen] = useState(false);

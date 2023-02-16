@@ -12,7 +12,6 @@ const ModalServicio = (props) => {
     const [imagen, setImagen] = useState(props.producto.image);
     const [price, setPrice] = useState(props.producto.price);
     const [specialty, setSpecialty] = useState(props.producto.specialty);
-    const [stock, setStock] = useState(props.producto.doctor);
     const [description, setDescription] = useState(props.producto.description);
     const handleEdit = () => {
         setEditing(true);

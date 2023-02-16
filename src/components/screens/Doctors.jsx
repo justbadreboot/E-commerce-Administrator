@@ -1,8 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import { NavLink } from 'react-router-dom'
-import ModalCrearProducto from '../Creations/ModalCrearProducto'
 import ElementsDoctors from '../Tables/ElementsDoctors'
-import ElementsProducts from '../Tables/ElementsProducts'
 import { useDispatch, useSelector } from 'react-redux'
 import { DoctorData } from '../../services/actions/StoreData'
 import Loader from '../../Loader'
@@ -32,96 +30,8 @@ const Doctors = () => {
     setFilteredProducts(products);
   },[products1]);
   const [selectedButton, setSelectedButton] = useState("Nombre");
-  const options = ["Todos", "Analgésico", "AINE", "Corticoides"];
   const [selectedOption, setSelectedOption] = useState("Todos");
-  const optionsstatus = ["Todos", "Ingerible", "Por Expirar", "Expirado"];
   const [selectedOptionstatus, setSelectedOptionstatus] = useState("Todos");
-
-  const handleChangestatus = (event) => {
-    let productCopia = null
-    if (searchValue.length >= 2) {
-      if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.name.includes(searchValue))
-      }
-      else {
-        productCopia = products.filter(product => product.document.includes(searchValue))
-      }
-
-      setSelectedOptionstatus(event.target.value);
-
-      if (selectedOption !== "Todos") {
-        productCopia = productCopia.filter(product => product.numero.includes(selectedOption))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const estado = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.direccion.includes(estado)))
-      }
-    }
-    else {
-      setSelectedOptionstatus(event.target.value);
-
-      if (selectedOption === "Todos") {
-        productCopia = products
-      }
-      else {
-        productCopia = products.filter(product => product.numero.includes(selectedOption))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const estado = event.target.value;
-        setFilteredProducts(products.filter(product => product.direccion.includes(estado)))
-      }
-    }
-
-  }
-
-  const handleChange = (event) => {
-    let productCopia;
-    if (searchValue.length >= 2) {
-      if (selectedButton == "Nombre") {
-        productCopia = products.filter(product => product.name.includes(searchValue))
-      }
-      else {
-        productCopia = products.filter(product => product.document.includes(searchValue))
-      }
-
-      setSelectedOption(event.target.value);
-
-      if (selectedOptionstatus !== "Todos") {
-        productCopia = productCopia.filter(product => product.direccion.includes(selectedOptionstatus))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.numero.includes(elementos)))
-      }
-    }
-    else {
-      setSelectedOption(event.target.value);
-
-      if (selectedOptionstatus === "Todos") {
-        productCopia = products
-      }
-      else {
-        productCopia = products.filter(product => product.direccion.includes(selectedOptionstatus))
-      }
-      if (event.target.value === "Todos") {
-        setFilteredProducts(productCopia)
-      }
-      else {
-        const elementos = event.target.value;
-        setFilteredProducts(productCopia.filter(product => product.numero.includes(elementos)))
-      }
-    }
-
-  }
 
   const handleButtonClick = (e) => {
     const buttonName = e.target.innerText;

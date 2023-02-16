@@ -1,8 +1,4 @@
-import React,{useState, useEffect} from 'react'
-import { NavLink } from 'react-router-dom'
-import ElementsOrders from '../Tables/ElementsOrders'
-import ElementsProducts from '../Tables/ElementsProducts'
-import FacturaDetails from '../Tables/FacturaDetails'
+import React from 'react'
 import FacturaTable from '../Tables/FacturaTable'
 import OrdenesTable from '../Tables/OrdenesTable'
 

@@ -1,4 +1,3 @@
-import { async } from '@firebase/util';
 import axios from 'axios';
 import { DoctorPostSuccess, DoctorPostFailure } from '../../features/services/DoctorSlice';
 import { productPostSuccess, productPostFailure } from '../../features/services/ProductSlice';
