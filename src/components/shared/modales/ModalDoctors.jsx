@@ -22,11 +22,8 @@ const ModalDoctors = (props) => {
         setEditing(true);
     };
     const handlePhoto=(e)=>{
-        console.log(e.target.files[0])
         setImage(e.target.files[0])
         setFoto(true)
-        console.log(imageTemp)
-        console.log(foto)
     }
 
     let borderclass=''
@@ -43,7 +40,6 @@ const ModalDoctors = (props) => {
 
     const handleSave =async event => {
         setEditing(false);
-        console.log(foto)
         let image=''
         if(foto===true){
             const result= await uploadDoctorFile(imageTemp);
@@ -73,10 +69,8 @@ const ModalDoctors = (props) => {
             phone
         })
         .then(res => {
-            console.log(res.data);
           })
           .catch(err => {
-            console.error(err);
           });
         //onSave({ imageTemp, document, email, stock, description, phone, address, price2 });
     };

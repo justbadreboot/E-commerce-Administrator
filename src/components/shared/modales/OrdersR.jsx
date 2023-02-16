@@ -3,24 +3,6 @@ import React,{useState} from 'react'
 const OrdersR = (props) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    /*{          <table className="w-full mt-5 text-left table-collapse">
-    <thead>
-      <tr className="bg-gray-200">
-        <th className="font-medium p-3">Producto</th>
-        <th className="font-medium p-3">Cantidad</th>
-        <th className="font-medium p-3">Precio</th>
-      </tr>
-    </thead>
-    <tbody>
-      {props.factura.map((product, index) => (
-        <tr key={index} className="bg-gray-100">
-          <td className="p-3 font-light">{product.name}</td>
-          <td className="p-3 font-light">{product.quantity}</td>
-          <td className="p-3 font-light">{product.price}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>}*/
     return (
         <div>
                         <button className="font-semibold leading-tight text-xs text-slate-400" onClick={() => setIsOpen(true)}>

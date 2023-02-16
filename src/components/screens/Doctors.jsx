@@ -52,7 +52,6 @@ const Doctors = () => {
       if (selectedOption !== "Todos") {
         productCopia = productCopia.filter(product => product.numero.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -70,7 +69,6 @@ const Doctors = () => {
       else {
         productCopia = products.filter(product => product.numero.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -154,8 +152,6 @@ const Doctors = () => {
     }
     if (selectedButton === "Nombre") {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -165,8 +161,6 @@ const Doctors = () => {
     }
     else {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {

@@ -21,8 +21,6 @@ const Services = () => {
 
   const especialidad=useSelector(state=>state.especialidad.data)
 
-  console.log(products1)
-
   const products = products1
   useEffect(() => {
     if (products1.length != 0) {

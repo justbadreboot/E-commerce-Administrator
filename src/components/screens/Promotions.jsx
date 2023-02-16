@@ -12,7 +12,6 @@ const Promotions = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false)
   const products1=useSelector(state=>state.promotions.data)
-  console.log(products1)
 
 
   useEffect(() => {
@@ -54,7 +53,6 @@ const Promotions = () => {
     return { ...object, expiracion };
   });
 
-console.log(producto2)
 
   const products = producto2
   
@@ -86,7 +84,6 @@ console.log(producto2)
       if (selectedOption !== "Todos") {
         productCopia = productCopia.filter(product => product.promotionTypes.name.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -104,7 +101,6 @@ console.log(producto2)
       else {
         productCopia = products.filter(product => product.promotionTypes.name.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -153,8 +149,6 @@ console.log(producto2)
       }
       else {
         const elementos = event.target.value;
-        console.log(elementos)
-        console.log(productCopia)
         setFilteredProducts(productCopia.filter(product => product.promotionTypes.name.name.includes(elementos)))
       }
     }
@@ -190,8 +184,6 @@ console.log(producto2)
     }
     if (selectedButton === "Nombre") {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -201,8 +193,6 @@ console.log(producto2)
     }
     else {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {

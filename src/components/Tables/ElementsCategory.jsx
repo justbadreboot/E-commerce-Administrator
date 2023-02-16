@@ -12,12 +12,6 @@ const ElementsCategory = (props) => {
     const handleDelete=()=>{
         dispatch(deleteCategoryApi(props.products.id))
     }
-    /*const [isSame, setIsSame] = useState(false);
-
-    const dateFromAPI = new Date(props.dateFromAPI);
-    const currentDate = new Date();
-    const datosProductos=useSelector(state=>state.products)
-    console.log(datosProductos)*/
     let colorClass = '';
     const producto=props.products
     switch (props.products.caducidad) {

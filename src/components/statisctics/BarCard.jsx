@@ -7,7 +7,6 @@ const BarCard = (props) => {
   let temp=useSelector(state=>state.statistics.Weeks)
   let date=new Date();
   const mesActual=date.getMonth();
-  console.log(mesActual)
   let weekNumber=date.getWeek();
   const secondWeek=temp.filter(item=>item.weekNumber===weekNumber)
   const fistWeek=temp.filter(item=>item.weekNumber===(weekNumber-1))

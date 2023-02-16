@@ -55,7 +55,6 @@ useEffect(()=>{
       if (selectedOption !== "Todos") {
         productCopia = productCopia.filter(product => product.category.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -73,7 +72,6 @@ useEffect(()=>{
       else {
         productCopia = products.filter(product => product.category.includes(selectedOption))
       }
-      console.log(productCopia)
       if (event.target.value === "Todos") {
         setFilteredProducts(productCopia)
       }
@@ -157,8 +155,6 @@ useEffect(()=>{
     }
     if (selectedButton === "Nombre") {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -168,8 +164,6 @@ useEffect(()=>{
     }
     else {
       setSearchValue(e.target.value)
-      console.log(searchValue.length)
-      console.log(searchValue)
       if (searchValue.length === 1 || searchValue.length === 0) {
         setFilteredProducts(productosCopia)
       } else {
@@ -203,11 +197,11 @@ useEffect(()=>{
                         onChange={handleSearch}
                       />
                     </div>
-                    
 
-                      <div className='w-8/12'>
-                        <NavLink to="crearCategoria"><i className="fa-solid fa-square-plus pl-5 "></i></NavLink>
-                      </div>
+
+                    <div className='w-8/12'>
+                      <NavLink to="crearCategoria"><i className="fa-solid fa-square-plus pl-5 "></i></NavLink>
+                    </div>
 
                   </div>
                 </div>
@@ -226,11 +220,11 @@ useEffect(()=>{
                       </tr>
                     </thead>
                     <tbody>
-                      {isLoading? (<Loader/>):(filteredProducts.map(product => (
-          <ElementsCategory
-            products={product}
-          />
-        )))}
+                      {isLoading ? (<Loader />) : (filteredProducts.map(product => (
+                        <ElementsCategory
+                          products={product}
+                        />
+                      )))}
                     </tbody>
                   </table>
                 </div>

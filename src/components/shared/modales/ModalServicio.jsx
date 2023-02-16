@@ -38,7 +38,6 @@ const ModalServicio = (props) => {
         setEditing(false);
         let image=``
         if(foto===true){
-            console.log("Entraste")
             const result= await uploadServicesFile(imagen);
             image=result
         }
@@ -62,10 +61,8 @@ const ModalServicio = (props) => {
             id,
         })
         .then(res => {
-            console.log(res.data);
           })
           .catch(err => {
-            console.error(err);
           });
         //onSave({ imagen, price, specialty, stock, description, brand, price1, price2 });
     };

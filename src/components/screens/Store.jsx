@@ -16,7 +16,6 @@ const Store = () => {
 
 
   const storeData=useSelector(state => state.store.data)
-  console.log(storeData)
 
   const [editing, setEditing] = useState(false);
   const [editstore, setEditstore] = useState(false);
@@ -28,6 +27,15 @@ const Store = () => {
   const [email, setEmail]=useState(storeData[0].email)
   const [address, setAddress]=useState(storeData[0].address)
 
+  useEffect(() => {
+    setMission(storeData[0].mission)
+    setVision(storeData[0].vision)
+    setDescription(storeData[0].description)
+    setName(storeData[0].name)
+    setPhone(storeData[0].phone)
+    setEmail(storeData[0].email)
+    setAddress(storeData[0].address)
+  }, [storeData]);
 
   const handleEdit = () => {
     setEditing(false);
@@ -42,11 +50,9 @@ const Store = () => {
         address
       })
       .then(res => {
-        console.log(res);
             dispatch(StoreData());
       })
       .catch(err => {
-        console.error(err);
       });
   };
 

@@ -13,15 +13,8 @@ const ElementsProducts = (props) => {
         dispatch(deleteProductApi(producto.id))
         dispatch(ProductsData())
     }
-    /*const [isSame, setIsSame] = useState(false);
-
-    const dateFromAPI = new Date(props.dateFromAPI);
-    const currentDate = new Date();
-    const datosProductos=useSelector(state=>state.products)
-    console.log(datosProductos)*/
     let colorClass = '';
     const categorias=props.categorias
-    console.log(producto.expiracion)
     switch (producto.expiracion) {
         case 'Vigente':
             colorClass = 'from-success-100 to-success-60 broder rounded-lg p-1';

@@ -57,7 +57,6 @@ export const ProductsData = () => {
           'Authorization': `Bearer ${token}`,
         },
       });
-      console.log(api)
       const response = await api.get('/public/product/all');
       dispatch(productSuccess(response.data));
     } catch (error) {

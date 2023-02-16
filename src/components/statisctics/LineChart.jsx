@@ -71,8 +71,6 @@ export default function LineChart(props) {
     let day = date.toLocaleString("default", {weekday: "long"});
     days0[day] = item.total;
   }
-  console.log(days)
-  console.log(days0)
 
     const scores = [days["lunes"]?days["lunes"]:0, days["martes"]?days["martes"]:0, days["miércoles"]?days["miércoles"]:0, days["jueves"]?days["jueves"]:0, days["viernes"]?days["viernes"]:0, days["sábado"]?days["sábado"]:0, days0["domingo"]?days0["domingo"]:0];
 const scores2 = [days0["lunes"]?days0["lunes"]:0, days0["martes"]?days0["martes"]:0, days0["miércoles"]?days0["miércoles"]:0, days0["jueves"]?days0["jueves"]:0, days0["viernes"]?days0["viernes"]:0, days0["sábado"]?days0["sábado"]:0, days["domingo"]?days["domingo"]:0];

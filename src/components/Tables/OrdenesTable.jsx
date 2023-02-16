@@ -51,7 +51,6 @@ const OrdenesTable = () => {
           if (selectedOption !== "Todos") {
             productCopia = productCopia.filter(product => product.paymentState.state.includes(selectedOption))
           }
-          console.log(productCopia)
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
@@ -69,7 +68,6 @@ const OrdenesTable = () => {
           else {
             productCopia = products.filter(product => product.paymentState.state.includes(selectedOption))
           }
-          console.log(productCopia)
           if (event.target.value === "Todos") {
             setFilteredProducts(productCopia)
           }
@@ -153,10 +151,7 @@ const OrdenesTable = () => {
         }
         if (selectedButton === "id") {
           const buscao=e.target.value
-          console.log(''+buscao)
           setSearchValue(buscao)
-          console.log(searchValue.length)
-          console.log(searchValue[0])
           if (buscao.length === 0 ) {
             setFilteredProducts(productosCopia)
           } else {
@@ -167,8 +162,6 @@ const OrdenesTable = () => {
         else {
           const buscao=e.target.value
           setSearchValue(""+e.target.value)
-          console.log(searchValue.length)
-          console.log(searchValue)
           if (buscao.length === 0 ) {
             setFilteredProducts(productosCopia)
           } else {

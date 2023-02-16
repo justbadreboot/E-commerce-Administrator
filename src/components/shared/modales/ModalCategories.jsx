@@ -59,10 +59,8 @@ const ModalCategories = (props) => {
             name
         })
         .then(res => {
-            console.log(res.data);
           })
           .catch(err => {
-            console.error(err);
           });
         //onSave({ imagen, weight, category, stock, description, brand, price1, price2 });
     };

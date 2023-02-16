@@ -77,7 +77,6 @@ const ModalAñadirDoctor = () => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        console.log(formData.speciality)
         if(photo == null){
             setErrors({
                 image:"Necesita una foto"

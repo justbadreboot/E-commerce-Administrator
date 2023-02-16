@@ -56,7 +56,6 @@ const ModalCrearServicio = () => {
     };
 
     const validateForm = () => {
-        console.log(formData.description)
         let newErrors = { ...errors };
         Object.keys(formData).forEach(key => {
             if (!formData[key]) {
@@ -67,21 +66,17 @@ const ModalCrearServicio = () => {
             }
         });
         setErrors(newErrors);
-        console.log(  Object.values(newErrors))
         return Object.values(newErrors).every(error => error === "");
     };
 
     const handleSubmit= async event => {
         event.preventDefault();
         validateForm()
-        console.log(photo)
         if(photo == null){
             setFotoError("Necesita una imagen")
         }
         else{
             setFotoError("")
-            console.log(formData.description)
-
             if ( validateForm()) {
                 const result= await uploadServicesFile(photo);
                 const data={

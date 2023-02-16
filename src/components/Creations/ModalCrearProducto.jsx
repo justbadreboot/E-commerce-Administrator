@@ -90,7 +90,6 @@ const ModalCrearProducto = () => {
         event.preventDefault();
         if (validateForm()) {
             if(foto!=null){
-                console.log(categoria)
                 const result= await uploadProductFile(foto);
                 const data = {
                     name: formData.name,
@@ -105,7 +104,6 @@ const ModalCrearProducto = () => {
                     expiration:formData.expiration,
                     size:formData.size
                 }
-                console.log(data)
                 dispatch(postProductApi(data))
                 dispatch(ProductsData());
             }

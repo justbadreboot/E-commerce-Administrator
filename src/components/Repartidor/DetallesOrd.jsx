@@ -17,7 +17,6 @@ const DetallesOrd = () => {
     let client = (useSelector(state => state.direccionRep.clients)).find(object => object.id === products.idClient)
 
     if(products.clientDocument){
-        console.log("Toma datos de la orden")
         client={
             document:products.clientDocument,
             firstName:products.clientName,
@@ -26,7 +25,6 @@ const DetallesOrd = () => {
         }
     }
     const direction = (useSelector(state => state.direccionRep.data)).find(object => object.id === products.idAddress)
-    console.log(client)
     const [date,setDate]=useState(products.date)
     const [total,setTotal]=useState(products.total)
     const [subtotal,setSubtotal]=useState(products.subtotal)
@@ -81,10 +79,8 @@ const DetallesOrd = () => {
             orderDetails
         })
         .then(res => {
-            console.log(res.data);
           })
           .catch(err => {
-            console.error(err);
           });
               const direccion=direction.state+", "+direction.sector+","+direction.mainStreet+", "+direction.secondStreet+", "+direction.houseNumber
               const data={
@@ -133,10 +129,8 @@ const DetallesOrd = () => {
         orderDetails
     })
     .then(res => {
-        console.log(res.data);
       })
       .catch(err => {
-        console.error(err);
       });
 
 

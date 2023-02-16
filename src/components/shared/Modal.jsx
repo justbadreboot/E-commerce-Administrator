@@ -8,7 +8,6 @@ const Modal = (props) => {
     const [editing, setEditing] = useState(false);
     const id=props.producto.id
     const categorias=props.categorias
-    console.log(props.producto.category)
     const [name, setName] = useState(props.producto.name);
     const [foto,setFoto]=useState(false);
     const [imagen, setImage] = useState(props.producto.image);
@@ -23,7 +22,6 @@ const Modal = (props) => {
     const [pvd, setPrice2] = useState(props.producto.pvd);
     const [porcentajeDescuento, setPorcentajeDescuento]=useState(props.producto.porcentajeDescuento)
     const [porcentajeDescuento1, setPorcentajeDescuento1]=useState(props.producto.porcentajeDescuento)
-    console.log(porcentajeDescuento)
 
     const handleDiscount = (e) => {
         setPorcentajeDescuento1(e.target.value);
@@ -32,7 +30,6 @@ const Modal = (props) => {
         } else {
           setPorcentajeDescuento(e.target.value);
         }
-        console.log(porcentajeDescuento);
       }
 
     const dispatch = useDispatch();
@@ -106,10 +103,8 @@ let image=``
             porcentajeDescuento
         })
         .then(res => {
-            console.log(res.data);
           })
           .catch(err => {
-            console.error(err);
           });
 
     };

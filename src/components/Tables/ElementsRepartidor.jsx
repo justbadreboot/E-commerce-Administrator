@@ -6,7 +6,6 @@ const ElementsRepartidor = (props) => {
     let colorClass1 = '';
     let colorClass2 = '';
     const producto = props.products
-    console.log(producto)
     switch (props.products.EstadoOrden) {
         case 'Concluida':
             colorClass = 'from-success-100 to-success-60 p-1 broder rounded-lg';

@@ -18,15 +18,10 @@ const ModalAñadirPromocion = () => {
       }, [dispatch]);
   
       const products1=useSelector(state=>state.products.data)
-      console.log(products1)
       const productDes = products1.filter(product => product.porcentajeDescuento !== 0)
-      console.log(productDes)
       const productDes1 = productDes.filter(product => product.porcentajeDescuento ===null)
-      console.log(productDes1)
       const prod=productDes1.filter(product => product.promotion !==0)
-      console.log(prod)
       const prod1=prod.filter(product => product.promotion !==null)
-      console.log(prod1)
       const [producto, setProducto]=useState({
         id: 0,
         name: "",
@@ -106,11 +101,6 @@ const ModalAñadirPromocion = () => {
         event.preventDefault();
         if (validateForm()) {
             if(foto!=null){
-                console.log(formData.promotionTypes)
-
-
-                console.log(promocion)
-                console.log(producto)
 
                 const result= await uploadPromotionFile(foto);
                 const data = {
@@ -122,7 +112,6 @@ const ModalAñadirPromocion = () => {
                     promotionTypes: promocion,
                     product:producto
                 }
-                console.log(data)
                 dispatch(postPromotionApi(data))
                 dispatch(PromotionData())
                 setError("")

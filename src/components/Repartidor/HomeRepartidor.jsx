@@ -25,7 +25,6 @@ const HomeRepartidor = () => {
   }, [products1.length != 0])
 
   const products = products1
-  console.log(products1)
   return (
     <div className='lg:w-4/5 lg:pt-5  lg:ml-60 w-full  mx-8 bg-gray-50 h-screen'>
       <div className=" -mx-8 h-full drop-shadow-lg table-container">

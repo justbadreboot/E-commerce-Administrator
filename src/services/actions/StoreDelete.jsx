@@ -12,7 +12,6 @@ import { promotionDeleteSuccess, promotionDeleteFailure } from "../../features/s
 export const deleteProductApi = id => async dispatch=>{
     try {
       const token = localStorage.getItem('token');
-      console.log(token)
       const api = axios.create({
         baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
         headers: {
@@ -40,7 +39,6 @@ export const deleteProductApi = id => async dispatch=>{
   export const deleteServicesApi = id => async dispatch=>{
     try {
       const token = localStorage.getItem('token');
-      console.log(token)
       const api = axios.create({
         baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
         headers: {
@@ -68,7 +66,6 @@ export const deleteProductApi = id => async dispatch=>{
   export const deleteCategoryApi = id => async dispatch=>{
 try{
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -96,7 +93,6 @@ try{
 
     try {
       const token = localStorage.getItem('token');
-      console.log(token)
       const api = axios.create({
         baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
         headers: {
@@ -124,7 +120,6 @@ try{
 
     try {
       const token = localStorage.getItem('token');
-      console.log(token)
       const api = axios.create({
         baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
         headers: {

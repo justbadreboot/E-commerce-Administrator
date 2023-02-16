@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 export const postDataToApi = data => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -27,7 +26,6 @@ export const postDataToApi = data => async dispatch => {
     });
   } catch (error) {
     dispatch(CategoryPostFailure(error.message));
-    console.log(error.message)
     Swal.fire({
       title: 'Error!',
       icon: 'error',
@@ -39,7 +37,6 @@ export const postDataToApi = data => async dispatch => {
 export const postProductApi = data => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -67,7 +64,6 @@ export const postProductApi = data => async dispatch => {
 export const postDoctorApi = (id, data) => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -76,7 +72,6 @@ export const postDoctorApi = (id, data) => async dispatch => {
     });
     const response = await api.post(`/admin/specialty/${id}/doctor`, data);
     dispatch(DoctorPostSuccess(response.data));
-    console.log(response)
     Swal.fire({
       title: 'Excelente!',
       icon: 'success',
@@ -94,7 +89,6 @@ export const postDoctorApi = (id, data) => async dispatch => {
 export const postServicesApi = (id, data) => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -122,7 +116,6 @@ export const postServicesApi = (id, data) => async dispatch => {
 export const postSpecialityApi = data => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -149,7 +142,6 @@ export const postSpecialityApi = data => async dispatch => {
 export const postBillApi = data => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -173,7 +165,6 @@ export const postBillApi = data => async dispatch => {
 export const postPromotionApi = data => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
@@ -200,7 +191,6 @@ export const postPromotionApi = data => async dispatch => {
 export const reduceProductApi = data => async dispatch => {
   try {
     const token = localStorage.getItem('token');
-    console.log(token)
     const api = axios.create({
       baseURL: 'https://api-gateway-production-d841.up.railway.app/api',
       headers: {
