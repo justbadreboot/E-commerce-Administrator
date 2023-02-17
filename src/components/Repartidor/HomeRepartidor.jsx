@@ -7,6 +7,7 @@ import Loader from '../../Loader'
 const HomeRepartidor = () => {
   const dispatch = useDispatch();
   const products1=useSelector(state=>state.ordenRep.data)
+  console.log(products1)
   const [isLoading, setIsLoading] = useState(false)
 
 
