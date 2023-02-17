@@ -227,7 +227,7 @@ const ModalCrearProducto = () => {
                     Categoría
                 </label>
                 <select
-                    className="w-full border bg-white border-gray-400 bg-white p-2 rounded-md"
+                    className="w-full border bg-white border-gray-400 p-2 rounded-md"
                     name="category"
                     value={formData.category}
                     onChange={handleChange}

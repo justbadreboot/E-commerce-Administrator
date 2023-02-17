@@ -219,6 +219,10 @@ const DetallesOrd = () => {
                     <div className="font-medium">{products.subtotal} $</div>
                 </div>
                 <div className="mt-2 flex justify-between">
+                    <div className="text-gray-700 font-medium">Valor envio:</div>
+                    <div className="font-medium">3.50 $</div>
+                </div>
+                <div className="mt-2 flex justify-between">
                     <div className="text-gray-700 font-medium">Total:</div>
                     <div className="font-medium">{products.total} $</div>
                 </div>
