@@ -82,7 +82,7 @@ try{
   Swal.fire({
     title: 'Error!',
     icon: 'error',
-    text: "Porfavor, intenta de nuevo en unos momentos"
+    text: "No se puede eliminar una categoría con productos"
 });
   }
 }
